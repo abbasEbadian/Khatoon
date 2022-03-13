@@ -1,18 +1,1 @@
-.title{
-  color: cornflowerblue;
-  font-size: 6rem;
-  text-align: center;
-}
-.title2{
-  color: cornflowerblue;
-  font-size: 6rem;
-  text-align: center;
-}
-@media (max-width: 600px) {
-  .title {
-    font-size: 3rem;
-  }
-  .title2 {
-    font-size: 3rem;
-  }
-}
+ 
