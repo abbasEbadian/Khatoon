@@ -1,0 +1,38 @@
+.QuestionBox {
+  background-image: url("../static/img/bg-pic/Group2254.png");
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid #ffffff;
+  backdrop-filter: blur(4px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.NavyButton {
+    text-align: left;
+}
+.NavyButton button{
+  background: linear-gradient(263.9deg, #8a8abb 18.62%, #595c8c 88.62%);
+  box-shadow: 0px 7px 16px -6px #68689c;
+  border-radius: 17px;
+  padding: 10px 25px;
+  color: var(--bs-white);
+}
+
+.QuestionBox > div {
+  width: 60%;
+}
+.QuestionBox h6 {
+  font-weight: bold;
+  font-size: 16px;
+}
+.QuestionBox p {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 2;
+}

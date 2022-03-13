@@ -1,0 +1,29 @@
+.BoxContact {
+  display: flex;
+  width: 148px;
+  height: 148px;
+  border: 1px solid #afb2bf56;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 2px #eee;
+  padding: 0;
+}
+.BoxContact > a {
+  display: flex;
+  align-items: center;
+  color: var(--color-NavyBlue);
+  border-radius: 10px;
+}
+.BoxContact > a div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 148px;
+  height: 110px;
+  align-items: center;
+  padding: 10px 0;
+}
+.BoxContact a div h5 {
+  font-weight: bold;
+  font-size: 19px;
+}
