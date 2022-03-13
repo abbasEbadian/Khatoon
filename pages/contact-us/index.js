@@ -21,7 +21,7 @@ function ContactUs() {
                 </div>
               </h5>
               <p className="text-right pb-5">
-                پرتکرارترین سوالات رو به همراه پاسخ اونها در این قسمت می‌توانید مشاهده کنید...
+                پرتکرارترین سوالات رو به همراه پاسخ اونها در     این قسمت می‌توانید مشاهده کنید...
               </p>
             </div>
             <div className="row gap-3 justify-content-center">
