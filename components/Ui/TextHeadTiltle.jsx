@@ -18,8 +18,6 @@ function TextHeadTiltle(props) {
         </>
     )
 }
-// سوالات پیج
-// پرتکرارترین سوالات رو به همراه پاسخ اونها در     این قسمت می‌توانید مشاهده کنید...
-// 
+
 
 export default TextHeadTiltle

@@ -24,6 +24,7 @@ body {
   margin: 0;
   font-family: IRANSansX !important;
   direction: rtl;
+  background: #E5E5E5 !important;
 }
 [class^=Mui], [class^=Mui] *{
   font-family: IRANSansX !important;
@@ -86,4 +87,7 @@ button {
  label {
   font-family: IRANSansX !important;
   font-size: .8rem !important;
+}
+.width_custom {
+  width: 960px !important;
 }

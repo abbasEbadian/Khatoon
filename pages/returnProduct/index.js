@@ -7,6 +7,7 @@ import Accordian from "../../components/elements/Accordian";
 import QuestionBox from "../../components/Ui/QuestionBox";
 import ContactUsStepItem from "../../components/Ui/ContactUsStepItem";
 import ContactUsQuestionItem from "../../components/Ui/ContactUsQuestionItem";
+import TextHeadTiltle from "../../components/Ui/TextHeadTiltle";
 
 function returnProduct() {
 
@@ -14,7 +15,10 @@ function returnProduct() {
     <>
       <section>
         <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
-        <div className={styles.width_custom + " container"}>
+        <div className={"width_custom container card_style"} style={{ margin: "2rem auto 6rem auto;", padding: '1rem 2rem' }}>
+          <div>
+            <TextHeadTiltle underline_dec={true} title="بازگشت کالا" description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ" />
+          </div>
           <div className="row py-5">
             {/* Add Top Header */}
             <div className="row content">
@@ -63,31 +67,31 @@ function returnProduct() {
                 </div>
               </div>
             </div>
-
-
-            {/* Most Questions */}
+          </div>
+        </div>
+        <div className="width_custom container">
+          {/* Most Questions */}
+          <div>
+            <h4 className={styles.question__header}>
+              چندتا سوال و جواب برای بازگشت کالا
+            </h4>
             <div>
-              <h4 className={styles.question__header}>
-                چندتا سوال و جواب برای بازگشت کالا
-              </h4>
-              <div>
-                <ContactUsQuestionItem
-                  klass="mb-3"
-                  title="۱. هنوز محصولم به دستم نرسیده, چه کنم"
-                  answer=" به محض اینکه غرفه دار محصول سفارشی شما را آماده کند و بفرستد, به شما کد رهگیری پستی میدهد. با درج آن کد پستی در سامانه شرکت پست از وضعیت بسته پستی خبردار می شوید" />
-                <ContactUsQuestionItem
-                  klass="mb-3"
-                  title="۲. هنوز محصولم به دستم نرسیده, چه کنم"
-                  answer=" به محض اینکه غرفه دار محصول سفارشی شما را آماده کند و بفرستد, به شما کد رهگیری پستی میدهد. با درج آن کد پستی در سامانه شرکت پست از وضعیت بسته پستی خبردار می شوید" />
-                <ContactUsQuestionItem
-                  klass="mb-3"
-                  title="۳. هنوز محصولم به دستم نرسیده, چه کنم"
-                  answer=" به محض اینکه غرفه دار محصول سفارشی شما را آماده کند و بفرستد, به شما کد رهگیری پستی میدهد. با درج آن کد پستی در سامانه شرکت پست از وضعیت بسته پستی خبردار می شوید" />
-                <ContactUsQuestionItem
-                  klass="mb-3"
-                  title="۴. هنوز محصولم به دستم نرسیده, چه کنم"
-                  answer=" به محض اینکه غرفه دار محصول سفارشی شما را آماده کند و بفرستد, به شما کد رهگیری پستی میدهد. با درج آن کد پستی در سامانه شرکت پست از وضعیت بسته پستی خبردار می شوید" />
-              </div>
+              <ContactUsQuestionItem
+                klass="mb-3"
+                title="۱. هنوز محصولم به دستم نرسیده, چه کنم"
+                answer=" به محض اینکه غرفه دار محصول سفارشی شما را آماده کند و بفرستد, به شما کد رهگیری پستی میدهد. با درج آن کد پستی در سامانه شرکت پست از وضعیت بسته پستی خبردار می شوید" />
+              <ContactUsQuestionItem
+                klass="mb-3"
+                title="۲. هنوز محصولم به دستم نرسیده, چه کنم"
+                answer=" به محض اینکه غرفه دار محصول سفارشی شما را آماده کند و بفرستد, به شما کد رهگیری پستی میدهد. با درج آن کد پستی در سامانه شرکت پست از وضعیت بسته پستی خبردار می شوید" />
+              <ContactUsQuestionItem
+                klass="mb-3"
+                title="۳. هنوز محصولم به دستم نرسیده, چه کنم"
+                answer=" به محض اینکه غرفه دار محصول سفارشی شما را آماده کند و بفرستد, به شما کد رهگیری پستی میدهد. با درج آن کد پستی در سامانه شرکت پست از وضعیت بسته پستی خبردار می شوید" />
+              <ContactUsQuestionItem
+                klass="mb-3"
+                title="۴. هنوز محصولم به دستم نرسیده, چه کنم"
+                answer=" به محض اینکه غرفه دار محصول سفارشی شما را آماده کند و بفرستد, به شما کد رهگیری پستی میدهد. با درج آن کد پستی در سامانه شرکت پست از وضعیت بسته پستی خبردار می شوید" />
             </div>
           </div>
         </div>
