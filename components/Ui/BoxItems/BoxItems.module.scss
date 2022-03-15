@@ -1,0 +1,14 @@
+.box {
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #ffffff;
+    box-sizing: border-box;
+    backdrop-filter: blur(30px);
+    border-radius: 20px;
+    padding: 1rem 2rem;
+    &_title {
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        color: #123c55;
+    }
+   
+}

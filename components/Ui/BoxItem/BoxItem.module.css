@@ -1,0 +1,22 @@
+.box_item {
+  background: #FFFFFF;
+  border: 1px solid #EEEEEE;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 0.5rem;
+  width: 85%;
+  margin: auto;
+}
+.box_item_title {
+  font-size: 1rem;
+  line-height: 20px;
+  text-align: right;
+  margin-top: 1em;
+  color: #3e3e3e;
+}
+.box_item_price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/*# sourceMappingURL=BoxItem.module.css.map */
