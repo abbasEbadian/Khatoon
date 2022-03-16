@@ -1,17 +1,22 @@
 .BoxContact {
   display: flex;
-  width: 148px;
+  width: 160px;
   height: 148px;
   border: 1px solid #8C92AC;
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 0 10px 2px #eee;
   padding: 0;
+  justify-content: center;
+
 }
 .BoxContact  a:hover {
   background: linear-gradient(263.9deg, #0b685d 18.62%, #128c7e 88.62%);
   color: var(--bs-white);
   transition: all .5s ease-in-out;
+  width: 100%;
+  justify-content: center;
+
 }
 .BoxContact > a {
   display: flex;
@@ -33,4 +38,5 @@
   font-weight: bold;
   font-size: 19px;
 }
+ 
  
