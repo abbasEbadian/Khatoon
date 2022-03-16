@@ -23,10 +23,8 @@ function BasketItem({ klass, item, increment, decrement, removeItem }) {
     <div className={`${styles.basket__item + ' ' + klass}`}>
       <div className='row'>
         <div className='col-12 col-md-2'>
-          <div >
-            <Image src="/static/img/imgs/image 10.png" width="150"
-              height="150"
-              objectFit='contain' />
+          <div style={{height: "100%", width: "100%"}}>
+            <Image src='/static/img/imgs/image 10.png' width="100%" height="100%" layout="responsive" objectFit="cover"></Image>
           </div>
         </div>
         <div className='col-12 col-md-10'>
@@ -63,7 +61,7 @@ function BasketItem({ klass, item, increment, decrement, removeItem }) {
             </div>
             <div className={styles.basket__item_foot}>
               <div className={styles.basket__item_counter}>
-                <ButtonGroup size="small" aria-label="small outlined button group" sx={{ direction: 'ltr', marginTop: '.5rem' }}>
+                <ButtonGroup size="small" aria-label="small outlined button group" sx={{ direction: 'ltr', marginTop: '.5rem',color: "#fff", borderColor: "gray" }}   >
                   <Button onClick={handleIncrement}>+</Button>
                   {displayCounter && <Button >{counter}</Button>}
                   {displayCounter && <Button disabled={counter < 2} onClick={handleDecrement}>-</Button>}
