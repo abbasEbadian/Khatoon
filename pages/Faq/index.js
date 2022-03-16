@@ -41,9 +41,9 @@ function Faqs() {
 
       <section>
         <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
-        <div className={styles.width_custom + " container"}>
+        <div className="container">
           <div className="row py-5">
-            <div className={styles.card_style}>
+            <div className="card_style">
               <div className="col-12 contact-us m-auto text-right px-5">
                 {/* <h5 className="text-head text-right py-4"> */}
                 <h5 className={styles.text_head + " text-right py-4"}>
