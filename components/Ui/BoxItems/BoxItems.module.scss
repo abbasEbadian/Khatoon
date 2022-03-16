@@ -12,3 +12,10 @@
     }
    
 }
+
+.box_item_wrapper{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 200px;
+}

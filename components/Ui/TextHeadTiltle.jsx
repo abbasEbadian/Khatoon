@@ -12,9 +12,11 @@ function TextHeadTiltle(props) {
                     <span></span>
                 </div>}
             </h5>
-            <p className="text-right pb-5">
-                {props.description}
-            </p>
+            {
+                props.description ? <p className="text-right pb-5">
+                    {props.description}
+                </p> : null
+            }
         </>
     )
 }

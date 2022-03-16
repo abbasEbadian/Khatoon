@@ -10,16 +10,15 @@ import Image from 'next/image'
 import BasketItem from '../../components/Ui/BasketItem/BasketItem';
 import BasketFactor from '../../components/Ui/BasketFactor/BasketFactor';
 import BoxItems from '../../components/Ui/BoxItems/BoxItems';
+import BasketTabs from '../../components/Ui/BasketTabs/BasketTabs';
+
+
 
 
 
 function card() {
 
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  
 
   const [basketList, setBasketList] = useState([
     {
@@ -82,14 +81,7 @@ function card() {
       <div className=" container">
         <div className="row py-5">
           {/* buy process tabs */}
-          <Box sx={{ borderBottom: 1, borderColor: 'divider', background: 'white' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="سبد خرید" />
-              <Tab label="افزودن آدرس" />
-              <Tab label="پرداخت" />
-              <Tab label="تاییده پرداخت" />
-            </Tabs>
-          </Box>
+          <BasketTabs tab={0}/>
         </div>
         <div className='row'>
           <div className='col-12 col-md-8'>

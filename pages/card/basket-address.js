@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import BasketTabs from '../../components/Ui/BasketTabs/BasketTabs';
 
 
 const style = {
@@ -63,8 +64,10 @@ function BasketAddress() {
         <section>
             <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
             <div className="width_custom container">
+                
                 <div className="row py-5 ">
-                    <div className='card_style px-5'>
+                <BasketTabs tab={1}/>
+                    <div className='card_style px-5 mt-5'>
                         <div className="col-12 contact-us m-auto text-right">
                             <TextHeadTiltle underline_dec={false} title="آدرس مورد نظر برای ارسال را انتخاب کنید..." />
                         </div>

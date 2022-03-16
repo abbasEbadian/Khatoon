@@ -4,13 +4,13 @@ import Image from 'next/image'
 import { IconButton } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-function BoxItem() {
+function BoxItem({item}) {
     return (
         <div className={styles.box_item}>
-            <Image src="/static/img/imgs/image 10 (1).png" width="100%" height="100%" layout="responsive" objectFit="contain" />
+            <Image src={item.image} width="100%" height="100%" layout="responsive" objectFit="contain" />
             <h5 className={styles.box_item_title}>
                 <a>
-                    بولیز شلوار طرح پوست ماری
+                    {item.title}
                 </a>
             </h5>
             <div className={styles.box_item_price}>
@@ -19,9 +19,9 @@ function BoxItem() {
                         <AddShoppingCartIcon />
                     </IconButton>
                 </div>
-                <div >
-                    <span >300000</span>
-                    <span style={{ textDecoration: 'line-through', color: '#7D7D7D', marginLeft: '4px' }}>244000</span>
+                <div className='d-flex flex-column'>
+                    <span >{item.price}</span>
+                    <del style={{ color: '#7D7D7D', marginLeft: '4px' }}>244000</del>
                 </div>
             </div>
         </div>
