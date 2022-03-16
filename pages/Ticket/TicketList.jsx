@@ -55,129 +55,131 @@ function ListTicket(props) {
                 <div className="row">
                     {/* <ProfileAside active="new_ticket" /> */}
                     <div className=" col-lg-9 col-12 pb-5">
-                        <TextHeadTiltle underline_dec={true} title="تیکت های پشتیبانی" />
-                        <div className={styles.ticket_info_s}>
-                            <div className={styles.list_ticket_show}>
-                                <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                    {AllTicketShow.map((item, idx) => {
-                                        return (
-                                            <div className="d-flex flex-column">
-                                                <div className="pb-2">
-                                                    <Image src={Icon} alt="ticket"></Image>
-                                                </div>
-                                                <p>{item.ShowTicket}</p>
-                                                <p>{item.count}</p>
-                                            </div>
-                                        );
-                                    })}
-                                </Button>
-                                <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                    {AnswerTicketShow.map((item, idx) => {
-                                        return (
-                                            <div className="d-flex flex-column">
-                                                <div className="pb-2">
-                                                    <Image src={Icon2} alt="ticket"></Image>
-                                                </div>
-                                                <p>{item.ShowTicket}</p>
-                                                <p>{item.count}</p>
-                                            </div>
-                                        );
-                                    })}
-                                </Button>
-                                <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                    {EndTicketShow.map((item, idx) => {
-                                        return (
-                                            <div className="d-flex flex-column">
-                                                <div className="pb-2">
-                                                    <Image src={Icon3} alt="ticket"></Image>
-                                                </div>
-                                                <p>{item.ShowTicket}</p>
-                                                <p>{item.count}</p>
-                                            </div>
-                                        );
-                                    })}
-                                </Button>
-                                <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                    {PendingTicketShow.map((item, idx) => {
-                                        return (
-                                            <div className="d-flex flex-column ">
-                                                <div className="pb-2">
-                                                    <Image src={Icon4} alt="ticket"  ></Image>
-                                                </div>
-                                                <p>{item.ShowTicket}</p>
-                                                <p>{item.count}</p>
-                                            </div>
-                                        );
-                                    })}
-                                </Button>
-                                <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                    {PendingTicketShow.map((item, idx) => {
-                                        return (
-                                            <div className="d-flex flex-column ">
-                                                <div className="pb-2">
-                                                    <Image src={Icon5} alt="ticket"  ></Image>
-                                                </div>
-                                                <p>{item.ShowTicket}</p>
-                                                <p>{item.count}</p>
-                                            </div>
-                                        );
-                                    })}
-                                </Button>
-                            </div>
-                            <div className={styles.info_ticket_list}>
-                                <div className={styles.AnswerTicketShow}>
-                                    {consistency.map((item, idx) => {
-                                        return (
-                                            <>
-                                                <Button>
-                                                    <div className="d-flex align-items-center">
-                                                        <p>{item.titleConsistency}</p>
-                                                        <p className="pr-3">({item.newConsistency})</p>
+                        <div className="px-3">
+                            <TextHeadTiltle underline_dec={true} title="تیکت های پشتیبانی" />
+                            <div className={styles.ticket_info_s}>
+                                <div className={styles.list_ticket_show}>
+                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
+                                        {AllTicketShow.map((item, idx) => {
+                                            return (
+                                                <div className="d-flex flex-column">
+                                                    <div className="pb-2">
+                                                        <Image src={Icon} alt="ticket"></Image>
                                                     </div>
-
-                                                    <div className={styles.TimeTicket}>
-                                                        {Time}
+                                                    <p>{item.ShowTicket}</p>
+                                                    <p>{item.count}</p>
+                                                </div>
+                                            );
+                                        })}
+                                    </Button>
+                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
+                                        {AnswerTicketShow.map((item, idx) => {
+                                            return (
+                                                <div className="d-flex flex-column">
+                                                    <div className="pb-2">
+                                                        <Image src={Icon2} alt="ticket"></Image>
                                                     </div>
-                                                </Button>
-                                            </>
-                                        );
-                                    })}
+                                                    <p>{item.ShowTicket}</p>
+                                                    <p>{item.count}</p>
+                                                </div>
+                                            );
+                                        })}
+                                    </Button>
+                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
+                                        {EndTicketShow.map((item, idx) => {
+                                            return (
+                                                <div className="d-flex flex-column">
+                                                    <div className="pb-2">
+                                                        <Image src={Icon3} alt="ticket"></Image>
+                                                    </div>
+                                                    <p>{item.ShowTicket}</p>
+                                                    <p>{item.count}</p>
+                                                </div>
+                                            );
+                                        })}
+                                    </Button>
+                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
+                                        {PendingTicketShow.map((item, idx) => {
+                                            return (
+                                                <div className="d-flex flex-column ">
+                                                    <div className="pb-2">
+                                                        <Image src={Icon4} alt="ticket"  ></Image>
+                                                    </div>
+                                                    <p>{item.ShowTicket}</p>
+                                                    <p>{item.count}</p>
+                                                </div>
+                                            );
+                                        })}
+                                    </Button>
+                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
+                                        {PendingTicketShow.map((item, idx) => {
+                                            return (
+                                                <div className="d-flex flex-column ">
+                                                    <div className="pb-2">
+                                                        <Image src={Icon5} alt="ticket"  ></Image>
+                                                    </div>
+                                                    <p>{item.ShowTicket}</p>
+                                                    <p>{item.count}</p>
+                                                </div>
+                                            );
+                                        })}
+                                    </Button>
                                 </div>
-                                <div className={styles.closed}>
-                                    {consistency.map((item, idx) => {
-                                        return (
-                                            <>
-                                                <Button>
-                                                    <div className="d-flex align-items-center">
-                                                        <p>{item.titleConsistency}</p>
-                                                        <p className="pr-3">({item.newConsistency})</p>
-                                                    </div>
+                                <div className={styles.info_ticket_list}>
+                                    <div className={styles.AnswerTicketShow}>
+                                        {consistency.map((item, idx) => {
+                                            return (
+                                                <>
+                                                    <Button>
+                                                        <div className="d-flex align-items-center">
+                                                            <p>{item.titleConsistency}</p>
+                                                            <p className="pr-3">({item.newConsistency})</p>
+                                                        </div>
 
-                                                    <div>
-                                                        {Time}
-                                                    </div>
-                                                </Button>
-                                            </>
-                                        );
-                                    })}
-                                </div>
-                                <div className={styles.pending_ticket}>
-                                    {consistency.map((item, idx) => {
-                                        return (
-                                            <>
-                                                <Button>
-                                                    <div className="d-flex align-items-center">
-                                                        <p>{item.titleConsistency}</p>
-                                                        <p className="pr-3">({item.newConsistency})</p>
-                                                    </div>
+                                                        <div className={styles.TimeTicket}>
+                                                            {Time}
+                                                        </div>
+                                                    </Button>
+                                                </>
+                                            );
+                                        })}
+                                    </div>
+                                    <div className={styles.closed}>
+                                        {consistency.map((item, idx) => {
+                                            return (
+                                                <>
+                                                    <Button>
+                                                        <div className="d-flex align-items-center">
+                                                            <p>{item.titleConsistency}</p>
+                                                            <p className="pr-3">({item.newConsistency})</p>
+                                                        </div>
 
-                                                    <div>
-                                                        {Time}
-                                                    </div>
-                                                </Button>
-                                            </>
-                                        );
-                                    })}
+                                                        <div>
+                                                            {Time}
+                                                        </div>
+                                                    </Button>
+                                                </>
+                                            );
+                                        })}
+                                    </div>
+                                    <div className={styles.pending_ticket}>
+                                        {consistency.map((item, idx) => {
+                                            return (
+                                                <>
+                                                    <Button>
+                                                        <div className="d-flex align-items-center">
+                                                            <p>{item.titleConsistency}</p>
+                                                            <p className="pr-3">({item.newConsistency})</p>
+                                                        </div>
+
+                                                        <div>
+                                                            {Time}
+                                                        </div>
+                                                    </Button>
+                                                </>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
                             </div>
                         </div>
