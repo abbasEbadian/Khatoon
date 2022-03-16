@@ -84,6 +84,7 @@ url('../static/fonts/IRANSans-web.ttf') format('ttf');
 
 :root {
   --color-NavyBlue: #123c55;
+  --color-e3: #E3E3E3
 }
 html,
 body {
@@ -157,4 +158,14 @@ label {
 
 .width_custom {
   width: 960px !important;
+}
+
+.btn_yellow_box {
+  font-weight: bold;
+  font-size: 13px;
+  color: var(--bs-white);
+  background: #FFAD14;
+  box-shadow: 0px 9px 19px rgba(255, 173, 20, 0.47);
+  border-radius: 5px;
+  padding: .5rem;
 }

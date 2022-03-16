@@ -5,6 +5,7 @@ import Link from "next/link";
 import TextHeadTiltle from '../../components/Ui/TextHeadTiltle';
 import Image from "next/image";
 import Head from "next/head";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Button } from "@mui/material";
 import Icon from "../../static/img/icon/Frame(2).png"
 import Icon2 from "../../static/img/icon/Frame(1).png"
@@ -66,7 +67,7 @@ function ListTicket(props) {
                                                     <div className="pb-2">
                                                         <Image src={Icon} alt="ticket"></Image>
                                                     </div>
-                                                    <p>{item.ShowTicket}</p>
+                                                    <p className=" text_navy_blue">{item.ShowTicket}</p>
                                                     <p>{item.count}</p>
                                                 </div>
                                             );
@@ -79,7 +80,7 @@ function ListTicket(props) {
                                                     <div className="pb-2">
                                                         <Image src={Icon2} alt="ticket"></Image>
                                                     </div>
-                                                    <p>{item.ShowTicket}</p>
+                                                    <p className=" text_navy_blue">{item.ShowTicket}</p>
                                                     <p>{item.count}</p>
                                                 </div>
                                             );
@@ -92,7 +93,7 @@ function ListTicket(props) {
                                                     <div className="pb-2">
                                                         <Image src={Icon3} alt="ticket"></Image>
                                                     </div>
-                                                    <p>{item.ShowTicket}</p>
+                                                    <p className=" text_navy_blue">{item.ShowTicket}</p>
                                                     <p>{item.count}</p>
                                                 </div>
                                             );
@@ -101,7 +102,7 @@ function ListTicket(props) {
                                     <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
                                         {PendingTicketShow.map((item, idx) => {
                                             return (
-                                                <div className="d-flex flex-column ">
+                                                <div className={styles.text_navy_blue + " d-flex flex-column"}>
                                                     <div className="pb-2">
                                                         <Image src={Icon4} alt="ticket"  ></Image>
                                                     </div>
@@ -114,16 +115,35 @@ function ListTicket(props) {
                                     <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
                                         {PendingTicketShow.map((item, idx) => {
                                             return (
-                                                <div className="d-flex flex-column ">
+                                                <div className="d-flex flex-column">
                                                     <div className="pb-2">
                                                         <Image src={Icon5} alt="ticket"  ></Image>
                                                     </div>
-                                                    <p>{item.ShowTicket}</p>
+                                                    <p className=" text_navy_blue">{item.ShowTicket}</p>
                                                     <p>{item.count}</p>
                                                 </div>
                                             );
                                         })}
                                     </Button>
+                                </div>
+                                <div className="py-5">
+
+                                    <div className="d-flex justify-content-between align-items-center border-bottom">
+                                        <div >
+                                            <p className="fw-bold">
+                                                آخرین تیکت های ثبت شده
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <Button>
+                                                <p className="btn_yellow_box">
+                                                    ثبت تیکت جدید
+                                                    <AddBoxIcon />
+                                                </p>
+
+                                            </Button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className={styles.info_ticket_list}>
                                     <div className={styles.AnswerTicketShow}>

@@ -96,7 +96,6 @@ function BasketAddress() {
                                     <Box sx={style} >
                                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                             <div className="col-12 py-4 ps-0">
-                                                <label htmlFor="">استان محل سکونت</label>
                                                 <TextField sx={{ width: '100%' }}
                                                     value={formData.province}
                                                     name="province"
@@ -108,7 +107,6 @@ function BasketAddress() {
                                             </div>
 
                                             <div className="col-12 py-4 ps-0">
-                                                <label htmlFor="">شهرستان  </label>
                                                 <TextField sx={{ width: '100%' }}
                                                     id="outlined-textarea"
                                                     onInput={e => handleInputs(e)}
@@ -118,8 +116,6 @@ function BasketAddress() {
                                                 />
                                             </div>
                                             <div className="col-12 py-4 ps-0">
-                                                <label htmlFor="">آدرس خود را وارد کنید</label>
-
                                                 <TextField sx={{ width: '100%' }}
                                                     id="outlined-textarea"
                                                     onInput={e => handleInputs(e)}
@@ -129,7 +125,6 @@ function BasketAddress() {
                                                 />
                                             </div>
                                             <div className="col-12 py-4 ps-0">
-                                                <label htmlFor="">شماره تلفن خود را وارد کنید</label>
                                                 <TextField sx={{ width: '100%' }}
                                                     id="outlined-textarea"
                                                     onInput={e => handleInputs(e)}
@@ -139,7 +134,6 @@ function BasketAddress() {
                                                 />
                                             </div>
                                             <div className="col-12 py-4 ps-0">
-                                                <label htmlFor="">شماره تلفن  ثابت خود را وارد کنید</label>
                                                 <TextField sx={{ width: '100%' }}
                                                     onInput={e => handleInputs(e)}
                                                     id="outlined-textarea"
@@ -149,7 +143,6 @@ function BasketAddress() {
                                                 />
                                             </div>
                                             <div className="col-12 py-4 ps-0">
-                                                <label htmlFor="">کدپستی خود را وارد کنید</label>
                                                 <TextField sx={{ width: '100%' }}
                                                     id="outlined-textarea"
                                                     onInput={e => handleInputs(e)}
