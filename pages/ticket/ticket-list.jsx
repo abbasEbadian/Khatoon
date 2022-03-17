@@ -63,7 +63,7 @@ function ListTicket(props) {
                                     <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
                                         {AllTicketShow.map((item, idx) => {
                                             return (
-                                                <div className="d-flex flex-column">
+                                                <div className="d-flex flex-column" key={idx}>
                                                     <div className="pb-2">
                                                         <Image src={Icon} alt="ticket"></Image>
                                                     </div>
@@ -76,7 +76,7 @@ function ListTicket(props) {
                                     <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
                                         {AnswerTicketShow.map((item, idx) => {
                                             return (
-                                                <div className="d-flex flex-column">
+                                                <div className="d-flex flex-column" key={idx}>
                                                     <div className="pb-2">
                                                         <Image src={Icon2} alt="ticket"></Image>
                                                     </div>
@@ -89,7 +89,7 @@ function ListTicket(props) {
                                     <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
                                         {EndTicketShow.map((item, idx) => {
                                             return (
-                                                <div className="d-flex flex-column">
+                                                <div className="d-flex flex-column" key={idx}>
                                                     <div className="pb-2">
                                                         <Image src={Icon3} alt="ticket"></Image>
                                                     </div>
@@ -102,7 +102,7 @@ function ListTicket(props) {
                                     <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
                                         {PendingTicketShow.map((item, idx) => {
                                             return (
-                                                <div className={styles.text_navy_blue + " d-flex flex-column"}>
+                                                <div className={styles.text_navy_blue + " d-flex flex-column"} key={idx}>
                                                     <div className="pb-2">
                                                         <Image src={Icon4} alt="ticket"  ></Image>
                                                     </div>
@@ -115,7 +115,7 @@ function ListTicket(props) {
                                     <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
                                         {PendingTicketShow.map((item, idx) => {
                                             return (
-                                                <div className="d-flex flex-column">
+                                                <div className="d-flex flex-column" key={idx}>
                                                     <div className="pb-2">
                                                         <Image src={Icon5} alt="ticket"  ></Image>
                                                     </div>
