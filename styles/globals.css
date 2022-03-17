@@ -97,8 +97,10 @@ body {
 [class^="Mui"] * {
   font-family: IRANSans-web !important;
 }
-
-a {
+[class*=Mui], [class*=Mui] *{
+  font-family: IRANSansX !important;
+}
+body a {
   color: inherit;
   text-decoration: none !important;
 }
@@ -164,3 +166,7 @@ label {
 }
  
 
+
+.container_custom{
+  padding-inline: clamp(16px, 6vw, 128px);
+}
