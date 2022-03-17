@@ -1,0 +1,30 @@
+.payment_method {
+  background: #FFFFFF;
+  border: 1px solid #DADADA;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  height: 100%;
+  cursor: pointer;
+}
+.payment_method:hover {
+  box-shadow: 0px 12px 15px -6px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+}
+.payment_method_title {
+  font-size: 1rem;
+  font-size: 0.9rem;
+  border-bottom: 2px solid #C4C4C4;
+  padding-bottom: 1em;
+  text-align: center;
+  margin: 1em 0;
+  font-weight: 600;
+}
+.payment_method div {
+  font-size: 0.8rem;
+  text-align: center;
+}
+/*# sourceMappingURL=PaymentMethodBox.module.css.map */

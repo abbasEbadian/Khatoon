@@ -72,6 +72,7 @@ export default function TemporaryDrawer() {
             onClose={e=>setOpen(false)}
           >
             {list("left")}
+
         </Drawer>
     </div>
   );

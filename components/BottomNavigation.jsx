@@ -9,6 +9,7 @@ import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import BottomNavDialog from './elements/BottomNavDialog';
 import Link from 'next/link'
 import { Typography } from '@mui/material';
+
 export default function BottomNavigation2() {
   const [value, setValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
@@ -35,6 +36,7 @@ export default function BottomNavigation2() {
             <BottomNavigationAction  icon={<PersonRoundedIcon />} label="پروفایل" sx={{padding: "6px 12px 8px"}}/>
           </a>
         </Link>
+
       </BottomNavigation>
       <BottomNavDialog open={open} setOpen={setOpen} />
     </Box>

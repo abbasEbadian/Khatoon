@@ -23,6 +23,7 @@ function BottomNavItemCollapse({item}) {
                           <Link href={"/shop/category"+item2.id}>
                               <a>
                                   <small >مشاهده همه</small>
+
                               </a>
                           </Link>
                       </ListItemText>:undefined}

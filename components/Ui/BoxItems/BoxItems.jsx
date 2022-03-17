@@ -1,29 +1,54 @@
-import React from 'react'
+import React, { useRef, useState } from "react";
+import SwiperCore, {
+    Navigation
+} from 'swiper';
+import { Swiper, SwiperSlide } from "swiper/react";
 import styles from './BoxItems.module.scss';
 import BoxItem from '../BoxItem/BoxItem';
+import "swiper/css";
+import "swiper/css/navigation";
+import BlogItem from "../BlogItem";
+SwiperCore.use([Navigation]);
 
-function BoxItems({ title, boxClasses }) {
+function BoxItems({ items, title, boxClasses, type }) {
+
+    const navigationPrevRef = React.useRef(null)
+    const navigationNextRef = React.useRef(null)
 
     return (
         <div className={styles.box + ' ' + boxClasses}>
             <h4 className={styles.box_title}>{title}</h4>
             <div className='row'>
-                <div className='col-12 col-md-3'>
-                    <BoxItem />
-                </div>
-                <div className='col-12 col-md-3'>
-                    <BoxItem />
-                </div>
-                <div className='col-12 col-md-3'>
-                    <BoxItem />
-                </div>
-                <div className='col-12 col-md-3'>
-                    <BoxItem />
-                </div>
-
+                <Swiper navigation={true} className="mySwiper"
+                    slidesPerView={type == 'product' ? 5 : 4} spaceBetween={20}
+                >
+                    {
+                        items.map((item, index) => {
+                            return (
+                                <SwiperSlide>
+                                    {
+                                        type == 'product' ?
+                                            <BoxItem item={item} key={index} /> :
+                                            <BlogItem item={item} key={index} />
+                                    }
+                                </SwiperSlide>
+                            )
+                        })
+                    }
+                    <div ref={navigationPrevRef} />
+                    <div ref={navigationNextRef} />
+                </Swiper>
             </div>
         </div>
     )
 }
 
+BoxItems.defaultProps = {
+    type: 'product',
+    items: [],
+    title: 'متن پیشفرض',
+    boxClasses: ''
+}
+
 export default React.memo(BoxItems)
+

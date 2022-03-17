@@ -15,6 +15,7 @@ import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
+
 const theme = createTheme({
   direction: 'rtl', // Both here and <body dir="rtl">
 });
@@ -40,14 +41,14 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <CacheProvider value={cacheRtl}>
-      <ThemeProvider theme={theme}>
-        <div dir="rtl">
-      <Header></Header>
-      <Component {...pageProps} />
-      <BottomNavigation2/>
-      </div>  
-       </ThemeProvider>
-       </CacheProvider>
+        <ThemeProvider theme={theme}>
+          <div dir="rtl">
+            <Header></Header>
+            <Component {...pageProps} />
+            <BottomNavigation2/>
+          </div>  
+        </ThemeProvider>
+      </CacheProvider>
     </Provider>
   )
 }
