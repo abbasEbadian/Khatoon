@@ -190,6 +190,9 @@
     display: none;
     box-shadow: 0 0 8px #0002;
 }
+.bottomNavigation button *{
+    opacity: 1;
+}
 .footerDialog span{
     font-size: 13px;
 }

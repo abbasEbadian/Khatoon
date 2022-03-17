@@ -19,10 +19,10 @@ function BottomNavItemCollapse({item}) {
                 return <><ListItem button onClick={e=>handleOpen(idx)} >
                       {item2.categories?<span>{open["cat"+idx] ? <ExpandLess /> : <ExpandMore />} </span>:undefined}                 
                       <ListItemText primary={item2.persian_name} className="text-start" sx={{fontSize: "12px"}}/>
-                      {item2.categories?<ListItemText>
+                      {item2.categories?<ListItemText className="text-end">
                           <Link href={"/shop/category"+item2.id}>
                               <a>
-                                  <small>مشاهده همه</small>
+                                  <small >مشاهده همه</small>
                               </a>
                           </Link>
                       </ListItemText>:undefined}

@@ -67,11 +67,11 @@ export default function TemporaryDrawer() {
     <div>
     <Button onClick={e=>setOpen(true)} className={styles.headerSidebarToggler}><MenuIcon /></Button>
       <Drawer
-            anchor={"right"}
+            anchor={"left"}
             open={open}
             onClose={e=>setOpen(false)}
           >
-            {list("right")}
+            {list("left")}
         </Drawer>
     </div>
   );
