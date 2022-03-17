@@ -1,6 +1,4 @@
-.width_custom {
-  width: 960px;
-}
+
 .item {
   background-color: var(--color-white);
   margin-bottom: 5px;
@@ -70,12 +68,12 @@
   line-height: 1.7;
 }
 
-.card_style {
+/* .card_style {
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0px 0px 4px 1px rgba(189, 189, 189, 0.25);
   backdrop-filter: blur(4px);
   /* Note: backdrop-filter has minimal browser support */
-  border-radius: 10px;
-}
+  /* border-radius: 10px; */
+/* }  */
 
 

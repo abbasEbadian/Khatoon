@@ -1,0 +1,14 @@
+.No_Address {
+   text-align: right;
+  margin: auto;
+}
+
+.No_Address p {
+  font-weight: bold;
+  font-size: 13px;
+  color: var(--bs-white);
+  background: #FFAD14;
+  box-shadow: 0px 9px 19px rgba(255, 173, 20, 0.47);
+  border-radius: 5px;
+  padding: .5rem;
+}

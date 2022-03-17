@@ -9,6 +9,21 @@ import {useStore } from '../redux/store';
 import { Provider } from 'react-redux'
 import { useRouter } from 'next/router';
 import {get_initial_data} from '../redux/actions'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import rtlPlugin from 'stylis-plugin-rtl';
+import { prefixer } from 'stylis';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const theme = createTheme({
+  direction: 'rtl', // Both here and <body dir="rtl">
+});
+// Create rtl cache
+const cacheRtl = createCache({
+  key: 'muirtl',
+  stylisPlugins: [prefixer, rtlPlugin],
+});
+
 
 function MyApp({ Component, pageProps }) {
   configure()
@@ -24,9 +39,15 @@ function MyApp({ Component, pageProps }) {
   }, [])
   return (
     <Provider store={store}>
+      <CacheProvider value={cacheRtl}>
+      <ThemeProvider theme={theme}>
+        <div dir="rtl">
       <Header></Header>
       <Component {...pageProps} />
       <BottomNavigation2/>
+      </div>  
+       </ThemeProvider>
+       </CacheProvider>
     </Provider>
   )
 }

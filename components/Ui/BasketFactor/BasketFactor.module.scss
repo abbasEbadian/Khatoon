@@ -1,0 +1,30 @@
+.factor {
+    background: #ffffff;
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 2rem;
+    ul {
+        padding: 0;
+    }
+        &__item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            &:nth-child(3) {
+                color: #3e3e3e;
+                display: flex;
+                justify-content: space-between;
+                border-top: 1px solid #c4c4c4;
+                border-bottom: 1px solid #c4c4c4;
+                padding: 1rem 0;
+                border-width: 2px;
+            }
+            span {
+                font-weight: 500;
+                font-size: 1rem;
+            }
+        }
+    
+
+    
+}

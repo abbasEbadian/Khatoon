@@ -1,0 +1,127 @@
+.all_ticket img {
+  width: 48px !important;
+  height: 48px !important;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.all_ticket p:first-child {
+  margin: 10px 0 !important;
+}
+
+.list_ticket_show {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info_ticket_list Button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 97%;
+  color: var(--color-purple);
+}
+
+.info_ticket_list > div p:first-child {
+  margin-left: 10px;
+  color: var(--color-purple);
+  font-size: 15px;
+  font-weight: bold;
+}
+.AnswerTicketShow {
+  position: relative;
+  background: #f8f8f8;
+  border: 1px solid #dadada;
+  border-left: 0;
+  border-right: 5px solid #5fabeb;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 30px 0;
+  overflow: hidden;
+}
+.AnswerTicketShow::after,
+.closed::after,
+.pending_ticket::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  top: 15%;
+  background-color: #fff;
+  border: 1px solid #dadada;
+  width: 50px;
+  height: 45px;
+  border-radius: 50%;
+  z-index: 2;
+}
+.AnswerTicketShow::before,
+.closed::before,
+.pending_ticket::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  left: 0;
+  width: 30px;
+  border-radius: 5px;
+  border-left: 1px solid #dadada;
+  z-index: 1;
+  top: 0;
+}
+.closed {
+  position: relative;
+  background: #f8f8f8;
+  border: 1px solid #dadada;
+  border-left: 0;
+  border-right: 5px solid #fe6648;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 30px 0;
+  overflow: hidden;
+}
+
+.pending_ticket {
+  position: relative;
+  background: #f8f8f8;
+  border: 1px solid #dadada;
+  border-left: 0;
+  border-right: 5px solid #001cd6;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 30px 0;
+  overflow: hidden;
+}
+.consistency_ticket:first-child {
+  margin-top: 7rem;
+}
+
+.all_ticket:nth-child(1):hover {
+  background-color: #fea000;
+  color: #fff;
+}
+.all_ticket:nth-child(2):hover {
+  background-color: #9f3fe5;
+  color: #fff;
+}
+.all_ticket:nth-child(3):hover {
+  background-color: #2fbe35;
+  color: #fff;
+}
+.all_ticket:nth-child(4):hover {
+  background-color: #2096fc;
+  color: #fff;
+}
+.all_ticket:nth-child(5):hover {
+  background-color: #ff1a1a;
+  color: #fff;
+}
+ 
+
+.all_ticket {
+  border: 1px solid var(--color-e3) !important;
+  padding: 15px 0 !important;
+  box-sizing: border-box !important;
+  border-radius: 9px !important;
+  box-shadow: 0 0 10px 2px #eee !important;
+}
+.text_navy_blue p:first-child {
+  color: red !important;
+}
