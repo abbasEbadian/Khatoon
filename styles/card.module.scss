@@ -12,7 +12,7 @@
     }
     &_item {
         width: 85%;
-    margin: auto;
+        margin: auto;
         &_title {
             font-size: 1rem;
             line-height: 20px;
@@ -26,4 +26,32 @@
             justify-content: space-between;
         }
     }
+}
+
+.personal_information {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    &_name {
+        padding: 1em;
+        border-left: 1px solid #8b93a9;
+        border-bottom: 1px solid #8b93a9;
+    }
+    &_email {
+        padding: 1em;
+        border-bottom: 1px solid #8b93a9;
+    }
+    &_mobile {
+        padding: 1em;
+        border-left: 1px solid #8b93a9;
+    }
+    &_province {
+        padding: 1em;
+    }
+}
+
+
+.label {
+    color: #8b93a9;
+    font-size: 0.8rem;
+    margin-bottom: .6em;
 }
