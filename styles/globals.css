@@ -69,7 +69,8 @@ url('../static/fonts/IRANSans-web.ttf') format('ttf');
 
 :root {
   --color-NavyBlue: #123c55;
-  --color-e3: #E3E3E3
+  --color-e3: #E3E3E3;
+  --color-foot: #363969;
 }
 html,
 body {
@@ -97,7 +98,7 @@ body a {
 
 ul,
 p {
-  margin: 0;
+  margin: 0 !important;
   
 }
 ul{

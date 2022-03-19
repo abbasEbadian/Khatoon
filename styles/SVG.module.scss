@@ -1,0 +1,21 @@
+.svg_boxes {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  .__box1 {
+      background-image: url('../static/img/icon/Ellipse-71-(1).png');
+      position: absolute;
+      width: 400px;
+      height: 733px;
+      /* transform: rotate(45deg); */
+      right: 0;
+      /* top: 20%; */
+      background-repeat: no-repeat;
+      /* background-size: cover; */
+      transform: rotate(0deg);
+      background-position: right;
+      opacity: 0.9;
+      z-index: 3;
+  }
+}

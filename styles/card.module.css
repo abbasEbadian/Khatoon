@@ -28,4 +28,27 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.personal_information {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.personal_information_name {
+  padding: 1em;
+  border-left: 1px solid #8b93a9;
+  border-bottom: 1px solid #8b93a9;
+}
+.personal_information_email {
+  padding: 1em;
+  border-bottom: 1px solid #8b93a9;
+}
+.personal_information_mobile {
+  padding: 1em;
+  border-left: 1px solid #8b93a9;
+}
+
+.label {
+  color: #8b93a9;
+  font-size: 0.8rem;
+}
 /*# sourceMappingURL=card.module.css.map */

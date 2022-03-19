@@ -14,6 +14,8 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
+import SVGBoxes from '../components/Ui/SVGBoxes';
+import Footer from '../components/Footer';
 
 
 const theme = createTheme({
@@ -43,9 +45,11 @@ function MyApp({ Component, pageProps }) {
       <CacheProvider value={cacheRtl}>
         <ThemeProvider theme={theme}>
           <div dir="rtl">
+            <SVGBoxes/>
             <Header></Header>
             <Component {...pageProps} />
             <BottomNavigation2/>
+           <Footer />
           </div>  
         </ThemeProvider>
       </CacheProvider>

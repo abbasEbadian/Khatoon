@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import Head from "next/head";
 import ContactUsOptions from '../../components/Ui/ContactUsOptions';
+import Image from 'next/image'
 import styles from '../../styles/ContactUsOptions.module.css'
 import TextHeadTiltle from '../../components/Ui/TextHeadTiltle';
 import TextField from '@mui/material/TextField';
@@ -12,7 +13,7 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Icon from '../../static/img/icon/image16.png'
-import Image from 'next/image'
+import RedCircle from '../../static/img/icon/Ellipse-71-(1).png'
 
 function ContactUs() {
 

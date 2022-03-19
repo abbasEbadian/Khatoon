@@ -12,6 +12,7 @@ import Icon2 from "../../static/img/icon/Frame(1).png"
 import Icon3 from "../../static/img/icon/Frame(3).png"
 import Icon4 from "../../static/img/icon/Frame(4).png"
 import Icon5 from "../../static/img/icon/Frame(5).png"
+import SidebarMenu from "../../components/elements/sidebarMenu";
 
 function ListTicket(props) {
     const [AllTicketShow, setAllTicketShow] = React.useState([
@@ -55,6 +56,7 @@ function ListTicket(props) {
             <div className="card_style">
                 <div className="row">
                     {/* <ProfileAside active="new_ticket" /> */}
+                    <SidebarMenu />
                     <div className=" col-lg-9 col-12 pb-5">
                         <div className="px-3">
                             <TextHeadTiltle underline_dec={true} title="تیکت های پشتیبانی" />

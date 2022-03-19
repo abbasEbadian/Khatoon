@@ -1,0 +1,54 @@
+.sidebar_menu {
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: -13px 0px 33px -20px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(30px);
+    border-radius: 20px;
+    /* Note: backdrop-filter has minimal browser support */
+  .profile_pic {
+    text-align: center;
+  }
+  .header_sidebar {
+    position: relative;
+    .profile_pic {
+        height: 80px;
+        // position: absolute;
+        // top: -5%;
+        // right: 30%;
+        img {
+            width: 130px !important;
+            height: 100px !important;
+            object-fit: cover !important;
+        }
+    }
+    .id_menu {
+      p {
+        position: relative;
+        padding: 10px 0;
+
+        text-align: center;
+        &:first-child {
+          font-weight: bold;
+          font-size: 1.2rem;
+          position: relative;
+        }
+        &:last-child {
+          font-weight: 400;
+          font-size: 0.9rem;
+          border-bottom: none;
+        }
+      }
+      span {
+        width: 70%;
+        height: 1px;
+        margin: auto;
+        background: var(--color-NavyBlue);
+        display: block;
+      }
+    }
+    .LinkIcon   {
+        min-width: 25px !important;
+    }
+  }
+}
