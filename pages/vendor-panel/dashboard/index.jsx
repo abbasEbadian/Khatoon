@@ -1,5 +1,5 @@
 import React from 'react'
-import SidebarPanel from '../../../components/elements/SidebarPanel'
+import SidebarVendor from '../../../components/elements/SidebarVendor'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -43,11 +43,10 @@ function VendorPanel() {
   return (
     <div className='container'>
       <div className="row">
-        <div className="card_style">
           <div className="col-md-3">
-            <SidebarPanel />
+            <SidebarVendor />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-9 card_style">
             <Line
               data={{
                 labels: ['Red', 'Blue', 'Yellow', 'Green',
@@ -66,7 +65,6 @@ function VendorPanel() {
                 ]
               }}
             />
-          </div>
         </div>
       </div>
     </div>
