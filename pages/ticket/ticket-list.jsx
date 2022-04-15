@@ -49,19 +49,20 @@ function ListTicket(props) {
     let Time = d.toLocaleTimeString()
 
     return (
-        <section className="container">
+        <section className="container-fluid px-5 mb-5">
             <Head>
-                <title>گیفت استاپ | ارسال تیکت</title>
+                <title>خاتون زیبا | ارسال تیکت</title>
             </Head>
             <div className="card_style">
                 <div className="row">
                     {/* <ProfileAside active="new_ticket" /> */}
                     <SidebarMenu />
-                    <div className=" col-lg-9 col-12 pb-5">
+                    <main className={styles.ticketListCol + " pb-5"}>
                         <div className="px-3">
                             <TextHeadTiltle underline_dec={true} title="تیکت های پشتیبانی" />
                             <div className={styles.ticket_info_s}>
-                                <div className={styles.list_ticket_show}>
+                               <div className={styles.rowscroll}>
+                               <div className={styles.list_ticket_show}>
                                     <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
                                         {AllTicketShow.map((item, idx) => {
                                             return (
@@ -128,6 +129,7 @@ function ListTicket(props) {
                                         })}
                                     </Button>
                                 </div>
+                               </div>
                                 <div className="py-5">
 
                                     <div className="d-flex justify-content-between align-items-center border-bottom">
@@ -184,6 +186,24 @@ function ListTicket(props) {
                                             );
                                         })}
                                     </div>
+                                    <div className={styles.closed}>
+                                        {consistency.map((item, idx) => {
+                                            return (
+                                                <>
+                                                    <Button>
+                                                        <div className="d-flex align-items-center">
+                                                            <p>{item.titleConsistency}</p>
+                                                            <p className="pr-3">({item.newConsistency})</p>
+                                                        </div>
+
+                                                        <div>
+                                                            {Time}
+                                                        </div>
+                                                    </Button>
+                                                </>
+                                            );
+                                        })}
+                                    </div>
                                     <div className={styles.pending_ticket}>
                                         {consistency.map((item, idx) => {
                                             return (
@@ -206,7 +226,7 @@ function ListTicket(props) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </main>
                 </div >
             </div >
         </section >

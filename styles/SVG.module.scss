@@ -17,5 +17,8 @@
       background-position: right;
       opacity: 0.9;
       z-index: 3;
+      @media (max-width : 992px) {
+        display: none;
+      }
   }
 }

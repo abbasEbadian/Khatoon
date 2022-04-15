@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import styles from './BasketItem.module.scss'
+import Link from 'next/link';
 
 function BasketItem({ klass, item, increment, decrement, removeItem }) {
   const [counter, setCounter] = React.useState(1)
@@ -23,15 +24,21 @@ function BasketItem({ klass, item, increment, decrement, removeItem }) {
     <div className={`${styles.basket__item + ' ' + klass}`}>
       <div className='row'>
         <div className='col-12 col-md-2'>
-          <div style={{height: "100%", width: "100%"}}>
-            <Image src='/static/img/imgs/image 10.png' width="100%" height="100%" layout="responsive" objectFit="cover"></Image>
+          <div style={{ height: "100%", width: "100%" }}>
+            <Link href="">
+              <a>
+                <Image src='/static/img/imgs/image 10.png' width="100%" height="100%" layout="responsive" objectFit="cover"></Image>
+              </a>
+            </Link>
           </div>
         </div>
         <div className='col-12 col-md-10'>
           <div>
-            <div>
-              بلوز شلوار مخمل طرح پوست ماری
-            </div>
+            <Link href="#">
+              <a>
+                بلوز شلوار مخمل طرح پوست ماری
+              </a>
+            </Link>
             <div className={styles.basket__item_detail}>
               <div>
                 <Image src="/static/img/icon/Shape (2).png" width="15"
@@ -61,7 +68,7 @@ function BasketItem({ klass, item, increment, decrement, removeItem }) {
             </div>
             <div className={styles.basket__item_foot}>
               <div className={styles.basket__item_counter}>
-                <ButtonGroup size="small" aria-label="small outlined button group" sx={{ direction: 'ltr', marginTop: '.5rem',color: "#fff", borderColor: "gray" }}   >
+                <ButtonGroup size="small" aria-label="small outlined button group" sx={{ direction: 'ltr', marginTop: '.5rem', color: "#fff", borderColor: "gray" }}   >
                   <Button onClick={handleIncrement}>+</Button>
                   {displayCounter && <Button >{counter}</Button>}
                   {displayCounter && <Button disabled={counter < 2} onClick={handleDecrement}>-</Button>}

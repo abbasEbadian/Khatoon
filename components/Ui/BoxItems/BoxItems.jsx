@@ -21,6 +21,20 @@ function BoxItems({ items, title, boxClasses, type }) {
             <div className='row'>
                 <Swiper navigation={true} className="mySwiper"
                     slidesPerView={type == 'product' ? 5 : 4} spaceBetween={20}
+                    breakpoints={{
+                        0: {
+                          width: 0,
+                          slidesPerView: 2,
+                        },
+                        768: {
+                          width: 768,
+                          slidesPerView: 3,
+                        },
+                        1200: {
+                          width: 1200,
+                          slidesPerView: 5,
+                        },
+                      }}
                 >
                     {
                         items.map((item, index) => {

@@ -5,6 +5,11 @@
     margin: 5rem auto;
     background-image: url("/static/img/imgs/Vector\ 24\ \(1\).png");
 }
+@media (max-width : 992px) {
+    .steps {
+        background-image: none;
+    }
+}
 .content__text {
     font-size: 0.9rem;
     text-align: justify;

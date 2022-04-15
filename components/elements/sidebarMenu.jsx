@@ -15,6 +15,8 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 function SidebarMenu() {
@@ -24,23 +26,20 @@ function SidebarMenu() {
             email: "arashzarandi@gmail.com"
         }
     ])
+    const [openSidebar, setOpenSidebar] = React.useState(true) 
+
+    const handleClick = () => {
+       setOpenSidebar(prev => !prev)
+    }
 
 
     return (
-        <div className='col-lg-3 col-md-3'>
-            <div className={styles.sidebar_menu}>
+            <aside className={styles.sidebar_menu +( openSidebar ? ` ${ styles.open}` : '')}>
                 <div className={styles.header_sidebar}>
                     <div className={styles.profile_pic}>
                         <Image src={Profile} />
                     </div>
                     <div className={styles.id_menu}>
-                        {/* {idMenu.map((item, idx) => {
-                            return (
-                                <div>
-                                    <p>{item.name}</p>
-                                    <p>{item.email}</p>
-                                </div>
-                             ) } */}
                         {idMenu.map((item, idx) => {
                             return (
                                 <div>
@@ -114,9 +113,14 @@ function SidebarMenu() {
 
                         </List>
                     </div>
+                    <div className={styles.flotingButton}>
+                               <button onClick={handleClick}>
+                                {
+                                openSidebar ? <MenuIcon />  : <CloseIcon />}
+                               </button>
+                    </div>
                 </div>
-            </div>
-        </div>
+        </aside>
     )
 }
 

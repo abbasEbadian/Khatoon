@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import SidebarMenu from '../../components/elements/sidebarMenu';
 import BoxItem from '../../components/Ui/BoxItem/BoxItem'
 import BoxItems from '../../components/Ui/BoxItems/BoxItems'
 import TextHeadTiltle from '../../components/Ui/TextHeadTiltle'
-
+import styles from '../profile/favorits.module.scss'
 function index() {
 
     const favorites = [
@@ -242,28 +243,29 @@ function index() {
 
     return (
         <div className='container'>
-            <div className='row'>
-                <div className='col-9'>
-                    <div className='card_style mt-5 py-3 px-5'>
-                        <div className='row'>
-                            <div className='col-12'>
-                                <div className=''>
-                                    <TextHeadTiltle title={'علاقه مندی های من'} underline_dec={true} />
+            <div className="card_style">
+                <div className='row'>
+                    <SidebarMenu />
+                    <main className={styles.favorites + " pb-5"}>
+                            <div className='row'>
+                                <div className='col-12'>
+                                    <div className=''>
+                                        <TextHeadTiltle title={'علاقه مندی های من'} underline_dec={true} />
+                                    </div>
                                 </div>
                             </div>
+                            <div className='row'>
+                                {
+                                    favorites.map((item, index) => {
+                                        return (
+                                            <div className='col-12 col-md-6 col-lg-3 mb-3'>
+                                                <BoxItem item={item} />
+                                            </div>
+                                        )
+                                    })
+                                }
                         </div>
-                        <div className='row'>
-                            {
-                                favorites.map((item, index) => {
-                                    return (
-                                        <div className='col-12 col-md-6 col-lg-3 mb-3'>
-                                            <BoxItem item={item} />
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    </div>
+                    </main>
                 </div>
             </div>
 

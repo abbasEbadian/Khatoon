@@ -12,7 +12,7 @@
     left: 0;
     right: 0;
     z-index: 100;
-    
+    margin-bottom: 2.5rem;
 }
 .header{
     top: 0px;
@@ -190,6 +190,7 @@
     right: 0;
     display: none;
     box-shadow: 0 0 8px #0002;
+    z-index: 10;
 }
 .bottomNavigation button *{
     opacity: 1;

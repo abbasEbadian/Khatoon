@@ -39,7 +39,7 @@ function ContactUs() {
 
     <section>
       <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
-      <div className="width_custom container">
+      <div className="container">
         <div className="row py-5 ">
           <div className='card_style px-5'>
             <div className="col-12 contact-us m-auto text-right">
@@ -47,7 +47,7 @@ function ContactUs() {
               <TextHeadTiltle underline_dec={true} title="سوالات پیج" description="از این راه ها میتوانید با ما در ارتباط باشید..." />
             </div>
             <div className="col-12">
-              <div className={styles.ContactUsOptions + " " + " row gap-3 justify-content-between"}>
+              <div className={styles.ContactUsOptions + " " + " row gap-3 justify-content-center"}>
                 <ContactUsOptions title="چت آنلاین" details="کلیک کنید" />
                 <ContactUsOptions title="ایمیل" details="info@site.com" />
                 <ContactUsOptions title="واتساپ" details="09121234567" />

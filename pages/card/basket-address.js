@@ -63,7 +63,7 @@ function BasketAddress() {
     return (
         <section>
             <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
-            <div className="width_custom container">
+            <div className="container">
                 
                 <div className="row py-5 ">
                 <BasketTabs tab={1}/>
