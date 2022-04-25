@@ -1,0 +1,35 @@
+.head_finicial {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    font-size: 14px;
+}
+.head_finicial a {
+    color: #E9766F;
+}
+.head_finicial p {
+    font-weight: 500;
+}
+.content_finicial {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 14px;
+    padding: 1rem;
+}
+.right_content_finicial  , .left_content_finicial{
+    position: relative;
+}
+.left_content_finicial {
+    text-align: center;
+}
+ .left_content_finicial::before{
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    bottom: 0;
+    right: -45px;
+    background-color: var(--color-e3);
+}

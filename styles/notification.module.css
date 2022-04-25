@@ -1,0 +1,30 @@
+.notif {
+  position: relative;
+  margin-top: .75rem;
+}
+.notif::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  height: 2px;
+  background-color: var(--color-NavyBlue);
+  opacity: .2;
+}
+.notif::after:last-child {
+  content: none;
+}
+
+.head_notif {
+  display: flex;
+  align-items: center;
+  margin-top: .75rem;
+}
+.head_notif p {
+  margin-right: 10px !important;
+  font-weight: bold;
+  font-size: 13px;
+}
+.txnotif {
+  font-size: 10px;
+}

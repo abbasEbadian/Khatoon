@@ -1,0 +1,51 @@
+import Link from 'next/link'
+import React from 'react'
+import styles from '../../styles/FinicialSituation.module.css'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+function FinancialSituation() {
+    const [dateFinicial, setdateFinicial] = React.useState({
+        created: "2029-02-04T22:53:38.542904+03:30",
+    })
+    const [Msettlement, setMsettlement] = React.useState([
+        {
+            MoneySettlement: "0"
+        }
+    ])
+
+    return (
+        <div className="col-md-12 card_style mt-4">
+            <div className={styles.finicial}>
+                <div className={styles.head_finicial}>
+                    <p >وضعیت مالی</p>
+                    <Link href="/">
+                        <a>
+                            مشاهده بیشتر
+                        </a>
+                    </Link>
+                </div>
+                <div className={styles.content_finicial}>
+                    <div className={styles.right_content_finicial}>
+                        {new Date(dateFinicial.created).toLocaleDateString("fa-IR")}
+                        <CalendarMonthIcon className='ms-1'/>
+                         <p className='text-muted my-3'>آخرین تسویه</p>
+                    </div>
+                    <div className={styles.left_content_finicial}>
+                        {Msettlement.map((item, idx) => {
+                            return (
+                                <>
+                                    <div>
+                                        <span className='me-1'>{item.MoneySettlement}</span>
+                                        تومان
+                                    </div>
+                                    <p className='text-muted'>مبلغ قابل تسویه شما</p>
+                                </>
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default FinancialSituation
