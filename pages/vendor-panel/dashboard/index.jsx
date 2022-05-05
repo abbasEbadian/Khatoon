@@ -61,10 +61,11 @@ function VendorPanel() {
   return (
     <div className='container'>
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-lg-3">
           <SidebarVendor />
         </div>
-        <div className="col-md-6  h-100">
+        <div className="col-lg-6 col-12 h-100">
+          <FinancialSituation />
           <div className='p-3 col-12 card_style'>
             <h6>آمار یک سال اخیر</h6>
             <Line
@@ -90,9 +91,8 @@ function VendorPanel() {
               }}
             />
           </div>
-          <FinancialSituation/>
         </div>
-        <div className="col-md-3 ">
+        <div className="col-lg-3 col-12  ">
           <div>
             <Line className='card_style'
               options={options}

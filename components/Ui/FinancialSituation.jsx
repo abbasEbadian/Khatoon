@@ -13,7 +13,7 @@ function FinancialSituation() {
     ])
 
     return (
-        <div className="col-md-12 card_style mt-4">
+        <div className="col-md-12 col-12 card_style mb-4">
             <div className={styles.finicial}>
                 <div className={styles.head_finicial}>
                     <p >وضعیت مالی</p>
@@ -27,7 +27,7 @@ function FinancialSituation() {
                     <div className={styles.right_content_finicial}>
                         {new Date(dateFinicial.created).toLocaleDateString("fa-IR")}
                         <CalendarMonthIcon className='ms-1'/>
-                         <p className='text-muted my-3'>آخرین تسویه</p>
+                         <p className='text-muted'>آخرین تسویه</p>
                     </div>
                     <div className={styles.left_content_finicial}>
                         {Msettlement.map((item, idx) => {

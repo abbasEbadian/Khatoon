@@ -117,6 +117,9 @@ function Wallet() {
 
             <div className="row">
                 {/* <ProfileAside active="wallet" /> */}
+                <div className="col-lg-3">
+                    <SidebarVendor />
+                </div>
                 <div className=" col-lg-9 col-12 py-5">
                     <div className={styles.Order_history}>
                         <div className="table-info-payment py-4 p-2">

@@ -21,6 +21,9 @@
 .right_content_finicial  , .left_content_finicial{
     position: relative;
 }
+.right_content_finicial  p , .left_content_finicial p{
+    margin: .5rem 0 !important;
+}
 .left_content_finicial {
     text-align: center;
 }
