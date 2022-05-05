@@ -1,0 +1,36 @@
+#products-main{
+
+    .products-filterbox{
+        background-color: #fffe;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+    .products-filters{
+        p, span, input, input::placeholder{
+            font-size: 0.8rem;
+        }
+
+        .price-limit > :first-of-type{
+            border-left: 1px dashed #ddd;
+        }
+        .MuiSlider-rail, .MuiSlider-track, .MuiSlider-thumbColorPrimary{
+            color: #E96962;
+        }
+        
+    }
+    .products-sortby{
+        display:flex;
+        align-items: center;
+        >div{
+            margin-inline: 16px;
+            *{
+                border: none;
+            }
+        }
+        .Mui-selected{
+            background: #E9696211;
+            color: #E96962
+        }
+    }
+}

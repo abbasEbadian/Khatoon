@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import styles from '../../styles/sidebarMenu.module.scss'
 import Profile from '../../static/img/icon/memoji.png'
 import Order from '../../static/img/icon/Vector.svg'
 import Wallet from '../../static/img/icon/Shape.svg'
@@ -16,10 +15,12 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
+import PersonIcon from '@mui/icons-material/Person';
 import CloseIcon from '@mui/icons-material/Close';
+import Link from 'next/link'
 
 
-function SidebarMenu() {
+function SidebarMenu({active}) {
     const [idMenu, idMenuSet] = React.useState([
         {
             name: "آرش",
@@ -34,15 +35,15 @@ function SidebarMenu() {
 
 
     return (
-            <aside className={styles.sidebar_menu +( openSidebar ? ` ${ styles.open}` : '')}>
-                <div className={styles.header_sidebar}>
-                    <div className={styles.profile_pic}>
-                        <Image src={Profile} />
+            <aside className={"sidebar_menu" +( openSidebar ? ` ${ "open"}` : '')}>
+                <div className={"header_sidebar"}>
+                    <div className={"profile_pic"}>
+                        <Image src={Profile} alt={"profile"}/>
                     </div>
-                    <div className={styles.id_menu}>
+                    <div className={"id_menu"}>
                         {idMenu.map((item, idx) => {
                             return (
-                                <div>
+                                <div key={idx}>
                                     <p>{item.name}</p>
                                     <p>{item.email}</p>
                                     <span></span>
@@ -50,70 +51,117 @@ function SidebarMenu() {
                             )
                         })}
                     </div>
-                    <div className={styles.link_menu}>
+                    <div className={"link_menu"}>
                         <List
                             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                             component="nav"
                             aria-labelledby="nested-list-subheader"
                         >
-                            <ListItemButton>
-                                <ListItemIcon className={styles.LinkIcon}>
-                                    <Image src={Wallet} />
-                                </ListItemIcon>
-                                <ListItemText  primary="کیف پول" />
+                            <ListItemButton selected={active === "wallet"}>
+                                <Link href="/user-panel/wallet">
+                                    <a>
+                                    <ListItemIcon className={"LinkIcon"}>
+                                        <Image src={Wallet} alt="Wallet"/>
+                                    </ListItemIcon>
+                                    <ListItemText  primary="کیف پول" />
+                                    </a>
+                                </Link>
+                                
+                            </ListItemButton >
+                            <ListItemButton  selected={active === "pendin_orders"}>
+                                <Link href="/user-panel/orders">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                            <Image src={Order} alt="Order" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="پیگیری سفارشات" />
+                                    </a>
+                                </Link>
                             </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon className={styles.LinkIcon}>
-                                    <Image src={Order} />
-                                </ListItemIcon>
-                                <ListItemText primary="پیگیری سفارشات" />
+                            <ListItemButton  selected={active === "history"}>
+                                <Link href="/user-panel/history">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                        <Image src={OrderHistory} alt="OrderHistory" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="تاریخچه خریدهای من" />
+                                    </a>
+                                </Link>
                             </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon className={styles.LinkIcon}>
-                                    <Image src={OrderHistory} />
-                                </ListItemIcon>
-                                <ListItemText primary="تاریخچه خریدهای من" />
+                            <ListItemButton  selected={active === "favorites"}>
+                                <Link href="/user-panel/favorites">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                            <Image src={Bookmark} alt="Bookmark" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="علاقه مندی ها" />
+                                    </a>
+                                </Link>
                             </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon className={styles.LinkIcon}>
-                                    <Image src={Bookmark} />
-                                </ListItemIcon>
-                                <ListItemText primary="علاقه مندی ها" />
+                            <ListItemButton selected={active === "downloads"}> 
+                                <Link href="/user-panel/downloads">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                            <Image src={Download} alt="Download" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="دانلودها" />
+                                    </a>
+                                </Link>
                             </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon className={styles.LinkIcon}>
-                                    <Image src={Download} />
-                                </ListItemIcon>
-                                <ListItemText primary="دانلودها" />
+                            <ListItemButton selected={active === "address"}>
+                                <Link href="/user-panel/address">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                            <Image src={Address} alt="Address" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="آدرس ها" />
+                                    </a>
+                                </Link>
                             </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon className={styles.LinkIcon}>
-                                    <Image src={Address} />
-                                </ListItemIcon>
-                                <ListItemText primary="آدرس ها" />
+                            <ListItemButton selected={active === "ticket"}>
+                                <Link href="/user-panel/tickets">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                            <Image src={Ticket} alt="Ticket" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="تیکت های پشتیبانی" />
+                                    </a>
+                                </Link>
                             </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon className={styles.LinkIcon}>
-                                    <Image src={Ticket} />
-                                </ListItemIcon>
-                                <ListItemText primary="تیکت های پشتیبانی" />
+                            <ListItemButton selected={active === "managment"}>
+                                <Link href="/user-panel/managment">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                            <Image src={ManageShop} alt="ManageShop" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="مدیریت فروشگاه" />
+                                    </a>
+                                </Link>
+                            </ListItemButton >
+                            <ListItemButton selected={active === "profile"}>
+                                <Link href="/user-panel/profile">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                            <PersonIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="پروفایل" />
+                                    </a>
+                                </Link>
                             </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon className={styles.LinkIcon}>
-                                    <Image src={ManageShop} />
-                                </ListItemIcon>
-                                <ListItemText primary="مدیریت فروشگاه" />
-                            </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon className={styles.LinkIcon}>
-                                    <Image src={Exit} />
-                                </ListItemIcon>
-                                <ListItemText primary="خروج" />
+                            <ListItemButton >
+                                <Link href="/signout">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                            <Image src={Exit} alt="Exit" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="خروج" />
+                                    </a>
+                                </Link>
                             </ListItemButton>
 
                         </List>
                     </div>
-                    <div className={styles.flotingButton}>
+                    <div className={"flotingButton"}>
                                <button onClick={handleClick}>
                                 {
                                 openSidebar ? <MenuIcon />  : <CloseIcon />}

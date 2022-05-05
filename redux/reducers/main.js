@@ -15,7 +15,7 @@ const mainReducer = (state=init_state,action)=>{
         case t.UPDATE_CATEGORIES: 
             return {
                 ...state,
-                configs: action.payload
+                categories: action.payload
             }
         default: return {...state}
     }

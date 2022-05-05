@@ -35,7 +35,7 @@ export const configure = ()=>{
         if (error.response && error.response.status === 401 ) {
             
             localStorage.removeItem('token')
-            if(window!=="undefined") document.location.href = "/"
+            if(window!=="undefined") document.location.href = "/?next=/"
            
             return Promise.reject(error)
         }

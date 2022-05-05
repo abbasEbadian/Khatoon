@@ -12,7 +12,7 @@ import BasketFactor from '../../components/Ui/BasketFactor/BasketFactor';
 import BoxItems from '../../components/Ui/BoxItems/BoxItems';
 import BasketTabs from '../../components/Ui/BasketTabs/BasketTabs';
 import PaymentMethodBox from '../../components/Ui/PaymentMethodBox/PaymentMethodBox';
-
+import withAuth from '../redux/withAuth'
 
 function PaymentMethods() {
 
@@ -57,7 +57,7 @@ function PaymentMethods() {
                 {
                   paymentMethods.map((item, index) => {
                     return (
-                      <div className='col-md-4'>
+                      <div className='col-md-4' key={index}>
                         <PaymentMethodBox item={item} key={index} />
                       </div>
                     )
@@ -77,4 +77,4 @@ function PaymentMethods() {
 }
 
 
-export default PaymentMethods
+export default withAuth(PaymentMethods)

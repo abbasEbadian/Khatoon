@@ -1,0 +1,126 @@
+.sidebar_menu {
+  position: relative;
+  max-height: 635px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  box-shadow: -13px 0px 33px -20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(30px);
+  border-radius: 20px;
+  transform: translate(0%, 0px);
+  right: 2%;
+  margin: 15px auto;
+  /* Note: backdrop-filter has minimal browser support */
+
+
+  .profile_pic {
+    text-align: center;
+  }
+  .header_sidebar {
+    position: relative;
+    .profile_pic {
+      height: 80px;
+      // position: absolute;
+      // top: -5%;
+      // right: 30%;
+      img {
+        width: 130px !important;
+        height: 100px !important;
+        object-fit: cover !important;
+      }
+    }
+    .id_menu {
+      @media(max-width: 992px) {
+        overflow-y: scroll;
+      }
+      p {
+        position: relative;
+        padding: 10px 0;
+
+        text-align: center;
+        &:first-child {
+          font-weight: bold;
+          font-size: 1.2rem;
+          position: relative;
+        }
+        &:last-child {
+          font-weight: 400;
+          font-size: 0.9rem;
+          border-bottom: none;
+        }
+      }
+      span {
+        width: 70%;
+        height: 1px;
+        margin: auto;
+        background: var(--color-NavyBlue);
+        display: block;
+      }
+    }
+    .LinkIcon {
+      min-width: 25px !important;
+    }
+  }
+  .flotingButton {
+    background: #fff !important;
+    display: block;
+    border-radius: 50px 0 0 50px;
+    padding: 15px 25px;
+    position: absolute;
+    top: 50%;
+    width: 70px;
+    left: calc(-70px + 0.5rem) !important;
+    z-index: 999;
+    border: 1px solid #efefef;
+    -webkit-box-shadow: -5px 0 5px rgb(0 0 0 / 30%);
+    box-shadow: -5px 0 5px rgb(0 0 0 / 30%);
+    border-right: none;
+  }
+  button {
+    text-shadow: 0 8px 8px rgb(0 0 0 / 12%);
+    -webkit-transition: all var(--transition-duration) ease-out;
+    transition: all var(--transition-duration) ease-out;
+  }
+  @media (max-width: 992px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -285px;
+    z-index: 1;
+    transform: translate(-100%, 0px);
+    transition: all 0.4s ease-in;
+    height: 100%;
+  }
+  @media (min-width: 993px) {
+    .flotingButton {
+      display: none;
+    }
+  }
+  .flotingButton {
+    button {
+      background-color: transparent;
+    }
+  }
+}
+
+.open {
+  transform: translate(0px, 0px);
+}
+
+.link_menu span {
+  font-size: 11px;
+}
+.link_menu a{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  
+}
+.link_menu{
+  .Mui-selected{
+    background: transparent  !important;
+    box-shadow: 0 0 12px #0002;
+    border-radius: 12px;
+  }
+}

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as t from '../types'
 import * as e from '../endpoints'
+import {profile} from '../actions'
 
 export const get_initial_data = ()=>{
     return dispatch =>{
@@ -15,6 +16,7 @@ export const check_user = ()=>{
         const token = localStorage.getItem("token")
         if(token){
             dispatch({type:t.UPDATE_STATUS, payload: true})
+            dispatch(profile())
         }
     }
 }

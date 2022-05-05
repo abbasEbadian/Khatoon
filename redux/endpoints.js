@@ -12,4 +12,13 @@ export const BASE_URL = base
 const _ = (url) => {return BASE_URL + "/api/v1"+url} 
 
 
-export const GET_CATEGORIES = _( "/categories/all/" ) 
+export const AUTHENTICATE = _( "/users/authenticate/" ) 
+export const PROFILE = _( "/users/profile/" ) 
+
+
+export const TOGGLE_FAVORITE = _( "/favorite/toggle/" ) 
+
+
+
+export const GET_CATEGORIES = _( "/category/all/" ) 
+export const GET_CATEGORY_PRODUCTS = (category) =>  _( "/product/" + category ) 

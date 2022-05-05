@@ -86,6 +86,7 @@
     padding: 8px clamp(16px , 1.5vw , 32px);
     transition: 0.2s;
     position: relative;
+    cursor: pointer;
 }
 
 .headerActionsItem:nth-of-type(-n+3)::after{
@@ -110,7 +111,7 @@
 .headerMegaMenu{
     pointer-events: none;
     min-height: 300px;
-    max-height: 450px;
+    /* max-height: 450px; */
     left: 0;
     right: 0;
     top: 100%;
@@ -166,6 +167,7 @@
 .headerMegaMenuItem{
     padding: 13px;
     cursor: pointer;
+    height: 45px;
 }
 .headerMegaMenuList{
     display: flex;
@@ -232,6 +234,9 @@
         margin-left: auto;
         margin-right: 16px;
         transform:scale(0.7) translateX(32px);
+    }
+    .headerActionsItem{
+        cursor: pointer;
     }
     .headerActionsItem:not(:last-of-type){
         display: none;

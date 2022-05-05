@@ -1,0 +1,40 @@
+.contact_container{
+    background: white;
+    padding: 32px;
+    @media (max-width:768px) {
+        padding-inline: 8px 16px;
+        p{
+            line-height: 24px;
+        }
+       
+    }
+    p{
+        font-size: 14px;
+    }
+    .MuiFormControl-root{
+        background: #eee;
+        padding: 8px;
+        border-radius: 4px;
+    }
+    .MuiInput-root::after, .MuiInput-root::before{
+        display: none;
+    }
+    input::placeholder, textarea::placeholder, input, textarea{
+        font-size: 12px;
+    }
+    .select{
+        transform: translateX(-8px);
+        padding-block: 5px;
+
+        input {font-size: 12px;}
+        .MuiSelect-select{
+            font-size: 12px;
+        }
+    }
+    fieldset{
+        border: none;
+    }
+}
+.swiper-slide {
+    padding-top:24px;
+}

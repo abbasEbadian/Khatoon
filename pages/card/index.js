@@ -11,12 +11,12 @@ import BasketItem from '../../components/Ui/BasketItem/BasketItem';
 import BasketFactor from '../../components/Ui/BasketFactor/BasketFactor';
 import BoxItems from '../../components/Ui/BoxItems/BoxItems';
 import BasketTabs from '../../components/Ui/BasketTabs/BasketTabs';
+import withAuth from '../redux/withAuth'
 
 
 
 
-
-function card() {
+function Card() {
 
 
 
@@ -211,4 +211,4 @@ function card() {
 }
 
 
-export default card
+export default withAuth(Card)
