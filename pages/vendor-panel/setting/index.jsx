@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from '../../../styles/setting.module.scss'
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -9,218 +8,231 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-function index() {
-  const [boxWebsite, setboxWebsite] = React.useState([{
+import VendorPanelBase from '../../../components/VendorPanelBase'
+import * as e from '../../../redux/endpoints'
+import axios from 'axios'
+import OutlinedInput from '@mui/material/OutlinedInput';
+// import VendorCover from '../../../components/Vendor/VendorCover';
+
+
+function Settings({business_types, provinces}) {
+  const [boxWebsite, setboxWebsite] = React.useState({
     name: "https://khatoonziba.com/",
     telegram: "https://t.me/",
     instagram: "https://instagram.com/",
     website: "https://www"
-  }])
-  const [value, setValue] = React.useState('Controlled');
+  })
+  const [business, setBusiness] = React.useState(null);
+  const [province, setProvince] = React.useState(null);
+  const [city, setCity] = React.useState(null);
+  const [cities, setCities] = React.useState([]);
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const get_cities = (province_id)=>{
+    axios.get(e.GET_CITIES_BY_PROVINCE(province_id))
+    .then(res=>{
+      const {data} = res
+      setCities(data)
+    })
+    .catch(e=>{
+      console.log(e)
+      setCities([])
+    })
+  }
+
+  const handleBusinessChange = (event) => {
+    setBusiness(event.target.value);
   };
-  const [age, setAge] = React.useState('');
-
-  const handleChange2 = (event) => {
-    setAge(event.target.value);
+  const handleProvinceChange = (event) => {
+    setProvince(event.target.value);
+    get_cities(event.target.value)
   };
-  const [age2, setAge2] = React.useState('');
-
-  const handleChange3 = (event) => {
-    setAge2(event.target.value);
-  };
-  const [age3, setAge3] = React.useState('');
-
-  const handleChange4 = (event) => {
-    setAge3(event.target.value);
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
   };
   return (
-    <div className="container">
-      <div className="row">
-        <div className='col-9 col-lg-12 card_style p-2'>
-          <div className="col-7">
-            <div className='d-flex align-items-center flex-wrap'>
-              <div className="col-4">
-                <Box sx={{ '& > :not(style)': { m: 3 } }}>
+    <section id="setting-profile">
+      <VendorPanelBase active="setting" title="تنظیمات">
+      <div className="row p-4">
+          <div className="col-lg-8 col-12">
+            {/* <VendorCover /> */}
+            <form className='row align-items-center '>
+              <div className="col-lg-4 col-12">
+                <Box >
                   <TextField
                     required
                     id="input-with-icon-textfield"
                     label="نام فروشگاه"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                        </InputAdornment>
-                      ),
-                    }}
-                    variant="standard"
+                    placeholder="دفترهای پرنیان"
+                    variant="outlined"
+                    fullWidth
+                    
                   />
                 </Box>
               </div>
-              <div className="col-8">
-                <Box sx={{ '& > :not(style)': { m: 3, width: '100%' } }}>
+              <div className="col-lg-8 col-12">
+                <Box >
                   <TextField
                     required
-                    id="input-with-icon-textfield"
                     label="پیام فروشگاه"
-                    type="text"
-                    autoComplete="off"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="center">
-                        </InputAdornment>
-                      ),
-                    }}
-                    variant="standard"
+                    placeholder="متن پیام غرفه‌دار اینجا نمایش داده می‌شود"
+                   
+                    variant="outlined"
+                    fullWidth
                   />
                 </Box>
               </div>
-              <div className="col-12 d-flex align-items-center">
-                <div className="col-8">
-                  <Box sx={{ '& > :not(style)': { m: 3, width: '100%' } }}>
+              <div className="col-12 d-flex align-items-start">
+                <div className="col-9">
+                  <Box >
                     <TextField
+                      fullWidth
                       required
                       id="input-with-icon-textfield"
                       label="آدرس فروشگاه"
                       type="text"
                       autoComplete="off"
-                      helperText="مسیر دسترسی به فروشگاه شما در مجموعه خاتون زیبا."
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="center">
-                          </InputAdornment>
-                        ),
+                      placeholder="parnian-books"
+                      helperText="مسیر دسترسی به فروشگاه شما در مجموعه خاتون زیبا که آدرس مستقیم ورود به فروشگاه شما خواهد بود."
+                      startAdornment= {
+                        <InputAdornment position="center">
+                          {"https://khatoonziba.com/"}
+                        </InputAdornment>
+                      }
+                      variant="outlined"
+                      inputProps={{
+                        dir: "ltr"
                       }}
-                      variant="standard"
                     />
                   </Box>
                 </div>
-                <div className={styles.box_website + " col-4 "}>
-                  {boxWebsite.map((item, idx) => {
-                    return (
-                      <>
-                        <div>
-                          <span className=''>{item.name}</span>
-                        </div>
-                      </>
-                    )
-                  })}
+                <div className={"box_website " + " col-3 "}>
+                  <TextField
+                      disabled
+                      variant="outlined"
+                      fullWidth
+                      value={boxWebsite.name}
+                    />
                 </div>
 
               </div>
               <div className="col-12">
-                <Box
-                  component="form"
-                  sx={{
-                    '& .MuiTextField-root': { m: 3, width: '100%' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
+                <Box>
                   <TextField
-                    id="outlined-multiline-static"
-                    label="درباره فروشگاه"
-                    multiline
-                    rows={4}
-                    defaultValue=""
-                  />
+                    required
+                    select
+                    label="نوع کسب و کار"
+                    variant="outlined"
+                    fullWidth
+                    inputProps={{
+                      dir: "ltr"
+                    }}
+                    value={business}
+                    onChange={handleBusinessChange}
+                    name="business_type"
+                    >
+                      {business_types?.map(item=>{
+                        return <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
+                      })}
+                    </TextField>
                 </Box>
               </div>
               <div className="col-12">
                 <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">نوع کسب و کار</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={age}
-                      label="Age"
-                      onChange={handleChange2}
+                  <TextField
+                      id="outlined-multiline-static"
+                      label="درباره فروشگاه"
+                      multiline
+                      rows={4}
+                      fullWidth
+                      defaultValue=""
+                      required
                     >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                  </FormControl>
+                    </TextField>
                 </Box>
               </div>
               <div className="col-6">
-                <Box sx={{ '& > :not(style)': { m: 3, width: "90%" } }}>
+                <Box>
                   <TextField
                     required
-                    id="input-with-icon-textfield"
                     label="تلفن همراه"
                     type="phonenumber"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                        </InputAdornment>
-                      ),
+                    variant="outlined"
+                    fullWidth
+                    placeholder="09"
+                    inputProps={{
+                      dir: "ltr"
                     }}
-                    variant="standard"
+                    name="mobile"
                   />
                 </Box>
               </div>
               <div className="col-6">
-                <Box sx={{ '& > :not(style)': { m: 3, width: "90%" } }}>
+                <Box>
                   <TextField
                     required
-                    id="input-with-icon-textfield"
                     label="تلفن ثابت"
                     type="phonenumber"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                        </InputAdornment>
-                      ),
+                    variant="outlined"
+                    fullWidth
+                    placeholder="021"
+                    inputProps={{
+                      dir: "ltr"
                     }}
-                    variant="standard"
+                    name="phone"
                   />
                 </Box>
               </div>
               <div className="col-6">
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">استان</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={age2}
-                      label="Age"
-                      onChange={handleChange3}
+                <Box>
+                <TextField
+                    required
+                    select
+                    label="استان"
+                    variant="outlined"
+                    fullWidth
+                    inputProps={{
+                      dir: "ltr"
+                    }}
+                    value={province}
+                      onChange={handleProvinceChange}
+                    name="province"
                     >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                  </FormControl>
+                      {provinces?.map(item=>{
+                        return <MenuItem value={item.id} key={item.id}>{item.name}</MenuItem>
+                      })}
+                    </TextField>
                 </Box>
               </div>
               <div className="col-6">
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">شهرستان</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={age3}
-                      label="Age"
-                      onChange={handleChange4}
+                <Box >
+                <TextField
+                    required
+                    select
+                    label="شهرستان"
+                    variant="outlined"
+                    fullWidth
+                    inputProps={{
+                      dir: "ltr"
+                    }}
+                    value={city}
+                    onChange={handleCityChange}
+                    name="province"
                     >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                  </FormControl>
+                      {
+                        province?
+                          cities.map(ct=>{
+                            return <MenuItem key={ct.id} value={ct.id}>{ct.name}</MenuItem>
+                          })
+                        :
+                          <MenuItem key={-1}>استان انتخاب نشده</MenuItem>
+                      }
+                    </TextField>
+                 
                 </Box>
               </div>
               <div className="col-12">
                 <Box
-                  component="form"
-                  sx={{
-                    '& .MuiTextField-root': { m: 3, width: '100%' },
-                  }}
+                  component="div"
                   noValidate
                   autoComplete="off"
                 >
@@ -230,12 +242,14 @@ function index() {
                     multiline
                     rows={4}
                     defaultValue=""
+                    fullWidth
+                    required
                   />
                 </Box>
               </div>
               <div className="col-12 d-flex align-items-center">
-                <div className="col-8">
-                  <Box sx={{ '& > :not(style)': { m: 3, width: '100%' } }}>
+                <div className="col-9">
+                  <Box>
                     <TextField
                       required
                       id="input-with-icon-textfield"
@@ -243,63 +257,55 @@ function index() {
                       type="text"
                       autoComplete="off"
                       InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="center">
-                          </InputAdornment>
-                        ),
+                        dir:"ltr"
                       }}
-                      variant="standard"
+                      variant="outlined"
+                      fullWidth
                     />
                   </Box>
                 </div>
-                <div className={styles.box_website + " col-4 "}>
-                  {boxWebsite.map((item, idx) => {
-                    return (
-                      <>
-                        <div>
-                          <span className=''>{item.instagram}</span>
-                        </div>
-                      </>
-                    )
-                  })}
+                <div className={"box_website " + " col-3 "}>
+                  <TextField
+                      disabled
+                      variant="outlined"
+                      fullWidth
+                      value={boxWebsite.instagram}
+                    />
                 </div>
+                
+
 
               </div>
               <div className="col-12 d-flex align-items-center">
-                <div className="col-8">
-                  <Box sx={{ '& > :not(style)': { m: 3, width: '100%' } }}>
+                <div className="col-9">
+                  <Box>
                     <TextField
-                      required
                       id="input-with-icon-textfield"
                       label="آدرس وبسایت"
                       type="text"
                       autoComplete="off"
                       InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="center">
-                          </InputAdornment>
-                        ),
+                        dir:"ltr"
                       }}
-                      variant="standard"
+                      variant="outlined"
+                      fullWidth
                     />
                   </Box>
                 </div>
-                <div className={styles.box_website + " col-4 "}>
-                  {boxWebsite.map((item, idx) => {
-                    return (
-                      <>
-                        <div>
-                          <span className=''>{item.website}</span>
-                        </div>
-                      </>
-                    )
-                  })}
+                <div className={"box_website " + " col-3 "}>
+                  <OutlinedInput
+                      disabled
+                      variant="outlined"
+                      fullWidth
+                      value={boxWebsite.website}
+                    />
                 </div>
+              
 
               </div>
               <div className="col-12 d-flex align-items-center">
-                <div className="col-8">
-                  <Box sx={{ '& > :not(style)': { m: 3, width: '100%' } }}>
+                <div className="col-9">
+                  <Box >
                     <TextField
                       required
                       id="input-with-icon-textfield"
@@ -307,39 +313,54 @@ function index() {
                       type="text"
                       autoComplete="off"
                       InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="center">
-                          </InputAdornment>
-                        ),
+                        dir:"ltr"
                       }}
-                      variant="standard"
+                      variant="outlined"
+                      fullWidth
                     />
                   </Box>
                 </div>
-                <div className={styles.box_website + " col-4 "}>
-                  {boxWebsite.map((item, idx) => {
-                    return (
-                      <>
-                        <div>
-                          <span className=''>{item.telegram}</span>
-                        </div>
-                      </>
-                    )
-                  })}
+                
+                <div className={"box_website " + " col-3 "}>
+                  <TextField
+                      disabled
+                      variant="outlined"
+                      fullWidth
+                      value={boxWebsite.telegram}
+                    />
                 </div>
 
               </div>
               <div className="col-12">
-                <Stack spacing={2} direction="row">
-                  <Button sx={{backgroundColor: "#E96962" , color: "#fff" , width : "100%"}}>بروزرسانی فروشگاه</Button>
-                </Stack>
+                {/* <Stack spacing={2} direction="row">
+                  <Button color="main" variant="contained" fullWidth>بروزرسانی فروشگاه</Button>
+                </Stack> */}
               </div>
-            </div>
+            </form>
           </div>
-        </div>
       </div>
-    </div>
+      </VendorPanelBase>
+    </section>
   )
 }
 
-export default index
+
+export async function getServerSideProps (){
+  let result = {}
+  try{
+      const res    = await fetch(e.GET_BUSINESS_TYPES_AND_PROVINCES)
+      result   = await  res.json()
+      console.log(result)
+  }
+  catch(e){
+      console.log(e)
+  }
+  return {
+      props: {
+          provinces: result?.provinces || [],
+          business_types: result?.business_types || [],
+
+      }
+  }
+}
+export default Settings
