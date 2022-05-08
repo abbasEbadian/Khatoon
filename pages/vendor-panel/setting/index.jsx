@@ -81,7 +81,7 @@ function Settings({business_types, provinces}) {
                   />
                 </Box>
               </div>
-              <div className="col-12 d-flex align-items-start">
+              <div className="col-12 d-flex align-items-start mt-4">
                 <div className="col-9">
                   <Box >
                     <TextField
