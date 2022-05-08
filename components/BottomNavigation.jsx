@@ -31,7 +31,7 @@ export default function BottomNavigation2() {
         </Link>
         <BottomNavigationAction label="دسته بندی ها" icon={<CategoryRoundedIcon />} onClick={e=>setOpen(true)} />
 
-        <Link href={"/dashboard"}>
+        <Link href={"/user-panel/profile"}>
           <a className='d-flex flex-column align-items-center'>
             <BottomNavigationAction  icon={<PersonRoundedIcon />} label="پروفایل" sx={{padding: "6px 12px 8px"}}/>
           </a>

@@ -21,7 +21,9 @@ function ProductVendor() {
             </div>
             <div className="col-5">
             <small className="d-block my-2"></small>
-                <span className="sales-count text-nowrap">{vendor.sales_count} فروش موفق</span>
+                <span className="sales-count text-nowrap">
+                        {vendor.sales_count} فروش موفق  
+                </span> 
             </div>
 
             <div className="col-12 row mt-4">

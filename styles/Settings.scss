@@ -1,0 +1,29 @@
+.box_website {
+    background-color: #e1e1e1;
+    *{
+        text-align: left !important;
+        direction: ltr !important;
+    }
+    border-radius: 5px 0 0 5px;
+    border-right: 0;
+    fieldset{
+        border-radius: 5px 0     0 5px;
+        border-right: 0;
+        legend{
+            width: 0;
+        }
+    }
+    
+} 
+
+#setting-profile{
+    // *{font-size: 0.9rem !important;}
+    form{
+        >div{
+            padding-block: 16px;
+        }
+    } 
+    .MuiFormHelperText-root{
+        font-size: 11px;
+    }
+}

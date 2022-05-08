@@ -4,7 +4,6 @@ import TextHeadTiltle from './Ui/TextHeadTiltle'
 
 
 function UserPanelBase({children, active, title }) {
-    console.log(children)
     return (
         <div className='container_custom'>
 

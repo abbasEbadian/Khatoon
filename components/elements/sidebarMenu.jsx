@@ -18,15 +18,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link'
-
+import {useSelector} from 'react-redux'
 
 function SidebarMenu({active}) {
-    const [idMenu, idMenuSet] = React.useState([
-        {
-            name: "آرش",
-            email: "arashzarandi@gmail.com"
-        }
-    ])
+
+    const user = useSelector(s=>s.auth.user)
     const [openSidebar, setOpenSidebar] = React.useState(true) 
 
     const handleClick = () => {
@@ -41,15 +37,11 @@ function SidebarMenu({active}) {
                         <Image src={Profile} alt={"profile"}/>
                     </div>
                     <div className={"id_menu"}>
-                        {idMenu.map((item, idx) => {
-                            return (
-                                <div key={idx}>
-                                    <p>{item.name}</p>
-                                    <p>{item.email}</p>
-                                    <span></span>
-                                </div>
-                            )
-                        })}
+                        <div>
+                            <p>{user?.first_name}</p>
+                            <p>{user?.email}</p>
+                            <span></span>
+                        </div>
                     </div>
                     <div className={"link_menu"}>
                         <List
@@ -129,7 +121,7 @@ function SidebarMenu({active}) {
                                 </Link>
                             </ListItemButton>
                             <ListItemButton selected={active === "managment"}>
-                                <Link href="/user-panel/managment">
+                                <Link href="/vendor-panel/dashboard">
                                     <a>
                                         <ListItemIcon className={"LinkIcon"}>
                                             <Image src={ManageShop} alt="ManageShop" />

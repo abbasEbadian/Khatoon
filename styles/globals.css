@@ -108,12 +108,12 @@ button {
   border: none;
 }
 .card_style {
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.4);
   box-shadow: 0px 8px 8px rgba(0, 0, 0px, 0.15);
-  backdrop-filter: blur(4px);
-  /* Note: backdrop-filter has minimal browser support */
   border-radius: 10px;
   margin-top: 64px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .text_head {
@@ -175,4 +175,7 @@ section {
 
 .rounded-lg{
   border-radius: 20px;
+}
+.text-break *{
+  white-space: normal;
 }

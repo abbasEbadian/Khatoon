@@ -26,10 +26,10 @@ function LoginModal({ handleLoginClose, handleLoginOpen, loginModalOpen}) {
         }
         dispatch(login({mobile:username, password})).then(({error, message})=>{
             toast(message, {type: (error? "error" : "success")})
-            if(error === 0){
-                const next = router.query?.next ? router.query.next : "/" 
+            if(error === 0 )
                 handleLoginClose()
-                router.replace(next)
+            if(router.query.next){
+                router.replace(router.query.next)
             }
         })
         .catch(error=>{

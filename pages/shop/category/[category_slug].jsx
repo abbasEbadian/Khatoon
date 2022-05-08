@@ -6,7 +6,6 @@ import * as e from '../../../redux/endpoints'
 
 
 function Products({categories, products}) {
-    console.log(products)
   return (
     <section id="products-main" className="container_custom">
         <div className="row">

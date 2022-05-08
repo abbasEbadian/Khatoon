@@ -6,15 +6,20 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddToCardButton from '../../elements/AddToCardButton'
 import IR from '../../elements/IR'
 import { BASE_URL } from '../../../redux/endpoints';
+import Link from 'next/link';
 function BoxItem({item}) {
     return (
         <div className={styles.box_item}>
-            <Image src={BASE_URL + item.image} width="100%" height="100%" layout="responsive" objectFit="cover" alt="product" sx={{borderRadius: "16px"}}/>
-            <h5 className={styles.box_item_title}>
+            <Link href={"/shop/product/" + item.url}>
                 <a>
-                    {item.name}
+                    {item.image?
+                    <Image src={BASE_URL + item.image} width="100%" height="100%" layout="responsive" objectFit="cover" alt="product" sx={{borderRadius: "16px"}}/>
+                    : null}
+                    <h5 className={styles.box_item_title}>
+                        {item.name} 
+                    </h5>
                 </a>
-            </h5>
+            </Link>
             <div className={styles.box_item_price}>
                 <div >
                     <AddToCardButton />

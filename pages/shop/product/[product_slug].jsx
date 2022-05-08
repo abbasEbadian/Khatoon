@@ -1,13 +1,18 @@
 import { Typography } from '@mui/material'
 import React from 'react'
-import ProductNotAvailable from '../../components/Product/ProductNotAvailable'
-import ProductSpecs from '../../components/Product/ProductSpecs'
-import ProductToolbar from '../../components/Product/ProductToolbar'
-import ProductSwiper from '../../components/Product/ProductSwiper'
-import ProductVendor from '../../components/Product/ProductVendor'
-import BoxItems from '../../components/Ui/BoxItems/BoxItems'
+import ProductNotAvailable from '../../../components/Product/ProductNotAvailable'
+import ProductSpecs from '../../../components/Product/ProductSpecs'
+import ProductToolbar from '../../../components/Product/ProductToolbar'
+import ProductSwiper from '../../../components/Product/ProductSwiper'
+import ProductVendor from '../../../components/Product/ProductVendor'
+import BoxItems from '../../../components/Ui/BoxItems/BoxItems'
+import { toast } from 'react-toastify'
+import axios from 'axios';
+import { profile } from '../../../redux/actions';
+import {useDispatch, useSelector  } from 'react-redux';
+import * as e from '../../../redux/endpoints'
 
-function Product() {
+function Product({product, similar_products}) {
   
   const ProductSuggested = [
     {
@@ -107,39 +112,43 @@ function Product() {
         priceWithDiscount: '400000'
     },
 ];
-  
-  const product = {
-    
-    name: "کاپشن بلند ترکیبی فوق‌العاده گرم",
-    attributes: [
-      {
-        name: "وزن",
-        value: "200 گرم"
-      },
-      {
-        name: "وزن خالص",
-        value: "250 گرم"
-      }
-    ], 
-    about: <div>
-      <p>📢 یه کاپشن بلند ترکیبی فوق العاده گرم واسه سرمای زمستون و پاییزتون حتما لازم میشه 😋</p>
-      <p>🇮🇷  کالکشن پاییز 1400🧵 مدل </p>
-      <p>lV کد 225سایز بندی 2 سایز مناسب برای 36 تا 44🧥 ...</p>
-    </div>
+  const toggle_reminder = ()=>{
+    axios.post(e.TOGGLE_REMINDER, {product_id:product.id})
+    .then((response)=>{
+      const {error, message} = response.data
+      toast(message, {type: (error? "error": "success")})
+      dispatch(profile())
+    })
+    .catch(e=>{toast.error("خطا در برقراری ارتباط")})
   }
+
+
+  const dispatch = useDispatch()
+  const user = useSelector(s=>s.auth.user)
+
+
+  const [isFavorite, setIsFavorite] = React.useState(false)
+  const [reminderActive, setReminderActive] = React.useState(false)
+
+
+  React.useEffect(()=>{
+    setIsFavorite(user&&user.favorite_set?.find(item=>item.product_id.id === product.id))
+    setReminderActive(user&&user.reminder_set?.find(item=>item.product_id.id === product.id))
+  }, [user])
+  console.log(product);
   return (
     <section id="product-page" className="container_custom">
       <div className="product-main card_style">
-        <ProductToolbar/>
+        <ProductToolbar product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} isFavorite={isFavorite}/>
         <div className="row">
           <div className="col-lg-4 col-12">
-            <ProductSwiper />
+            <ProductSwiper product={product}/>
           </div>
           <div className="col-lg-8 col-12 py-4 py-lg-0">
             <Typography component="h1" fontSize="20px">{product.name}</Typography>
             <div className="row">
               <div className="col-lg-6 col-12">
-                <ProductNotAvailable />
+                <ProductNotAvailable  product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} />
               </div>
               <div className="col-lg-6 col-12 mt-4 mt-lg-0">
                 <ProductVendor/>
@@ -150,7 +159,6 @@ function Product() {
             </div>
           </div>
         </div>
-
       </div>
         <div className='row'>
           <div className='col-12 mt-5'>
@@ -161,5 +169,24 @@ function Product() {
     </section>
   )
 }
+export async function getServerSideProps ({query}){
+  let product = {}
 
+  let {product_slug} = query
+  try{
+      product_slug = product_slug.split('-')[0]
+      const res2    = await fetch(e.GET_PRODUCT_BY_ID(product_slug))
+      product  = await  res2.json()
+      console.log(product)
+  }
+  catch(e){
+      console.log(e)
+  }
+  return {
+      props: {
+          product: product?.product || {},
+          similar_product: product?.similar_products || []
+      }
+  }
+}
 export default Product

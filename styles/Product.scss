@@ -32,7 +32,7 @@
         background-color: #C4C4C4;
         padding: 4px 12px;
         border-radius: 30px;
-        font-size: 13px;
+        font-size: 11px;
     }
 
     .facility{
@@ -46,9 +46,30 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    .product-attributes{
+        display: flex;
+        flex-wrap: wrap;
+        align-items:center;
+        margin-top: 16px;
+        .product-attribute{
+            padding: 16px;
+            border: 1px solid #eee;
+            align-items: center;
+            display: flex;
 
-    .product-attribute{
-        padding-top: 16px;
+            span.devider{
+                padding-inline: 8px;
+                display: block;
+            }
+            @media (min-width: 768px) {
+                &:nth-of-type(2n){
+                    border-right: none;
+                }
+            }
+            &:nth-of-type(-n+2){
+                border-bottom: none;
+            }
+        }
     }
 
     .product-about  *{

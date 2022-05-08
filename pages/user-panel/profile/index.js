@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, MenuItem, Modal, Select, Stack, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import BoxItem from '../../../components/Ui/BoxItem/BoxItem'
 import BoxItems from '../../../components/Ui/BoxItems/BoxItems'
@@ -6,9 +6,17 @@ import TextHeadTiltle from '../../../components/Ui/TextHeadTiltle'
 import UserPanelBase from '../../../components/UserPanelBase'
 import styles from '../../../styles/card.module.scss'
 import withAuth from '../../../redux/withAuth'
+import { toast } from 'react-toastify'
+import { profile, update_profile } from '../../../redux/actions'
+import {useDispatch, useSelector} from 'react-redux'
 
 
 function Profile() {
+    const dispatch = useDispatch()
+    const user = useSelector(s=>s.auth.user)
+    const provinces = useSelector(s=>s.main.provinces)
+
+
     const openDialog = () => {
 
     }
@@ -105,25 +113,39 @@ function Profile() {
 
 
 
-        if (error) {
-
-        } else {
-            setFormData({
-                fullName,
+        if (!error) {
+            dispatch(update_profile({
+                first_name: fullName,
                 email,
                 mobile,
-                province,
-            });
-            setOpen(false);
-        }
-
-
+                province
+            }))
+            .then(({error, message})=>{
+                toast(message, {type: (error? "error": "success")})
+                if(!error){
+                    setOpen(false);
+                }
+            })
+            .catch(err=>{
+                toast.error('خطا در برقراری ارتباط')
+                console.log(err)
+            })
+        } 
 
     }
 
+    React.useEffect(()=>{
+        if (user)
+        setFormData({
+            fullName: user.first_name,
+            email: user.email,
+            mobile: user.mobile,
+            province: user.province_id.id 
+        })
+    }, [user])
     return (
-        <UserPanelBase active={"profile"} title="پروفایل">
             <main>
+        <UserPanelBase active={"profile"} title="پروفایل">
                 <div className='card_style mt-5'>
                     <div className={styles.personal_information}>
                         <div className={styles.personal_information_name}>
@@ -140,7 +162,9 @@ function Profile() {
                         </div>
                         <div className={styles.personal_information_province}>
                             <div className={styles.label}>استان محل سکونت: </div>
-                            <div>{formData.province}</div>
+                            <div>
+                                {provinces?.find(i=>i.id===formData.province)?provinces.find(i=>i.id===formData.province).name: ""}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,7 +188,7 @@ function Profile() {
                                     name="fullName"
                                     error={!!errorMessage.fullName}
                                     helperText={errorMessage.fullName}
-                                    
+                                    defaultValue={formData.fullName}
                                     label="نام و نام خانوادگی"
                                     
                                 />
@@ -177,6 +201,8 @@ function Profile() {
                                     label="پست الکترونیکی "
                                     helperText={errorMessage.email}
                                     name="email"
+                                    defaultValue={formData.email}
+
                                     
                                 />
                             </div>
@@ -190,18 +216,27 @@ function Profile() {
                                     type="number"
                                     name="mobile"
                                     helperText={errorMessage.mobile}
+                                    defaultValue={formData.mobile}
+
                                     
                                 />
                             </div>
                             <div className="col-12 py-4 ps-0">
-                                <TextField sx={{ width: '100%' }}
+                                <Select sx={{ width: '100%' }}
                                     
                                     error={!!errorMessage.province}
                                     label="استان محل سکونت"
                                     name="province"
                                     helperText={errorMessage.province}
-                                    
-                                />
+                                    defaultValue={formData.province || 0} 
+                                    // onChange={e=>setFormData(s=>{return {...s, province: e.target.value}})}
+                                >
+                                    {
+                                        provinces?.map(item=>{
+                                            return <MenuItem key={item.id} value={item.id}> {item.name} </MenuItem>
+                                        })
+                                    }
+                                </Select>
                             </div>
 
                             <div className="col-12 py-4  ">
@@ -215,8 +250,8 @@ function Profile() {
                         </Box>
                     </form>
                 </Modal>
-            </main>
         </UserPanelBase>
+            </main>
 
        
     )
