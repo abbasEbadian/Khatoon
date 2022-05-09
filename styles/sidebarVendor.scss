@@ -1,0 +1,195 @@
+$avatar-size: 68px;
+.sidebar_vendor {
+  position: relative;
+  max-height: 635px;
+  background: rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
+  box-shadow: -13px 0px 33px -20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(30px);
+  border-radius: 12px;
+  transform: translate(0%, 0px);
+  right: 2%;
+  margin: 0 auto;
+  overflow: hidden;
+  /* Note: backdrop-filter has minimal browser support */
+
+
+  .profile_pic {
+    text-align: center;
+  }
+  .header_vendor_sidebar {
+    position: relative;
+    background-image: url(../static/img/imgs/vendor_sidebar_header.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 150px;
+    border-radius: 20px 20px 0 0 ;
+    z-index: 1;
+
+    .vendor_profile_pic {
+      height: $avatar-size;
+      width: $avatar-size;
+      position: absolute;
+      bottom: $avatar-size / 2 *-1;
+      right: 16px;
+      border-radius: 50%;
+      overflow: hidden;
+      border:1px solid #fff;
+      box-shadow: 0 0 14px #0004;
+      img{
+        border: 2px solid #fff;
+      }
+    }
+  p[class*=vendor]{
+    position: absolute;
+    right: 40%;
+    font-size: 0.8rem;
+
+  }
+  p.vendor_name{
+    bottom: 8px;
+    color: white;
+  }
+  p.vendor_owner{
+    bottom: -24px;
+   }
+
+    .LinkIcon {
+      min-width: 25px !important;
+    }
+  }
+  .link_menu{
+    padding-top: 32px;
+  }
+  .link_menu_item{
+    padding-right: 32px;
+    font-size: 1.1rem;
+  }
+  .link_menu_item_active{
+    background-color: #FBDEE2;
+    border-right: 5px solid #e0465b;
+    padding-right: 27px;
+  }
+
+  .flotingButton {
+    background: #fff !important;
+    display: block;
+    border-radius: 50px 0 0 50px;
+    padding: 15px 25px;
+    position: absolute;
+    top: 50%;
+    width: 70px;
+    left: calc(-70px + 0.5rem) !important;
+    z-index: 999;
+    border: 1px solid #efefef;
+    -webkit-box-shadow: -5px 0 5px rgb(0 0 0 / 30%);
+    box-shadow: -5px 0 5px rgb(0 0 0 / 30%);
+    border-right: none;
+  }
+  button {
+    text-shadow: 0 8px 8px rgb(0 0 0 / 12%);
+    -webkit-transition: all var(--transition-duration) ease-out;
+    transition: all var(--transition-duration) ease-out;
+  }
+  @media (max-width: 992px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 60px;
+    z-index: 99999;
+    right: 0;
+    transform: translate(110%, 0px);
+    transition: all 0.4s ease-in;
+  }
+  @media (min-width: 993px) {
+    .flotingButton {
+      display: none;
+    }
+  }
+  .flotingButton {
+    button {
+      background-color: transparent;
+    }
+  }
+}
+
+.open {
+  transform: translate(0px, 0px);
+}
+
+.link_menu span {
+  font-size: 11px;
+}
+.vendor-cover{
+  border-radius: 6px;
+  overflow: hidden;
+  .cover-parent{
+    padding-top: 33%;
+  }
+  position: relative;
+  @media (max-width: 768px) {
+    margin: -20px;
+    margin-bottom: 32px;
+    .cover-parent{
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  .edit-cover-btn{
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    background: white;
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 ;
+    opacity: 0.8;
+
+    &:hover{
+      opacity: 1;
+      background: white;
+      transition: opacity .2s;
+    }
+  }
+  .avatar-parent{
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #666;
+    box-shadow: 0 0 14px #0008;
+    span{
+      border-radius: 50%;
+    }
+    
+    .edit-avatar-btn{
+        position: absolute;
+        left: calc(50% - 16px);
+        top: -16px;
+        background: white;
+        border-radius: 50%;
+        width: 32px;
+        min-width: 32px;
+        height: 32px;
+        padding: 0 ;
+        box-shadow: 0 0 14px #0008;
+        &:hover{
+          opacity: 1;
+          background: white;
+          transition: opacity .2s;
+        }
+    }
+  }
+  [class*=Skeleton]{
+      width: 100%;
+      position: absolute;
+      left: 0;
+      min-height: 300px;
+      top: 0;
+  
+  }
+}

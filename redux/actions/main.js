@@ -22,6 +22,20 @@ export const check_user = ()=>{
     }
 }
 
+export const fetch_banks = () =>{
+    return async (dispatch, getState)=>{
+        return (
+            axios.get(e.GET_BANKS)
+            .then(response=>{
+                const {data} = response
+                dispatch(update_banks(data))
+                
+            })
+            .catch(err=>console.log(err))
+            
+        )
+    }
+}
 export const fetch_categories = () =>{
     return async (dispatch, getState)=>{
         return (
@@ -130,6 +144,13 @@ export const update_categories = (categories)=>{
 export const update_provinces = (provinces)=>{
     return {
         type: t.UPDATE_PROVINCES,
+        payload: provinces
+    }
+
+}
+export const update_banks= (provinces)=>{
+    return {
+        type: t.UPDATE_BANKS,
         payload: provinces
     }
 

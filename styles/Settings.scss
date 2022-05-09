@@ -27,3 +27,21 @@
         font-size: 11px;
     }
 }
+.infoScan {
+    background-color: #def1fb;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 2;
+    border-right: 15px solid #6e96ad;
+  }
+  .uploadDoc {
+    border: 2px dashed var(--color-foot);
+    border-radius: 10px;
+    button {
+      color: var(--color-foot);
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }

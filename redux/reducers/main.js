@@ -3,7 +3,8 @@ import {HYDRATE} from 'next-redux-wrapper';
 
 const init_state = {
     categories : [],
-    provinces: []
+    provinces: [],
+    banks: []
 }
 
 
@@ -22,6 +23,11 @@ const mainReducer = (state=init_state,action)=>{
             return {
                 ...state,
                 provinces: action.payload
+            }
+        case t.UPDATE_BANKS: 
+            return {
+                ...state,
+                banks: action.payload
             }
         default: return {...state}
     }

@@ -34,6 +34,10 @@ const theme = createTheme({
     orange: {
       main : "#FFAD14",
       contrastText: "#fff"
+    },
+    white:{
+      main: "#FFFFFF",
+      contrastText: "#222"
     }
   },
 });
@@ -55,6 +59,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const excludeUrls = [
     "user-panel",
+    "vendor-panel",
   ] 
   React.useEffect(()=>{
     store.dispatch(get_initial_data())

@@ -142,9 +142,7 @@ button {
   width: 10px;
 }
 
-.container_custom {
-  padding-inline: clamp(16px, 6vw, 128px);
-}
+
 label {
   font-family: "IRANSans-web" !important;
   font-size: 0.8rem !important;
@@ -153,7 +151,7 @@ section {
   position: relative;
 }
 .container_custom {
-  padding-inline: clamp(16px, 6vw, 128px);
+  padding-inline: clamp(8px, 6vw - 16px, 128px);
 }
 
 .btn_yellow_box {

@@ -27,10 +27,16 @@ export const TOGGLE_REMINDER = _( "/reminder/toggle/" )
 
 
 
+export const GET_BANKS = _( "/bank/all/" ) 
+
+
 export const GET_PROVINCES = _( "/state/province/all/" ) 
 export const GET_CITIES_BY_PROVINCE = (province_id) => _( "/state/city/province/" + province_id )  
 
 export const GET_BUSINESS_TYPES = _( "/market/business/all/" ) 
+export const UPLOAD_COVER_IMAGE = _( "/market/image/cover/" ) 
+export const UPLOAD_AVATAR_IMAGE = _( "/market/image/avatar/" ) 
+
 
 export const GET_BUSINESS_TYPES_AND_PROVINCES = _("/market/business_and_province/all/")
 

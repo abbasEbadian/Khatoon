@@ -10,15 +10,22 @@ import ArticleIcon from '@mui/icons-material/Article';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import useScrollingUp from './utils/ScrollHook'
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import Sidebar from './Sidebar'
 import PersonIcon from '@mui/icons-material/Person';
 import {useSelector} from 'react-redux'
 
 function Header({ handleLoginClose, handleLoginOpen, loginModalOpen }) {
     const [isScrollingUp, scrollAmount] = useScrollingUp()    
+    const [pinHeader, setPinHeader] = React.useState(false)    
+    const togglePinHeader = ()=>{
+        setPinHeader(!pinHeader)
+    }
     const { user, authenticated } = useSelector(s=>s.auth)
-    return (
-        <header className={isScrollingUp? styles.headersticky: scrollAmount> 120? styles.headerhide: styles.header }>
+    // <header className={isScrollingUp? styles.headersticky: ? styles.headerhide: styles.header }>
+    return (<>
+        <header className={styles.header + " " + (pinHeader? styles.stickHeader : "") }>
             <div className='container_custom'>
                 <div className={styles.headerTop}>
                     <Sidebar />
@@ -63,15 +70,18 @@ function Header({ handleLoginClose, handleLoginOpen, loginModalOpen }) {
             </div>
 
             <span className={styles.headerDevider}></span>
-
-            <div className={' container_custom'}>
-                <div className={styles.headerBottom}>
-                    <HeaderMegaMenu />
-                </div>
-            </div>
-
-            
         </header>
+        <div className={' container_custom ' + styles.header_bot}>
+        <div className={styles.headerBottom + " " + (scrollAmount>= 90 ? styles.headerBottomScrolled : "") }>
+            <HeaderMegaMenu />
+            {pinHeader?
+                <ArrowCircleUpIcon className={styles.arrow} role="button" onClick={togglePinHeader}/>
+                :
+                <ArrowCircleDownIcon className={styles.arrow} role="button" onClick={togglePinHeader}/>
+            }
+        </div>
+    </div>
+        </>
     )
 }
 
