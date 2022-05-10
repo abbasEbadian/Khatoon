@@ -5,7 +5,7 @@ import styles from '../../styles/QuestionBox.module.css'
 // import BgBox from '../../../static/img/bg-pic/Group2254.png'
 function QuestionBox() {
   return (
-    <div className={styles.QuestionBox + " mt-5 " + " container"}>
+    <div className={styles.QuestionBox + " mt-5 " }>
       <div>
         <h6>جواب سوالتون رو پیدا نکردین؟</h6>
         <p>

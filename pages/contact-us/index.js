@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import Head from "next/head";
 import ContactUsOptions from '../../components/Ui/ContactUsOptions';
+import Image from 'next/image'
 import styles from '../../styles/ContactUsOptions.module.css'
 import TextHeadTiltle from '../../components/Ui/TextHeadTiltle';
 import TextField from '@mui/material/TextField';
@@ -12,7 +13,7 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Icon from '../../static/img/icon/image16.png'
-import Image from 'next/image'
+import RedCircle from '../../static/img/icon/Ellipse-71-(1).png'
 
 function ContactUs() {
 
@@ -38,7 +39,7 @@ function ContactUs() {
 
     <section>
       <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
-      <div className="width_custom container">
+      <div className="container">
         <div className="row py-5 ">
           <div className='card_style px-5'>
             <div className="col-12 contact-us m-auto text-right">
@@ -46,7 +47,7 @@ function ContactUs() {
               <TextHeadTiltle underline_dec={true} title="سوالات پیج" description="از این راه ها میتوانید با ما در ارتباط باشید..." />
             </div>
             <div className="col-12">
-              <div className={styles.ContactUsOptions + " " + " row gap-3 justify-content-between"}>
+              <div className={styles.ContactUsOptions + " " + " row gap-3 justify-content-center"}>
                 <ContactUsOptions title="چت آنلاین" details="کلیک کنید" />
                 <ContactUsOptions title="ایمیل" details="info@site.com" />
                 <ContactUsOptions title="واتساپ" details="09121234567" />

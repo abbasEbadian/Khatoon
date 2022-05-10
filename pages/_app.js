@@ -1,8 +1,11 @@
 import React from 'react'
 import '../styles/globals.css'
+import '../styles/master.scss'
 import 'bootstrap/dist/css/bootstrap.rtl.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/Header'
 import BottomNavigation2 from '../components/BottomNavigation'
+import 'swiper/css';
 
 import {configure} from '../redux/axiosConfig'
 import {useStore } from '../redux/store';
@@ -14,11 +17,29 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
+import SVGBoxes from '../components/Ui/SVGBoxes';
 import Footer from '../components/Footer';
+import LoginModal from '../components/Ui/LoginModal';
+
+import {ToastContainer} from 'react-toastify'
 
 
 const theme = createTheme({
-  direction: 'rtl', // Both here and <body dir="rtl">
+  direction: 'rtl', 
+  palette: {
+    main: {
+      main: "#DF443D",
+      contrastText: "#fff"
+    },
+    orange: {
+      main : "#FFAD14",
+      contrastText: "#fff"
+    },
+    white:{
+      main: "#FFFFFF",
+      contrastText: "#222"
+    }
+  },
 });
 // Create rtl cache
 const cacheRtl = createCache({
@@ -28,13 +49,17 @@ const cacheRtl = createCache({
 
 
 function MyApp({ Component, pageProps }) {
+
+  const [loginModalOpen, setLoginModalOpen] = React.useState(false)
+  const handleLoginClose = ()=>{setLoginModalOpen(false);}
+  const handleLoginOpen = ()=>{setLoginModalOpen(true);}
+
   configure()
   const store = useStore(pageProps.initialReduxState)
   const router = useRouter();
   const excludeUrls = [
-    "login",
-    "signup",
-    "logout"
+    "user-panel",
+    "vendor-panel",
   ] 
   React.useEffect(()=>{
     store.dispatch(get_initial_data())
@@ -44,10 +69,27 @@ function MyApp({ Component, pageProps }) {
       <CacheProvider value={cacheRtl}>
         <ThemeProvider theme={theme}>
           <div dir="rtl">
-            <Header></Header>
-            <Component {...pageProps} />
+            <SVGBoxes/>
+            <Header  handleLoginClose={handleLoginClose} handleLoginOpen={handleLoginOpen} loginModalOpen={loginModalOpen}></Header>
+            <Component {...pageProps } handleLoginClose={handleLoginClose} handleLoginOpen={handleLoginOpen} loginModalOpen={loginModalOpen}/>
             <BottomNavigation2/>
-           <Footer />
+            <LoginModal handleLoginClose={handleLoginClose} handleLoginOpen={handleLoginOpen} loginModalOpen={loginModalOpen} />
+            {
+              excludeUrls.every(item=>router.pathname.indexOf(item) === -1)
+              &&
+              <Footer />
+            }
+           <ToastContainer
+              position="bottom-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
           </div>  
         </ThemeProvider>
       </CacheProvider>

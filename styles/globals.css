@@ -1,77 +1,72 @@
-
-
-@font-face {
-	font-family: 'IRANSans-web';
-        src: url('../static/fonts/IRANSans-Bold-web.eot');
- 
-	src: url('../static/fonts/IRANSans-Bold-web.eot?#iefix') format('eot'),  /* IE6–8 */
-url('../static/fonts/IRANSans-Bold-web.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
-url('../static/fonts/IRANSans-Bold-web.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-url('../static/fonts/IRANSans-Bold-web.ttf') format('ttf');  
-	font-weight: bold;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
 @font-face {
-	font-family: 'IRANSans-web';
-        src: url('../static/fonts/IRANSans-Medium-web.eot');
- 
-	src: url('../static/fonts/IRANSans-Medium-web.eot?#iefix') format('eot'),  /* IE6–8 */
-url('../static/fonts/IRANSans-Medium-web.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
-url('../static/fonts/IRANSans-Medium-web.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-url('../static/fonts/IRANSans-Medium-web.ttf') format('ttf');  
-	font-weight: 500;
-}
+  font-family: "IRANSans-web";
+  src: url("../static/fonts/IRANSans-Bold-web.eot");
 
+  src: url("../static/fonts/IRANSans-Bold-web.eot?#iefix") format("eot"),
+    /* IE6–8 */ url("../static/fonts/IRANSans-Bold-web.woff2") format("woff2"),
+    /* Chrome36+, Opera24+*/ url("../static/fonts/IRANSans-Bold-web.woff")
+      format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("../static/fonts/IRANSans-Bold-web.ttf") format("ttf");
+  font-weight: bold;
+}
 
 @font-face {
-	font-family: 'IRANSans-web';
-        src: url('../static/fonts/IRANSans-UltraLight-web.eot');
- 
-	src: url('../static/fonts/IRANSans-UltraLight-web.eot?#iefix') format('eot'),  /* IE6–8 */
-url('../static/fonts/IRANSans-UltraLight-web.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
-url('../static/fonts/IRANSans-UltraLight-web.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-url('../static/fonts/IRANSans-UltraLight-web.ttf') format('ttf');  
-	font-weight: 200;
-}
+  font-family: "IRANSans-web";
+  src: url("../static/fonts/IRANSans-Medium-web.eot");
 
+  src: url("../static/fonts/IRANSans-Medium-web.eot?#iefix") format("eot"),
+    /* IE6–8 */ url("../static/fonts/IRANSans-Medium-web.woff2") format("woff2"),
+    /* Chrome36+, Opera24+*/ url("../static/fonts/IRANSans-Medium-web.woff")
+      format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("../static/fonts/IRANSans-Medium-web.ttf") format("ttf");
+  font-weight: 500;
+}
 
 @font-face {
-	font-family: 'IRANSans-web';
-        src: url('../static/fonts/IRANSans-Light-web.eot');
- 
-	src: url('../static/fonts/IRANSans-Light-web.eot?#iefix') format('eot'),  /* IE6–8 */
-url('../static/fonts/IRANSans-Light-web.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
-url('../static/fonts/IRANSans-Light-web.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-url('../static/fonts/IRANSans-Light-web.ttf') format('ttf');  
-	font-weight: 300;
-}
+  font-family: "IRANSans-web";
+  src: url("../static/fonts/IRANSans-UltraLight-web.eot");
 
+  src: url("../static/fonts/IRANSans-UltraLight-web.eot?#iefix") format("eot"),
+    /* IE6–8 */ url("../static/fonts/IRANSans-UltraLight-web.woff2")
+      format("woff2"),
+    /* Chrome36+, Opera24+*/ url("../static/fonts/IRANSans-UltraLight-web.woff")
+      format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("../static/fonts/IRANSans-UltraLight-web.ttf") format("ttf");
+  font-weight: 200;
+}
 
 @font-face {
-	font-family: 'IRANSans-web';
-        src: url('../static/fonts/IRANSans-web.eot');
- 
-	src: url('../static/fonts/IRANSans-web.eot?#iefix') format('eot'),  /* IE6–8 */
-url('../static/fonts/IRANSans-web.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
-url('../static/fonts/IRANSans-web.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-url('../static/fonts/IRANSans-web.ttf') format('ttf');  
-	font-weight: normal;
+  font-family: "IRANSans-web";
+  src: url("../static/fonts/IRANSans-Light-web.eot");
+
+  src: url("../static/fonts/IRANSans-Light-web.eot?#iefix") format("eot"),
+    /* IE6–8 */ url("../static/fonts/IRANSans-Light-web.woff2") format("woff2"),
+    /* Chrome36+, Opera24+*/ url("../static/fonts/IRANSans-Light-web.woff")
+      format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("../static/fonts/IRANSans-Light-web.ttf") format("ttf");
+  font-weight: 300;
 }
 
+@font-face {
+  font-family: "IRANSans-web";
+  src: url("../static/fonts/IRANSans-web.eot");
 
-
-
-
-
-
-
-
-:root {
-  --color-NavyBlue: #123c55;
-  --color-e3: #E3E3E3;
-  --color-foot: #363969;
+  src: url("../static/fonts/IRANSans-web.eot?#iefix") format("eot"),
+    /* IE6–8 */ url("../static/fonts/IRANSans-web.woff2") format("woff2"),
+    /* Chrome36+, Opera24+*/ url("../static/fonts/IRANSans-web.woff")
+      format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url("../static/fonts/IRANSans-web.ttf")
+      format("ttf");
+  font-weight: normal;
 }
+@import './colors.css';
+
 html,
 body {
   padding: 0;
@@ -79,12 +74,14 @@ body {
   font-family: IRANSans-web !important;
   direction: rtl;
   background-color: #e5e5e5 !important;
+  font-size: 82.5%;
 }
 [class^="Mui"],
 [class^="Mui"] * {
   font-family: IRANSans-web !important;
 }
-[class*=Mui], [class*=Mui] *{
+[class*="Mui"],
+[class*="Mui"] * {
   font-family: IRANSans-web !important;
 }
 body a {
@@ -98,10 +95,9 @@ body a {
 
 ul,
 p {
-  margin: 0;
-  
+  margin: 0 !important;
 }
-ul{
+ul {
   padding: 0;
   margin: 0 !important;
 }
@@ -112,11 +108,12 @@ button {
   border: none;
 }
 .card_style {
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(4px);
-  /* Note: backdrop-filter has minimal browser support */
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0px 8px 8px rgba(0, 0, 0px, 0.15);
   border-radius: 10px;
+  margin-top: 64px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .text_head {
@@ -133,40 +130,50 @@ button {
 }
 
 .underline_dec span:nth-child(2) {
-  right: 10%;
-  width: 15px;
+  right: 90px;
+  width: 20px;
 }
 .underline_dec span:nth-child(3) {
-  right: 12.5%;
-  width: 13px;
+  right: 115px;
+  width: 10px;
 }
 .underline_dec span:nth-child(4) {
-  right: 14.5%;
-  width: 11px;
+  right: 130px;
+  width: 10px;
 }
 
-.container_custom{
-  padding-inline: clamp(16px, 6vw, 128px);
-}
+
 label {
   font-family: "IRANSans-web" !important;
   font-size: 0.8rem !important;
 }
-.width_custom {
-  width: 960px !important;
+section {
+  position: relative;
 }
- 
-
-.container_custom{
-  padding-inline: clamp(16px, 6vw, 128px);
+.container_custom {
+  padding-inline: clamp(8px, 6vw - 16px, 128px);
 }
 
 .btn_yellow_box {
   font-weight: bold;
   font-size: 13px;
   color: var(--bs-white);
-  background: #FFAD14;
+  background: #ffad14;
   box-shadow: 0px 9px 19px rgba(255, 173, 20, 0.47);
   border-radius: 5px;
-  padding: .5rem;
+  padding: 0.5rem;
+}
+
+.swiper.best_vendor_swiper{
+  height:180px;
+}
+.swiper{
+  overflow-y: visible;
+}
+
+.rounded-lg{
+  border-radius: 20px;
+}
+.text-break *{
+  white-space: normal;
 }

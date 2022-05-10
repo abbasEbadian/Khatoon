@@ -28,11 +28,16 @@
         display: flex;
         flex-flow: row-reverse;
         gap: 1rem;
-       
+        flex-wrap: wrap;
     }
     &_price_discount {
         color: red;
         text-decoration: line-through;
+    }
+    .basket__item_price {
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
     }
 }
 

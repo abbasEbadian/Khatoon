@@ -12,7 +12,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import BasketTabs from '../../components/Ui/BasketTabs/BasketTabs';
-
+import withAuth from '../redux/withAuth'
 
 const style = {
     position: 'absolute',
@@ -63,7 +63,7 @@ function BasketAddress() {
     return (
         <section>
             <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
-            <div className="width_custom container">
+            <div className="container">
                 
                 <div className="row py-5 ">
                 <BasketTabs tab={1}/>
@@ -176,4 +176,4 @@ function BasketAddress() {
 }
 
 
-export default BasketAddress
+export default withAuth(BasketAddress)

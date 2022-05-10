@@ -15,7 +15,7 @@ function returnProduct() {
     <>
       <section>
         <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
-        <div className={"width_custom container card_style"} style={{ margin: "2rem auto 6rem auto;", padding: '1rem 2rem' }}>
+        <div className={"container card_style"} style={{ margin: "2rem auto 6rem auto;", padding: '1rem 2rem' }}>
           <div>
             <TextHeadTiltle underline_dec={true} title="بازگشت کالا" description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ" />
           </div>
@@ -38,29 +38,29 @@ function returnProduct() {
             <div className={styles.steps}>
               <h4 className={styles.stepsHeader}>کالا را چطور ارسال کنیم؟</h4>
               <div className="row mt-5">
-                <div className="col-12 col-md-4 d-flex justify-content-center">
+                <div className="col-6 col-md-4 d-flex justify-content-center">
                   <ContactUsStepItem step={'۱'} text=" قبل از ارسال کالا لطفا با همکاران ما در واحد فروش هماهنگ کنید"
                     icon="/static/img/imgs/image 20.png"
                   />
                 </div>
-                <div className="col-12 col-md-4 d-flex justify-content-center">
+                <div className="col-6 col-md-4 d-flex justify-content-center">
                   <ContactUsStepItem step={'۲'} text=" قبل از ارسال کالا لطفا با همکاران ما در واحد فروش هماهنگ کنید"
                     icon="/static/img/imgs/image 22.png"
                   />
                 </div>
-                <div className="col-12 col-md-4 d-flex justify-content-center">
+                <div className="col-12 col-md-4 d-flex justify-content-center mt-5">
                   <ContactUsStepItem step={'۳'} text=" قبل از ارسال کالا لطفا با همکاران ما در واحد فروش هماهنگ کنید"
                     icon="/static/img/imgs/image 23.png"
                   />
                 </div>
               </div>
               <div className="row justify-content-center">
-                <div className="col-12 col-md-4 d-flex justify-content-center mt-5">
+                <div className="col-6 col-md-4 d-flex justify-content-center mt-5">
                   <ContactUsStepItem step={'۴'} text=" قبل از ارسال کالا لطفا با همکاران ما در واحد فروش هماهنگ کنید"
                     icon="/static/img/imgs/image 24.png"
                   />
                 </div>
-                <div className="col-12 col-md-4 d-flex justify-content-center mt-5">
+                <div className="col-6 col-md-4 d-flex justify-content-center mt-5">
                   <ContactUsStepItem step={'۵'} text=" قبل از ارسال کالا لطفا با همکاران ما در واحد فروش هماهنگ کنید"
                     icon="/static/img/imgs/image 25.png"
                   />
@@ -69,7 +69,7 @@ function returnProduct() {
             </div>
           </div>
         </div>
-        <div className="width_custom container">
+        <div className="container">
           {/* Most Questions */}
           <div>
             <h4 className={styles.question__header}>
