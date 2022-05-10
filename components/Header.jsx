@@ -13,116 +13,82 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import TextField from '@mui/material/TextField';
 import useScrollingUp from './utils/ScrollHook'
-import Button from '@mui/material/Button';
-
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import Sidebar from './Sidebar'
-function Header() {
+import PersonIcon from '@mui/icons-material/Person';
+import {useSelector} from 'react-redux'
 
-    const [isScrollingUp, scrollAmount] = useScrollingUp()
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 500,
-        bgcolor: 'background.paper',
-        borderRadius: 5,
-        boxShadow: '0 0 8px 1px #eee',
-        p: 4,
-    };
-    return (
-        <>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
-                    <Typography sx={{ fontSize: 25, fontWeight: 'bold' }} id="modal-modal-title" variant="h6" component="h2">
-                        ورود با کلمه عبور
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <Box
-                            component="form"
-                            sx={{
-                                '& .MuiTextField-root': { mt: 5, width: '100%' },
-                            }}
-                            noValidate
-                            autoComplete="off"
-                        >
-                            <div>
-                                <TextField
-                                    required
-                                    id="outlined-required"
-                                    label="شماره همراه خود را وارد کنید"
-                                    defaultValue="شماره همراه"
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    id="outlined-password-input"
-                                    label="رمز عبور خود را وارد کنید"
-                                    type="password"
-                                    autoComplete="current-password"
-                                />
-                            </div>
-                        </Box>
-                        <Button>
-                            ورود به خاتون زیبا
-                        </Button>
-                    </Typography>
-
-                </Box>
-            </Modal>
-            <header className={isScrollingUp ? styles.headersticky : scrollAmount > 120 ? styles.headerhide : styles.header}>
-                <div className='container_custom'>
-                    <div className={styles.headerTop}>
-                        <Sidebar />
-                        <Image className={styles.headerLogo} src={'/images/logo/logo.png'} width={150} height={50} alt="logo" />
-                        <HeaderSearcBox className={styles.header_searchbox} />
-                        <div className={styles.headerActions}>
-                            <a href="#" className={styles.headerActionsItem} onClick={handleOpen}>
-                                <FingerprintIcon />
-                                <small>ورود / ثبت نام</small>
+function Header({ handleLoginClose, handleLoginOpen, loginModalOpen }) {
+    const [isScrollingUp, scrollAmount] = useScrollingUp()    
+    const [pinHeader, setPinHeader] = React.useState(false)    
+    const togglePinHeader = ()=>{
+        setPinHeader(!pinHeader)
+    }
+    const { user, authenticated } = useSelector(s=>s.auth)
+    // <header className={isScrollingUp? styles.headersticky: ? styles.headerhide: styles.header }>
+    return (<>
+        <header className={styles.header + " " + (pinHeader? styles.stickHeader : "") }>
+            <div className='container_custom'>
+                <div className={styles.headerTop}>
+                    <Sidebar />
+                    <Link href="/">
+                        <a>
+                        <Image className={styles.headerLogo} src={'/images/logo/logo.png'} width={150} height={50} alt="logo"/>
+                        </a>
+                    </Link>
+                    <HeaderSearcBox className={styles.header_searchbox}/>
+                    <div className={styles.headerActions}>
+                        
+                        {!authenticated? <a className={styles.headerActionsItem} onClick={handleLoginOpen}>
+                            <FingerprintIcon/>
+                            <small>ورود / ثبت نام</small>
+                        </a>:
+                            <Link href="/user-panel/profile">
+                            <a className={styles.headerActionsItem}>
+                                <PersonIcon/>
+                                <small>حساب </small>
                             </a>
-                            <Link href="/blog">
-                                <a className={styles.headerActionsItem}>
-                                    <ArticleIcon />
-                                    <small>مجله</small>
-                                </a>
-                            </Link>
-                            <Link href="/messages">
-                                <a className={styles.headerActionsItem}>
-                                    <ChatBubbleOutlineIcon />
-                                    <small>پیام ها</small>
-                                </a>
-                            </Link>
-                            <Link href="/basket">
-                                <a className={styles.headerActionsItem}>
-                                    <ShoppingBasketIcon />
-                                    <small>سبد خرید</small>
-                                </a>
-                            </Link>
-                        </div>
+                        </Link>}
+                        <Link href="/blog">
+                            <a className={styles.headerActionsItem}>
+                                <ArticleIcon/>
+                                <small>مجله</small>
+                            </a>
+                        </Link>
+                        <Link href="/user-panel/tickets">
+                            <a className={styles.headerActionsItem}>
+                                <ChatBubbleOutlineIcon/>
+                                <small>پیام ها</small>
+                            </a>
+                        </Link>
+                        <Link href="/card">
+                            <a className={styles.headerActionsItem}>
+                                <ShoppingBasketIcon/>
+                                <small>سبد خرید</small>
+                            </a>
+                        </Link>
                     </div>
                 </div>
 
-                <span className={styles.headerDevider}></span>
-
-                <div className={' container_custom'}>
-                    <div className={styles.headerBottom}>
-                        <HeaderMegaMenu />
-                    </div>
-                </div>
-
-
-            </header>
+            <span className={styles.headerDevider}></span>
+        </header>
+        <div className={' container_custom ' + styles.header_bot}>
+        <div className={styles.headerBottom + " " + (scrollAmount>= 90 ? styles.headerBottomScrolled : "") }>
+            <HeaderMegaMenu />
+            {pinHeader?
+                <ArrowCircleUpIcon className={styles.arrow} role="button" onClick={togglePinHeader}/>
+                :
+                <ArrowCircleDownIcon className={styles.arrow} role="button" onClick={togglePinHeader}/>
+            }
+        </div>
+    </div>
         </>
     )
 }
 
+export function getInitialProps(props) {
+    console.log(props)
+    return props
+}
 export default Header

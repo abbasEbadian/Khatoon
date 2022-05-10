@@ -1,0 +1,106 @@
+#product-page{
+    .product-toolbar{
+        border-radius: 32px;
+        background-color: #eee;
+        width: 200px;
+        padding-block: 8px;
+        *{
+            color: #888;
+            cursor: pointer;
+        } 
+    }
+    .product-main{
+        padding: 16px;
+    }
+}
+.product-not-avalable{
+    padding: 4px 6px;
+    border-right: 2px solid #EEB217;
+    background-color: #FFECDB;
+    font-size: 12px;
+}
+
+.product-vendor{
+    border: 2px solid white ;
+    border-radius: 8px;
+    background-color: #EEE;
+    padding: 16px 16px;
+    color: #555;
+    
+    .sales-count{
+        color: #545454;
+        background-color: #C4C4C4;
+        padding: 4px 12px;
+        border-radius: 30px;
+        font-size: 11px;
+    }
+
+    .facility{
+        font-size: 11px;
+        margin-top: 16px;
+    }
+}
+
+.product-specs{
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    .product-attributes{
+        display: flex;
+        flex-wrap: wrap;
+        align-items:center;
+        margin-top: 16px;
+        .product-attribute{
+            padding: 16px;
+            border: 1px solid #eee;
+            align-items: center;
+            display: flex;
+
+            span.devider{
+                padding-inline: 8px;
+                display: block;
+            }
+            @media (min-width: 768px) {
+                &:nth-of-type(2n){
+                    border-right: none;
+                }
+            }
+            &:nth-of-type(-n+2){
+                border-bottom: none;
+            }
+        }
+    }
+
+    .product-about  *{
+        padding-top: 8px;
+    }
+
+}
+
+.product-swiper{
+    height: 325px;
+    margin-top: -24px;
+}
+.product-swiper2{
+    height: 125px;
+    
+}
+
+[class*=product-swiper] {
+    img{
+
+        border-radius: 12px;
+        border: 2px solid #eee;
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.similar-products-price{
+    font-size: 13px;
+}

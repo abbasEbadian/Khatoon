@@ -1,0 +1,31 @@
+:root {
+    --color-NavyBlue: #123c55;
+    --color-e3: #e3e3e3;
+    --color-foot: #363969;
+    --primary: #CA0A00bb;
+    --secondary: #042234bb;
+    --gold: #EEB217;
+}
+
+body .bg-primary{
+    background-color: var(--primary) !important;
+}
+body  .text-primary{
+    color: var(--primary) !important;
+}
+
+
+body .bg-secondary{
+    background-color: var(--secondary) !important;
+}
+body .text-secondary{
+    color: var(--secondary) !important;
+}
+
+
+body .bg-gold{
+    background-color: var(--gold) !important;
+}
+body .text-gold{
+    color: var(--gold) !important;
+}

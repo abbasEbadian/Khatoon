@@ -39,7 +39,7 @@ function BoxItems({ items, title, boxClasses, type }) {
                     {
                         items.map((item, index) => {
                             return (
-                                <SwiperSlide>
+                                <SwiperSlide key={index}>
                                     {
                                         type == 'product' ?
                                             <BoxItem item={item} key={index} /> :

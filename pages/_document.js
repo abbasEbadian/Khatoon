@@ -9,7 +9,7 @@ class MyDocument extends Document {
     }
    
     render = () => (
-        <Html dir={this.props.locale === 'fa' ? 'rtl': 'ltr'} lang={this.props.locale}>
+        <Html dir={'rtl'} lang={'fa'}>
             <Head />
             <body>
                 <Main />

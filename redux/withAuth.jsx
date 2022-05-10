@@ -11,7 +11,7 @@ const withAuth = (WrappedComponent, authOnly=true) => {
 
       // If there is no access token we redirect to "/" page.
       if (!accessToken && authOnly ) {
-        Router.replace("/auth?next="+Router.pathname);
+        Router.replace("/?next="+Router.pathname);
         return null;
       }
       if ( accessToken && !authOnly ) {
