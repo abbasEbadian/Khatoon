@@ -77,6 +77,7 @@ function Order() {
         </div>
         <div className={`${styles.order} ${styles.order_card}`}>
           <div className="d-flex p-5 align-items-center">
+            
             <Image
               src="https://statics.basalam.com/public/users/4q0y2/04-21/6KJLhxsWDe6oDnwDrOowGRhK0Ap9ef4XiAlxKVHB2ffgHJvlhx.jpg_256X256X70.jpg"
               width={100}
