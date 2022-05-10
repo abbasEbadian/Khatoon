@@ -3,7 +3,7 @@ import SidebarMenu from './elements/sidebarMenu'
 import TextHeadTiltle from './Ui/TextHeadTiltle'
 
 
-function UserPanelBase({children, active, title }) {
+function UserPanelBase({children, active, title=true , underline_dec=true }) {
     return (
         <div className='container_custom'>
 
@@ -14,7 +14,7 @@ function UserPanelBase({children, active, title }) {
                     </div>
                     <div className="col-12 col-lg-10 py-3 ">
                         <div className="bg-white shadow p-4 rounded-lg">
-                            <TextHeadTiltle underline_dec={true} title={title} />
+                            <TextHeadTiltle underline_dec={underline_dec} title={title} />
                             {children}
                         </div>
                     </div>
