@@ -13,23 +13,22 @@ import {
 } from "@mui/icons-material";
 import { Grid } from "@mui/material";
 
-function index() {
+function TableHeaderInputs(props) {
   return (
     <>
       <Paper
         component="form"
         sx={{
           p: "2px 4px",
-
           display: "flex",
           alignItems: "center",
           width: "100%",
         }}
-      > 
+      >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="جست و جو در محصولات"
-          inputProps={{ "aria-label": "جست و جو در محصولات" }}
+          placeholder={props.searchPlaceHolder}
+          inputProps={{ "aria-label": props.searchPlaceHolder }}
         />
         <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
           <SearchIcon />
@@ -39,12 +38,12 @@ function index() {
         <Grid item xs={6}>
           <FormControl sx={{ mt: 2, borderRadius: "30px", minWidth: "100%" }}>
             <InputLabel id="demo-simple-select-helper-label">
-              فیلترهای موجود
+              {props.filterLabel}
             </InputLabel>
             <Select
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"
-              label="فیلترهای موجود"
+              label={props.filterLabel}
               IconComponent={() => (
                 <FilterAlt sx={{ mx: 2, borderRadius: "30px" }} />
               )}
@@ -57,7 +56,7 @@ function index() {
         <Grid item xs={6}>
           <FormControl sx={{ mt: 2, borderRadius: "30px", minWidth: "100%" }}>
             <InputLabel id="demo-simple-select-helper-label">
-              نمایش بر اساس
+              {props.sortLabel}
             </InputLabel>
             <Select
               labelId="demo-simple-select-helper-label"
@@ -75,6 +74,16 @@ function index() {
       </Grid>
     </>
   );
+
 }
 
-export default index;
+
+TableHeaderInputs.defaultProps = {
+  searchPlaceHolder: "جست و جو",
+  filterLabel: 'فیلترهای موجود',
+  sortLabel: 'نمایش بر اساس',
+
+}
+
+
+export default TableHeaderInputs;
