@@ -45,7 +45,7 @@ function SidebarMenu() {
                 <div className={styles.id_menu}>
                     {idMenu.map((item, idx) => {
                         return (
-                            <div>
+                            <div key={idx}>
                                 <p>{item.email}</p>
                                 <p>{item.name}</p>
                                 <span></span>

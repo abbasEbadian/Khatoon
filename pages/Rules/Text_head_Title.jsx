@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Text_head_Title() {
+function Text_head_Title(props) {
     return (
-        <div className={styles.text_head}>
+        <div className={"text_head"}>
             <div>
                 <h5>{props.title}</h5>
                 <span>{props.details}</span>
