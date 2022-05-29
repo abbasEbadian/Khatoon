@@ -1,126 +1,85 @@
 import React from "react";
-import { Dropdown, DropdownButton, Form } from "react-bootstrap";
-import styles from '../../../styles/TicketList.module.css'
-import Link from "next/link";
-import TextHeadTiltle from '../../../components/Ui/TextHeadTiltle';
 import Image from "next/image";
-import Head from "next/head";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Icon from "../../../static/img/icon/Frame(2).png"
-import Icon2 from "../../../static/img/icon/Frame(1).png"
+import Icon2 from "../../../static/img/icon/Frame(4).png"
 import Icon3 from "../../../static/img/icon/Frame(3).png"
-import Icon4 from "../../../static/img/icon/Frame(4).png"
-import Icon5 from "../../../static/img/icon/Frame(5).png"
+import Icon4 from "../../../static/img/icon/Frame(5).png"
 import UserPanelBase from "../../../components/UserPanelBase";
 import withAuth from '../../../redux/withAuth'
+import {useSelector} from 'react-redux'
+import * as _ from 'lodash'
+import SendTicketDialog from "../../../components/elements/SendTicketDialog";
+import TicketChat from "../../../components/elements/TicketChat";
+
+const icons = [Icon, Icon2, Icon3, Icon4]
+const colors = ["#ffad14", "#6610f2", "green", "red"]
+const ticketTypes = ["all", "pending", "answered", "closed"]
+const ticketTypeTitles = ["مجموع"
+                    , "درحال بررسی",
+                    "پاسخ داده شده",
+                    "بسته شده"
+                ]
 
 function ListTicket(props) {
-    const [AllTicketShow, setAllTicketShow] = React.useState([
-        {
-            ShowTicket: "مجموع",
-            count: 20
-        }
-    ]);
-    const [AnswerTicketShow, setAnswerTicketShow] = React.useState([
-        {
-            ShowTicket: "پاسخ داده شده",
-            count: 20
-        }
-    ]);
-    const [EndTicketShow, setEndTicketShow] = React.useState([
-        {
-            ShowTicket: "بسته شده",
-            count: 20
-        }
-    ]);
-    const [PendingTicketShow, setPendingTicketShow] = React.useState([
-        {
-            ShowTicket: "درحال بررسی",
-            count: 20
-        }
-    ]);
-    const [consistency, setconsistency] = React.useState([
-        {
-            titleConsistency: "پیگیری خرید ناموفق",
-            newConsistency: "جدید"
-        }
-    ]);
+    const user = useSelector(s=>s.auth.user)
+    const [tickets, setTickets] = React.useState({
+        all: [],
+        closed: [],
+        answered: [],
+        pending: []
+    })
+    
+    const [activeTicketKey, setActiveTicketKey] = React.useState("all")
+    const [ticket, setTicket] = React.useState({})
+    const [open, setOpen] = React.useState(0);
+    const [chatOpen, setChatOpen] = React.useState(0);
+    const [active, setActive] = React.useState({})
+    const handleClose = ()=>setOpen(false);
+
+
     const d = new Date();
     let Time = d.toLocaleTimeString()
+    
+    React.useEffect(()=>{
+        if(!user) return
+        const grouped = _.groupBy(user.tickets, (ticket)=>ticket.status)
+        let d = {}
+        for (let key of ticketTypes){
+            d[key] = grouped[key] || (key === "all" ? user.tickets: [])
+        }
+        setTickets(d)
+    }, [user])
 
+    const changeActiveTicketKey= (key)=>{
+        setActiveTicketKey(key)
+    }
+    console.log(tickets)
     return (
         <UserPanelBase active="tickets" title="تیکت ها">
-            <main className={styles.ticketListCol + " pb-5"}>
+            <main className={"ticketListCol " + " pb-5"}>
                         <div className="px-3">
-                            <div className={styles.ticket_info_s}>
-                               <div className={styles.rowscroll}>
-                               <div className={styles.list_ticket_show}>
-                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                        {AllTicketShow.map((item, idx) => {
-                                            return (
-                                                <div className="d-flex flex-column" key={idx}>
+                            <div className={"ticket_info_s "}>
+                               <div className={"rowscroll "}>
+                               <div className={"list_ticket_show "}>
+                                    {
+                                       ticketTypes.map((ticketType, index)=>{
+                                            return <Button key={index} className={"all_ticket " + " col-lg-3 col-6 "} onClick={e=>changeActiveTicketKey(ticketType)}
+                                                sx={{borderColor: (ticketType === activeTicketKey? colors[index]+ " !important": "inherit")}}>
+                                                <div className="d-flex flex-column" >
                                                     <div className="pb-2">
-                                                        <Image src={Icon} alt="ticket"></Image>
+                                                        <Image src={icons[index]} alt="ticket"></Image>
                                                     </div>
-                                                    <p className=" text_navy_blue">{item.ShowTicket}</p>
-                                                    <p>{item.count}</p>
+                                                    <p className=" text_navy_blue">{ticketTypeTitles[index]}</p>
+                                                    <p>{tickets[ticketType].length}</p> 
                                                 </div>
-                                            );
-                                        })}
-                                    </Button>
-                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                        {AnswerTicketShow.map((item, idx) => {
-                                            return (
-                                                <div className="d-flex flex-column" key={idx}>
-                                                    <div className="pb-2">
-                                                        <Image src={Icon2} alt="ticket"></Image>
-                                                    </div>
-                                                    <p className=" text_navy_blue">{item.ShowTicket}</p>
-                                                    <p>{item.count}</p>
-                                                </div>
-                                            );
-                                        })}
-                                    </Button>
-                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                        {EndTicketShow.map((item, idx) => {
-                                            return (
-                                                <div className="d-flex flex-column" key={idx}>
-                                                    <div className="pb-2">
-                                                        <Image src={Icon3} alt="ticket"></Image>
-                                                    </div>
-                                                    <p className=" text_navy_blue">{item.ShowTicket}</p>
-                                                    <p>{item.count}</p>
-                                                </div>
-                                            );
-                                        })}
-                                    </Button>
-                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                        {PendingTicketShow.map((item, idx) => {
-                                            return (
-                                                <div className={styles.text_navy_blue + " d-flex flex-column"} key={idx}>
-                                                    <div className="pb-2">
-                                                        <Image src={Icon4} alt="ticket"  ></Image>
-                                                    </div>
-                                                    <p>{item.ShowTicket}</p>
-                                                    <p>{item.count}</p>
-                                                </div>
-                                            );
-                                        })}
-                                    </Button>
-                                    <Button className={styles.all_ticket + " col-2 col-lg-2 "}>
-                                        {PendingTicketShow.map((item, idx) => {
-                                            return (
-                                                <div className="d-flex flex-column" key={idx}>
-                                                    <div className="pb-2">
-                                                        <Image src={Icon5} alt="ticket"  ></Image>
-                                                    </div>
-                                                    <p className=" text_navy_blue">{item.ShowTicket}</p>
-                                                    <p>{item.count}</p>
-                                                </div>
-                                            );
-                                        })}
-                                    </Button>
+                                            </Button>
+                                        })
+                                    }
+                                    
+
+                                   
                                 </div>
                                </div>
                                 <div className="py-5">
@@ -132,7 +91,7 @@ function ListTicket(props) {
                                             </p>
                                         </div>
                                         <div>
-                                            <Button>
+                                            <Button onClick={e=>setOpen(true)}>
                                                 <p className="btn_yellow_box">
                                                     ثبت تیکت جدید
                                                     <AddBoxIcon />
@@ -142,84 +101,40 @@ function ListTicket(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={styles.info_ticket_list}>
-                                    <div className={styles.AnswerTicketShow}>
-                                        {consistency.map((item, idx) => {
-                                            return (
-                                                <>
-                                                    <Button>
+                                <div className={"info_ticket_list "}>
+                                    {tickets[activeTicketKey].length? tickets[activeTicketKey].map((ticket, idx) => {
+                                        return (
+                                            <div key={idx} className={"AnswerTicketShow "}>
+                                                    <Button onClick={e=>{setTicket(ticket) ; setChatOpen(true)}}>
                                                         <div className="d-flex align-items-center">
-                                                            <p>{item.titleConsistency}</p>
-                                                            <p className="pr-3">({item.newConsistency})</p>
+                                                            {ticket.status === "answered" && ticket.seen_by_user?
+                                                                <Typography>
+                                                                    {ticket.title}
+                                                                </Typography>
+                                                            :
+                                                                <b>  {ticket.title}</b>
+                                                            }
                                                         </div>
 
-                                                        <div className={styles.TimeTicket}>
-                                                            {Time}
-                                                        </div>
+                                                        <Typography fontSize={11} className={"TimeTicket "} >
+                                                            {new Date(ticket.created).toLocaleDateString("fa",{month:"long", day: "2-digit", hour: "2-digit", minute: "2-digit"})}
+                                                        </Typography>
                                                     </Button>
-                                                </>
-                                            );
-                                        })}
-                                    </div>
-                                    <div className={styles.closed}>
-                                        {consistency.map((item, idx) => {
-                                            return (
-                                                <>
-                                                    <Button>
-                                                        <div className="d-flex align-items-center">
-                                                            <p>{item.titleConsistency}</p>
-                                                            <p className="pr-3">({item.newConsistency})</p>
-                                                        </div>
+                                            </div>
+                                        )}):
+                                            <div className={"alert alert-info"}>
+                                                تیکتی ثبت نشده است.
+                                            </div>
+                                        }
 
-                                                        <div>
-                                                            {Time}
-                                                        </div>
-                                                    </Button>
-                                                </>
-                                            );
-                                        })}
-                                    </div>
-                                    <div className={styles.closed}>
-                                        {consistency.map((item, idx) => {
-                                            return (
-                                                <>
-                                                    <Button>
-                                                        <div className="d-flex align-items-center">
-                                                            <p>{item.titleConsistency}</p>
-                                                            <p className="pr-3">({item.newConsistency})</p>
-                                                        </div>
-
-                                                        <div>
-                                                            {Time}
-                                                        </div>
-                                                    </Button>
-                                                </>
-                                            );
-                                        })}
-                                    </div>
-                                    <div className={styles.pending_ticket}>
-                                        {consistency.map((item, idx) => {
-                                            return (
-                                                <>
-                                                    <Button>
-                                                        <div className="d-flex align-items-center">
-                                                            <p>{item.titleConsistency}</p>
-                                                            <p className="pr-3">({item.newConsistency})</p>
-                                                        </div>
-
-                                                        <div>
-                                                            {Time}
-                                                        </div>
-                                                    </Button>
-                                                </>
-                                            );
-                                        })}
-                                    </div>
 
                                 </div>
                             </div>
                         </div>
                     </main>
+                    <SendTicketDialog open={open} handleClose={handleClose} />
+                    <TicketChat setOpen={setChatOpen} open={chatOpen} order={{}} ticket={ticket} color={"success"}/>
+
         </UserPanelBase>
     );
 }

@@ -36,7 +36,7 @@ function AddressDialog({open, handleClose, _address=null, create_mode=false}) {
         mobile: "",
         phone: "",
         postal: "", 
-        create: create_mode && 1 || 0
+        create: create_mode 
     });
     const [cities, setCities] = React.useState([]);
     const provinces = useSelector(s=>s.main.provinces)
@@ -87,7 +87,7 @@ function AddressDialog({open, handleClose, _address=null, create_mode=false}) {
                 })
                 get_cities(_address.province_id.id)
             }
-      }, [_address])
+      }, [_address,create_mode])
   return (
     <Modal
     open={open}

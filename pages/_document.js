@@ -10,7 +10,9 @@ class MyDocument extends Document {
    
     render = () => (
         <Html dir={'rtl'} lang={'fa'}>
-            <Head />
+            <Head>
+                <link rel="icon" href="/images/logo/logoFav.png" />
+            </Head>
             <body>
                 <Main />
                 <NextScript />

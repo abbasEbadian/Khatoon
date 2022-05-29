@@ -11,8 +11,10 @@ import axios from 'axios';
 import { profile } from '../../../redux/actions';
 import {useDispatch, useSelector  } from 'react-redux';
 import * as e from '../../../redux/endpoints'
+import AddToCardButton from '../../../components/elements/AddToCardButton'
+import Breadcrumb from '../../../components/Breadcrumb'
 
-function Product({product, similar_products}) {
+function Product({product, similar_products, handleLoginOpen}) {
   
   const ProductSuggested = [
     {
@@ -129,6 +131,7 @@ function Product({product, similar_products}) {
 
   const [isFavorite, setIsFavorite] = React.useState(false)
   const [reminderActive, setReminderActive] = React.useState(false)
+  const [current, setCurrent] = React.useState(false)
 
 
   React.useEffect(()=>{
@@ -138,6 +141,7 @@ function Product({product, similar_products}) {
   console.log(product);
   return (
     <section id="product-page" className="container_custom">
+      <Breadcrumb product={product} />
       <div className="product-main card_style">
         <ProductToolbar product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} isFavorite={isFavorite}/>
         <div className="row">
@@ -148,13 +152,22 @@ function Product({product, similar_products}) {
             <Typography component="h1" fontSize="20px">{product.name}</Typography>
             <div className="row">
               <div className="col-lg-6 col-12">
-                <ProductNotAvailable  product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} />
+                {
+                  current?.count > 0?
+                   <>
+                   <Typography fontSize="40px" className="text-success d-inline-block py-5">{Number(current.price).toLocaleString("fa")} </Typography> <span>{" تومان"}</span>
+                  <br />
+                    <AddToCardButton template_id={product?.id} large handleLoginOpen={handleLoginOpen}/>
+                   </> 
+                  :
+                    <ProductNotAvailable  product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} />
+                }
               </div>
               <div className="col-lg-6 col-12 mt-4 mt-lg-0">
-                <ProductVendor/>
+                <ProductVendor product={product}/>
               </div>
               <div className="col-12">
-                <ProductSpecs product={product} />
+                <ProductSpecs product={product} current={current} setCurrent={setCurrent}/>
               </div>
             </div>
           </div>
@@ -177,7 +190,6 @@ export async function getServerSideProps ({query}){
       product_slug = product_slug.split('-')[0]
       const res2    = await fetch(e.GET_PRODUCT_BY_ID(product_slug))
       product  = await  res2.json()
-      console.log(product)
   }
   catch(e){
       console.log(e)

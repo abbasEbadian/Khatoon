@@ -9,7 +9,7 @@
   border-radius: 20px;
   transform: translate(0%, 0px);
   right: 2%;
-  margin: 15px auto;
+  margin: 0 auto;
   /* Note: backdrop-filter has minimal browser support */
 
 
@@ -31,9 +31,7 @@
       }
     }
     .id_menu {
-      @media(max-width: 992px) {
-        overflow-y: scroll;
-      }
+     
       p {
         position: relative;
         padding: 10px 0;
@@ -62,36 +60,24 @@
       min-width: 25px !important;
     }
   }
-  .flotingButton {
-    background: #fff !important;
-    display: block;
-    border-radius: 50px 0 0 50px;
-    padding: 15px 25px;
-    position: absolute;
-    top: 50%;
-    width: 70px;
-    left: calc(-70px + 0.5rem) !important;
-    z-index: 999;
-    border: 1px solid #efefef;
-    -webkit-box-shadow: -5px 0 5px rgb(0 0 0 / 30%);
-    box-shadow: -5px 0 5px rgb(0 0 0 / 30%);
-    border-right: none;
-  }
+
   button {
     text-shadow: 0 8px 8px rgb(0 0 0 / 12%);
     -webkit-transition: all var(--transition-duration) ease-out;
     transition: all var(--transition-duration) ease-out;
   }
   @media (max-width: 992px) {
-    display: block;
     position: fixed;
-    top: 0;
+    top: -30px;
     bottom: 0;
-    right: -285px;
-    z-index: 1;
-    transform: translate(-100%, 0px);
+    right:-100%;
+    z-index: 99;
+    // transform: translate(-100%, 0px);
     transition: all 0.4s ease-in;
     height: 100%;
+    min-width:320px;
+    max-width:320px;
+    width:320px;
   }
   @media (min-width: 993px) {
     .flotingButton {
@@ -107,6 +93,7 @@
 
 .open {
   transform: translate(0px, 0px);
+  right: -5%;
 }
 
 .link_menu span {

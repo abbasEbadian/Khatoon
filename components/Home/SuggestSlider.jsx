@@ -1,12 +1,13 @@
 import React from 'react'
-import SuggestSlideItem from './subHome/SuggestSlideItem'
+// import SuggestSlideItem from './subHome/SuggestSlideItem'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import style from '../../styles/Home.module.scss'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Link from "next/link";
+import BoxItem from '../Ui/BoxItem/BoxItem';
 
-function SuggestSlider({children, className}) {
+function SuggestSlider({children, className, products}) {
     return (
         <div className={style.suggest_slider + " " + className}>
             <div className="d-flex align-items-center justify-content-between flex-wrap flex-lg-nowrap">
@@ -44,23 +45,23 @@ function SuggestSlider({children, className}) {
                         spaceBetween:10
                     },
                     920:{
-                        slidesPerView: 4,
+                        slidesPerView: 5,
                         spaceBetween: 10
                     },
                     1200:{
-                        slidesPerView: 4,
+                        slidesPerView: 6,
                         spaceBetween: 15
                     },
                     1440:{
-                        slidesPerView: 6,
+                        slidesPerView: 7,
                         spaceBetween: 20
                     },
                     
                 }}
             >
-            {Array.from({ length: 8}).map((item , i)=>{
+            {products?.map((item , i)=>{
                 return <SwiperSlide  key={item} >
-                        <SuggestSlideItem />
+                        <BoxItem item={item} />
                     </SwiperSlide>
             })}
         </Swiper>

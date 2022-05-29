@@ -32,7 +32,7 @@ function ContactUsOptions(props) {
     }
     
     return (
-        <div className='col-12 col-md-5 pb-5' >
+        <div className='col-12 col-md-6 col-xxl-4 p-4' >
             <div className={styles.BoxAddress + (active ? ' border-1 border-success' : "")}>
                 <div className={styles.HeadBoxAddress + " pb-2"}>
                     <p>

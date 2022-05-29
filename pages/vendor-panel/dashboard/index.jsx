@@ -1,5 +1,9 @@
 import React from 'react'
-import SidebarVendor from '../../../components/elements/SidebarVendor'
+import VendorPanelBase from '../../../components/VendorPanelBase'
+import Notification from '../../../components/Ui/Notification'
+import FinancialSituation from '../../../components/Ui/FinancialSituation'
+import withAuth from '../../../redux/withAuth'
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -31,8 +35,7 @@ function VendorPanel() {
         position: 'top',
       },
       title: {
-        display: true,
-        text: 'Chart.js Line Chart',
+        display: false,
       },
     },
   };
@@ -41,35 +44,68 @@ function VendorPanel() {
   const [bar2, setbar2] = React.useState([400, 800, 300, 100, 150, 400])
 
   return (
-    <div className='container'>
-      <div className="row">
-          <div className="col-md-3">
-            <SidebarVendor />
+    <div className=''>
+      <VendorPanelBase active="dashboard">
+
+        <div className="row">
+          <div className="col-lg-9 col-12 h-100">
+              <FinancialSituation />
+              <div className='p-3 col-12 card'>
+                <h6>آمار یک سال اخیر</h6>
+                <Line
+                  options={options}
+                  data={{
+                    labels: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر',
+                      'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
+                    datasets: [
+                      {
+                        label: "آمار فروش",
+                        data: bar1,
+                        borderColor: 'rgb(53, 162, 235)',
+                        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+
+                      }
+                      , {
+                        label: "آمار بازدید",
+                        data: bar2,
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                      },
+                    ]
+                  }}
+                />
+              </div>
           </div>
-          <div className="col-md-9 card_style">
-            <Line
-              data={{
-                labels: ['Red', 'Blue', 'Yellow', 'Green',
-                  'Purple', 'Orange'],
-                datasets: [
-                  {
-                    label: "data1",
-                    data: bar1,
-
-                  }
-                  , {
-                    label: "data12",
-                    data: bar2
-                  },
-
-                ]
-              }}
-            />
+          <div className="col-lg-3 col-12  ">
+            <div className='card mb-5'>
+              <Line 
+                options={options}
+                data={{
+                  labels: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر',
+                    'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
+                  datasets: [
+                    {
+                      label: "گزارش عملکرد",
+                      data: bar1,
+                      borderColor: 'rgb(53, 162, 235)',
+                      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                    }
+                  ]
+                }}
+              />
+            </div>
+            <div className='card'>
+              <Notification />
+              <Notification />
+              <Notification />
+            </div>
+          </div>
         </div>
-      </div>
+        
+      </VendorPanelBase>
     </div>
   )
 }
 
-export default VendorPanel
+export default withAuth(VendorPanel)
 

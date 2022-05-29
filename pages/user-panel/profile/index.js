@@ -4,7 +4,6 @@ import BoxItem from '../../../components/Ui/BoxItem/BoxItem'
 import BoxItems from '../../../components/Ui/BoxItems/BoxItems'
 import TextHeadTiltle from '../../../components/Ui/TextHeadTiltle'
 import UserPanelBase from '../../../components/UserPanelBase'
-import styles from '../../../styles/card.module.scss'
 import withAuth from '../../../redux/withAuth'
 import { toast } from 'react-toastify'
 import { profile, update_profile } from '../../../redux/actions'
@@ -140,28 +139,28 @@ function Profile() {
             fullName: user.first_name,
             email: user.email,
             mobile: user.mobile,
-            province: user.province_id.id 
+            province: user.province_id?.id 
         })
     }, [user])
     return (
             <main>
         <UserPanelBase active={"profile"} title="پروفایل">
                 <div className='card_style mt-5'>
-                    <div className={styles.personal_information}>
-                        <div className={styles.personal_information_name}>
-                            <div className={styles.label}>نام و نام خانوادگی:</div>
+                    <div className={"personal_information "}>
+                        <div className={"personal_information_name "}>
+                            <div className={"label "}>نام و نام خانوادگی:</div>
                             <div>{formData.fullName}</div>
                         </div>
-                        <div className={styles.personal_information_email}>
-                            <div className={styles.label}>پست الکترونیکی: </div>
+                        <div className={"personal_information_email "}>
+                            <div className={"label "}>پست الکترونیکی: </div>
                             <div>{formData.email}</div>
                         </div>
-                        <div className={styles.personal_information_mobile}>
-                            <div className={styles.label}>تلفن همراه:</div>
+                        <div className={"personal_information_mobile "}>
+                            <div className={"label "}>تلفن همراه:</div>
                             <div>{formData.mobile}</div>
                         </div>
-                        <div className={styles.personal_information_province}>
-                            <div className={styles.label}>استان محل سکونت: </div>
+                        <div className={"personal_information_province "}>
+                            <div className={"label "}>استان محل سکونت: </div>
                             <div>
                                 {provinces?.find(i=>i.id===formData.province)?provinces.find(i=>i.id===formData.province).name: ""}
                             </div>
@@ -241,7 +240,7 @@ function Profile() {
 
                             <div className="col-12 py-4  ">
                                 <Stack spacing={2} direction="row">
-                                    <Button variant="contained" type='submit' style={{ backgroundColor: "#E96962" }}>ویرایش اطلاعات</Button>
+                                    <Button variant="contained" type='submit' style={{ backgroundColor: "#E96962" }}>ثبت اطلاعات</Button>
                                     <Button variant="contained" style={{ backgroundColor: "#123C55" }} onClick={handleClose}>بستن</Button>
                                 </Stack>
 

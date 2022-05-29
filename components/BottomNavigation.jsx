@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import styles from '../styles/Header.module.css'
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import CategoryRoundedIcon from '@mui/icons-material/CategoryRounded';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
@@ -15,7 +14,7 @@ export default function BottomNavigation2() {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Box sx={{ width: "100%" }} className={styles.bottomNavigation}>
+    <Box sx={{ width: "100%" }} className={"bottomNavigation"}>
       <BottomNavigation
         showLabels
         value={value}

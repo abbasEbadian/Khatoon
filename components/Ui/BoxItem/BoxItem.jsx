@@ -1,37 +1,52 @@
 import React from 'react'
-import styles from './BoxItem.module.scss';
 import Image from 'next/image'
 import { IconButton, Typography } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddToCardButton from '../../elements/AddToCardButton'
-import IR from '../../elements/IR'
+import VerifiedIcon from '@mui/icons-material/Verified';
+import IRT from '../../IRT'
 import { BASE_URL } from '../../../redux/endpoints';
 import Link from 'next/link';
+import ProductFavoriteToggler from '../../../components/Products/ProductFavoriteToggler'
+
 function BoxItem({item}) {
     return (
-        <div className={styles.box_item}>
+        <div className={"box_item mb-2"}>
+            <div className="favbox">
+                <ProductFavoriteToggler product_id={item.id} />
+            </div>
             <Link href={"/shop/product/" + item.url}>
                 <a>
                     {item.image?
                     <Image src={BASE_URL + item.image} width="100%" height="100%" layout="responsive" objectFit="cover" alt="product" sx={{borderRadius: "16px"}}/>
                     : null}
-                    <h5 className={styles.box_item_title}>
+                    <h5 className={"box_item_title "}>
                         {item.name} 
                     </h5>
                 </a>
             </Link>
-            <div className={styles.box_item_price}>
+            <div className="my-3">
+                {/* <span>
+                    <PinDropIcon/>
+                    <small>{item?.city}</small>
+                </span> */}
+
+                <span >
+                    <VerifiedIcon sx={{color: "#bbb"}} />
+                    <small className="mx-1">{item?.market_id?.name}</small>
+                </span>
+            </div>
+            <div className={"box_item_price "}>
                 <div >
-                    <AddToCardButton />
+                    <AddToCardButton template_id={item.id} />
                 </div>
                 <div className='d-flex similar-products-price'>
                     {item.off?
                     <>
-                        <del className="text-black-50 mx-2"><IR amount={244000} /></del>
-                        <span> <IR amount={item.price} /></span>
+                        <del className="text-black-50 mx-2"><IRT amount={244000} /></del>
+                        <span> <IRT amount={item.price} /></span>
                     </>
                     :
-                        <Typography sx={{fontSize :"16px"}} > <IR amount={item.price} /></Typography>
+                        <Typography sx={{fontSize :"14px"}} > <IRT amount={item.price} /></Typography>
                     }
                     
                 </div>

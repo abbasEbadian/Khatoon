@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from '../styles/Header.module.css'
 import HeaderSearcBox from './elements/HeaderSearcBox'
 import HeaderMegaMenu from './elements/HeaderMegaMenu'
 import Image from 'next/image'
@@ -15,53 +14,62 @@ import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import Sidebar from './Sidebar'
 import PersonIcon from '@mui/icons-material/Person';
 import {useSelector} from 'react-redux'
+import BecomeVendorButton from './elements/BecomeVendorButton'
+import { Badge } from '@mui/material'
 
 function Header({ handleLoginClose, handleLoginOpen, loginModalOpen }) {
+    const {basket} = useSelector(s=>s.auth)
     const [isScrollingUp, scrollAmount] = useScrollingUp()    
     const [pinHeader, setPinHeader] = React.useState(false)    
     const togglePinHeader = ()=>{
         setPinHeader(!pinHeader)
     }
     const { user, authenticated } = useSelector(s=>s.auth)
-    // <header className={isScrollingUp? styles.headersticky: ? styles.headerhide: styles.header }>
+    // <header className={isScrollingUp? "headersticky ": ? "headerhide ": "header " }>
     return (<>
-        <header className={styles.header + " " + (pinHeader? styles.stickHeader : "") }>
+        <header className={"header " + " " + (pinHeader? "stickHeader " : "") }>
             <div className='container_custom'>
-                <div className={styles.headerTop}>
+                <div className={"headerTop "}>
                     <Sidebar />
                     <Link href="/">
                         <a>
-                        <Image className={styles.headerLogo} src={'/images/logo/logo.png'} width={150} height={50} alt="logo"/>
+                        <Image className={"headerLogo "} src={'/images/logo/logo.png'} width={150} height={50} alt="logo"/>
                         </a>
                     </Link>
-                    <HeaderSearcBox className={styles.header_searchbox}/>
-                    <div className={styles.headerActions}>
+                    <HeaderSearcBox className={"header_searchbox "}/>
+                    <div className={"headerActions "}>
                         
-                        {!authenticated? <a className={styles.headerActionsItem} onClick={handleLoginOpen}>
+                        {!authenticated? <a className={"headerActionsItem "} onClick={handleLoginOpen}>
                             <FingerprintIcon/>
                             <small>ورود / ثبت نام</small>
                         </a>:
                             <Link href="/user-panel/profile">
-                            <a className={styles.headerActionsItem}>
+                            <a className={"headerActionsItem "}>
                                 <PersonIcon/>
                                 <small>حساب </small>
                             </a>
                         </Link>}
                         <Link href="/blog">
-                            <a className={styles.headerActionsItem}>
+                            <a className={"headerActionsItem "}>
                                 <ArticleIcon/>
                                 <small>مجله</small>
                             </a>
                         </Link>
-                        <Link href="/user-panel/tickets">
-                            <a className={styles.headerActionsItem}>
-                                <ChatBubbleOutlineIcon/>
+                        <Link href="/user-panel/messages">
+                            <a className={"headerActionsItem "}>
+                                <Badge badgeContent={user?.unread_message_count || 0} color="error">
+                                    <ChatBubbleOutlineIcon/>
+                                </Badge>
                                 <small>پیام ها</small>
                             </a>
                         </Link>
                         <Link href="/card">
-                            <a className={styles.headerActionsItem}>
-                                <ShoppingBasketIcon/>
+                            <a className={"headerActionsItem "}>
+
+                                <Badge badgeContent={basket?.products_count||0} color="error">
+                                    <ShoppingBasketIcon/>
+                                </Badge>
+                                
                                 <small>سبد خرید</small>
                             </a>
                         </Link>
@@ -69,18 +77,19 @@ function Header({ handleLoginClose, handleLoginOpen, loginModalOpen }) {
                 </div>
             </div>
 
-            <span className={styles.headerDevider}></span>
+            <span className={"headerDevider "}></span>
         </header>
-        <div className={' container_custom ' + styles.header_bot}>
-        <div className={styles.headerBottom + " " + (scrollAmount>= 90 ? styles.headerBottomScrolled : "") }>
+        <div className={' container_custom ' + "header_bot "}>
+        <div className={"headerBottom " + " " + (scrollAmount>= 90 ? "headerBottomScrolled " : "") }>
             <HeaderMegaMenu />
+            <BecomeVendorButton />
             {pinHeader?
-                <ArrowCircleUpIcon className={styles.arrow} role="button" onClick={togglePinHeader}/>
+                <ArrowCircleUpIcon className={"arrow "} role="button" onClick={togglePinHeader}/>
                 :
-                <ArrowCircleDownIcon className={styles.arrow} role="button" onClick={togglePinHeader}/>
+                <ArrowCircleDownIcon className={"arrow "} role="button" onClick={togglePinHeader}/>
             }
+            </div>
         </div>
-    </div>
         </>
     )
 }

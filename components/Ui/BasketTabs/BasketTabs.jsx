@@ -1,25 +1,17 @@
 import React from 'react'
 import Link from 'next/link';
 import { Box, Tab, Tabs } from '@mui/material';
-function BasketTabs({tab}) {
-    const [value, setValue] = React.useState(0);
+function BasketTabs({tab, setTab}) {
 
     const handleChange = (event, newValue) => {
-        console.log(newValue)
-        setValue(newValue);
+        setTab(newValue);
     };
     return (
         <Box sx={{ borderBottom: 1, borderColor: 'divider', background: 'white' }}>
-            <Tabs value={tab}  aria-label="basic tabs example">
-                <Link href="/card" passHref>
-                    <Tab label="سبد خرید" />
-                </Link>
-                <Link href="/card/basket-address" passHref>
-                    <Tab label="افزودن آدرس" />
-                </Link>
-                <Link href="/card/payment-methods" passHref>
-                    <Tab label="پرداخت" />
-                </Link>
+            <Tabs value={tab}  aria-label="basic tabs example" onChange={handleChange}> 
+                <Tab label="سبد خرید" />
+                <Tab label="افزودن آدرس" />
+                <Tab label="پرداخت" />
             </Tabs>
         </Box>
     )

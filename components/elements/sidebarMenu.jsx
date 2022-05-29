@@ -19,22 +19,18 @@ import PersonIcon from '@mui/icons-material/Person';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link'
 import {useSelector} from 'react-redux'
+import { user_imlink } from '../utils'
 
-function SidebarMenu({active}) {
+function SidebarMenu({active, openSidebar, setOpenSidebar}) {
 
     const user = useSelector(s=>s.auth.user)
-    const [openSidebar, setOpenSidebar] = React.useState(true) 
-
-    const handleClick = () => {
-       setOpenSidebar(prev => !prev)
-    }
 
 
     return (
             <aside className={"sidebar_menu" +( openSidebar ? ` ${ "open"}` : '')}>
                 <div className={"header_sidebar"}>
-                    <div className={"profile_pic"}>
-                        <Image src={Profile} alt={"profile"}/>
+                    <div className={"profile_pic mt-2"}>
+                        <Image src={user_imlink(user?.avatar_image)} alt={"profile"} width="168" height={168} objectFit="cover"/>
                     </div>
                     <div className={"id_menu"}>
                         <div>
@@ -60,26 +56,17 @@ function SidebarMenu({active}) {
                                 </Link>
                                 
                             </ListItemButton >
-                            <ListItemButton  selected={active === "pendin_orders"}>
+                            <ListItemButton  selected={active === "pending_orders"}>
                                 <Link href="/user-panel/orders">
                                     <a>
                                         <ListItemIcon className={"LinkIcon"}>
                                             <Image src={Order} alt="Order" />
                                         </ListItemIcon>
-                                        <ListItemText primary="پیگیری سفارشات" />
+                                        <ListItemText primary="سفارش های من" />
                                     </a>
                                 </Link>
                             </ListItemButton>
-                            <ListItemButton  selected={active === "history"}>
-                                <Link href="/user-panel/history">
-                                    <a>
-                                        <ListItemIcon className={"LinkIcon"}>
-                                        <Image src={OrderHistory} alt="OrderHistory" />
-                                        </ListItemIcon>
-                                        <ListItemText primary="تاریخچه خریدهای من" />
-                                    </a>
-                                </Link>
-                            </ListItemButton>
+                            
                             <ListItemButton  selected={active === "favorites"}>
                                 <Link href="/user-panel/favorites">
                                     <a>
@@ -107,6 +94,16 @@ function SidebarMenu({active}) {
                                             <Image src={Address} alt="Address" />
                                         </ListItemIcon>
                                         <ListItemText primary="آدرس ها" />
+                                    </a>
+                                </Link>
+                            </ListItemButton>
+                            <ListItemButton selected={active === "messages"}>
+                                <Link href="/user-panel/messages">
+                                    <a>
+                                        <ListItemIcon className={"LinkIcon"}>
+                                            <Image src={Ticket} alt="Ticket" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="گفتگو با غرفه دارها" />
                                     </a>
                                 </Link>
                             </ListItemButton>
@@ -153,12 +150,7 @@ function SidebarMenu({active}) {
 
                         </List>
                     </div>
-                    <div className={"flotingButton"}>
-                               <button onClick={handleClick}>
-                                {
-                                openSidebar ? <MenuIcon />  : <CloseIcon />}
-                               </button>
-                    </div>
+                   
                 </div>
         </aside>
     )

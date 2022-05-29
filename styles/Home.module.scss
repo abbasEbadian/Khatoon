@@ -5,6 +5,11 @@
     grid-template-rows: 225px 225px;
     grid-row-gap: 16px;
     grid-column-gap: 16px;
+
+    >div{
+        position: relative;
+        overflow: hidden;
+    }
     .intro_slider_1, .intro_slider_2, .intro_slider_3{
         background: var(--primary);
         border-radius: 16px;
@@ -23,7 +28,7 @@
     }
     @media (max-width: 768px) {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 200px 100px;
+        grid-template-rows: 230px 170px;
         .intro_slider_1{
             grid-row: 1/2;
             grid-column: 1/-1;

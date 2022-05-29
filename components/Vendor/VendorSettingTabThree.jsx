@@ -1,6 +1,8 @@
 import React from 'react'
-import * as e from '../../redux/endpoints'
 import axios from 'axios'
+import {toast} from 'react-toastify'
+import * as e from '../../redux/endpoints'
+
 // import UploadImg from '../../static/img/icon/icons8-image-gallery-50 1.png'
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -11,6 +13,7 @@ import Image from 'next/image'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { CircularProgress } from '@mui/material';
 // import VendorCover from '../../../components/Vendor/VendorCover';
 
 const Input = styled('input')({
@@ -18,14 +21,47 @@ const Input = styled('input')({
 });
 
 
-function Upload() {
+function Upload({goToNext=undefined}) {
 
     const [checked, setChecked] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
+    const fileRef = React.useRef() 
 
     const handleChange = (event) => {
       setChecked(event.target.checked);
     };
+    const submit = (event)=>{
+		if(loading) return 
+        if(!fileRef.current.files.length) return
+        try{
+            event.preventDefault();
+            const dform = new FormData()
+            dform.append("image", fileRef.current.files[0])
+			setLoading(true)
+            console.log(e.UPDATE_MARKET_DOCUMENT)
+            axios.post(e.UPDATE_MARKET_DOCUMENT, dform, {
+                headers:{
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+            .then(response=>{
+                if(!response) throw new Error()
+                const {data} = response
+                toast(data.message, {type: (data.error? "error": "success")})
+                if(!data.error)
+				if(goToNext) goToNext()
+            })
+            .catch(error=>{
+                console.log(error)
+                toast.error("خطا در ارتباط ")
+            })
+			.finally(f=>{
+				setLoading(false)
+			})
+        }
+        catch(e){console.log(e)}
 
+    }
     return (
         <section id="setting-profile">
                 <div className="row p-4">
@@ -35,17 +71,17 @@ function Upload() {
                                 اسکن مدارک معتبر برای محصولاتی که فروش آن‌ها در خاتون زیبا به مجوز نیاز دارد، یا سایر مدارک درخواست‌شده را در این قسمت بارگذاری کنید. دقت کنید، تصاویر بی‌کیفیت یا ناخوانا تایید نخواهند شد.
                             </p>
                         </div>
-                        <form className='  '>
+                        <form className='  ' onSubmit={submit}>
                             <div className={"uploadDoc " + '  mt-4'}>
                                 <Stack direction="row" alignItems="center" justifyContent="center" spacing={2} sx={{ padding: "3.5rem" }}>
                                     <label htmlFor="contained-button-file">
                                         <Input accept="image/*" id="contained-button-file" multiple type="file" />
-                                        <Button>
-                                            بارگزاری مدارک
+                                        <Button variant="outlined" color="error" onClick={e=>fileRef.current.click()}>
+                                            بارگذاری مدارک
                                         </Button>
                                     </label>
                                     <label htmlFor="icon-button-file">
-                                        <Input accept="image/*" id="icon-button-file" type="file" />
+                                        <Input accept="image/*" id="icon-button-file" type="file" ref={fileRef} />
                                         <IconButton color="primary" aria-label="upload picture" >
                                             {/* <Image src={UploadImg} alt="cover" /> */}
                                         </IconButton>
@@ -57,7 +93,9 @@ function Upload() {
                             <FormGroup className='my-5'>
                                 <FormControlLabel control={<Checkbox  checked={checked} onChange={handleChange} />} label="در صورت تخلف از قوانین بارگذاری مدارک یا ارائه مدرک تقلبی، مسئولیت حقوقی و کیفری آن را می‌پذیرم." />
                             </FormGroup>
-                            <Button fullWidth disabled={!checked} variant="contained" style={{ backgroundColor: "#E96962",  margin: "auto" }}>ثبت و ارسال مدارک</Button>
+                            <Button color="main" variant="contained" fullWidth type="submit" disabled={!checked} >
+                                {loading? <CircularProgress color="white" size={20} /> : <span>ثبت و ارسال مدارک</span>}
+                            </Button>
                         </form>
                     </div>
 

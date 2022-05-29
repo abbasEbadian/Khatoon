@@ -3,19 +3,9 @@ import BoxItem from '../Ui/BoxItem/BoxItem'
 import style from '../../styles/Home.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-function NewProducts() {
-    const item =  {
-        id: 8,
-        title: 'بلوز شلوار مخمل طرح پوست ماری',
-        category_id: '123',
-        seller: 'پوشاک کده نیل',
-        garanty: 'کار با کیفیت جنس اصل',
-        sendType: ' پست سفارشی',
-        count: 1,
-        image: '/static/img/imgs/image 10.png',
-        price: '500000',
-        priceWithDiscount: '400000'
-    }
+function NewProducts({products}) {
+    
+    
     return (
         <div className={style.new_products_container}>
             <h6 className={"mb-4 text-primary"}>تر و تازه</h6>
@@ -50,13 +40,13 @@ function NewProducts() {
                         spaceBetween: 15
                     },
                     1440:{
-                        slidesPerView: 6.1,
+                        slidesPerView: 6,
                         spaceBetween: 20
                     },
                     
                 }}
             >
-            {Array.from({length: 10}).map((i, idx)=>{
+            {products.map((item, idx)=>{
                         return <SwiperSlide className="" key={idx}>
                             <BoxItem  item={item} />
                         </SwiperSlide>

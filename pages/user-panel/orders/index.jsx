@@ -13,9 +13,15 @@ import Head from "next/head";
 import Image from 'next/image'
 import withAuth from '../../../redux/withAuth'
 import UserPanelBase from "../../../components/UserPanelBase";
-
+import {useSelector} from 'react-redux'
+import { product_imlink } from "../../../components/utils";
+import {Circles, Loader} from 'react-loader-spinner'
+import UserOrderList from "../../../components/UserOrderList";
 
 function Wallet() {
+    const {user, loading:loadingUser} = useSelector(s=>s.auth)
+    const [orders, setOrders] = React.useState([])
+
     const [amount, setAmount] = React.useState(0)
     const [CurrentBalance, setCurrentBalance] = React.useState([
         {
@@ -30,80 +36,50 @@ function Wallet() {
     ])
 
     const columns = [
-        { id: "picture", label: "تصویر شاخص", minWidth: 200, align: "right" },
-        { id: "codeNumber", label: "شناسه سفارش", minWidth: 130, align: "right" },
+        { id: "image", label: "تصویر شاخص", minWidth: 200, align: "right" },
+        { id: "order_code", label: "شناسه سفارش", minWidth: 130, align: "right" },
         {
-            id: "NumberProduct",
+            id: "products_count",
             label: "تعداد محصول",
             minWidth: 50,
-            align: "right",
             format: (value) => value.toLocaleString("en-US"),
         },
         {
-            id: "status",
+            id: "status_text",
             label: " وضعیت ارسال",
             minWidth: 100,
-            align: "center",
-            format: (value) => value.toLocaleString("en-US"),
         },
         {
             id: "total",
             label: " مجموع",
             minWidth: 100,
-            align: "center",
             format: (value) => value.toLocaleString("en-US"),
         },
     
         {
-            id: "date",
+            id: "purchased_date",
             label: "تاریخ ثبت",
             minWidth: 170,
-            align: "center",
+            format: (value)=>{
+                return new Date(value).toLocaleDateString(
+                    "fa-IR",
+                    {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric"
+                    }
+                )
+            }
         },
         {
             id: "operation",
             label: " عملیات",
             minWidth: 100,
-            align: "center",
-            format: (value) => value.toLocaleString("en-US"),
         }
     ];
 
-    function createData(picture, chargeRate, PaymentMethod, status, date) {
-        return { picture, chargeRate, PaymentMethod, status, date};
-    }
-
-    const rows = [
-        createData(
-            ["https://statics.basalam.com/public/users/PQ54/1802/3rUvoX5MUrtHjWQpAuBhxrPKgF21Jrq2DYJ43iek.jpg_256X256X70.jpg",
-            "https://statics.basalam.com/public/users/PQ54/1802/3rUvoX5MUrtHjWQpAuBhxrPKgF21Jrq2DYJ43iek.jpg_256X256X70.jpg"],
-            "200000 تومان",
-            "درگاه بانکی",
-            "موفق",
-            "2022-02-04T22:53:38.542904+03:30"
-        ),
-        createData(
-            ["https://statics.basalam.com/public/users/PQ54/1802/3rUvoX5MUrtHjWQpAuBhxrPKgF21Jrq2DYJ43iek.jpg_256X256X70.jpg"],
-            "200000 تومان",
-            "درگاه بانکی",
-            "موفق",
-            "2022-02-04T22:53:38.542904+03:30"
-        ),
-        createData(
-            ["https://statics.basalam.com/public/users/PQ54/1802/3rUvoX5MUrtHjWQpAuBhxrPKgF21Jrq2DYJ43iek.jpg_256X256X70.jpg"],
-            "200000 تومان",
-            "درگاه بانکی",
-            "موفق",
-            "2022-02-04T22:53:38.542904+03:30"
-        ),
-        createData(
-            ["https://statics.basalam.com/public/users/PQ54/1802/3rUvoX5MUrtHjWQpAuBhxrPKgF21Jrq2DYJ43iek.jpg_256X256X70.jpg"],
-            "200000 تومان",
-            "درگاه بانکی",
-            "موفق",
-            "2022-02-04T22:53:38.542904+03:30"
-        ),
-    ];
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -115,8 +91,13 @@ function Wallet() {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    React.useEffect(()=>{
+        setOrders(user?.orders || [])
+    }, [user])
+
     return (
-        <UserPanelBase active={"pendin_orders"} title="سفار های در حال ارسال">
+        <UserPanelBase active={"pendin_orders"} title="سفارش های من">
             <section>
                 <div className={styles.Order_history}>
                         <div className="table-info-payment py-4 p-2">
@@ -124,14 +105,14 @@ function Wallet() {
                                 sx={{ width: "100%", overflow: "hidden" }}
                                 className="product-list-gift"
                             >
-                                <TableContainer >
+                                <UserOrderList orders={orders}/>
+                                {/* <TableContainer >
                                     <Table stickyHeader aria-label="sticky table">
                                         <TableHead>
                                             <TableRow>
                                                 {columns.map((column) => (
                                                     <TableCell
                                                         key={column.id}
-                                                        align={column.align}
                                                         style={{ minWidth: column.minWidth }}
                                                     >
                                                         {column.label}
@@ -140,7 +121,7 @@ function Wallet() {
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            {rows
+                                            {orders.length? orders
                                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                 .map((row, idx) => {
                                                     return (
@@ -154,43 +135,44 @@ function Wallet() {
                                                             {columns.map((column, idx2) => {
                                                                 const value = row[column.id];
                                                                 let val = value 
-                                                                if(column.format && typeof value === "number"){
+                                                                if(column.format){
                                                                     val = column.format(value)
-                                                                }else if (column.id === "date"){
-                                                                    val = new Date(value).toLocaleDateString(
-                                                                        "fa-IR",
-                                                                        {
-                                                                            year: "numeric",
-                                                                            month: "long",
-                                                                            day: "numeric",
-                                                                        }
-                                                                    )
-                                                                }else if (column.id === "picture"){
-                                                                    val = value.map((item, i)=>{
-                                                                        return <Image  key={i} alt={"thumb"} src={item} width={64} height={64} className="mx-2"/>
+                                                                }else if (column.id === "image"){
+                                                                    val = row.orderlines.map((item, i)=>{
+                                                                        return <Image  key={i} alt={"thumb"} src={product_imlink(item?.product_id?.image)} width={90} height={64} className="mx-2"/>
                                                                     })
                                                                 }
                                                                 return (
-                                                                    <TableCell key={column.id} align={column.align}  className={idx2===0? "d-flex": ""}>
+                                                                    <TableCell key={column.id}  className={idx2===0? "d-flex": ""}>
                                                                         {val}
                                                                     </TableCell>
                                                                 );
                                                             })}
                                                         </TableRow>
                                                     );
-                                                })}
+                                                }) : !loadingUser? <TableRow
+                                                        hover
+                                                        role="checkbox"
+                                                        tabIndex={-1}
+                                                    
+                                                    >
+                                                        <TableCell>سفارشی نداشته اید./</TableCell>
+                                                    </TableRow>:
+                                                    <Circles color="#00BFFF" height={20} width={20}/>
+                                                }
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
-                                {/* <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        /> */}
+                                <TablePagination
+                                    rowsPerPageOptions={[10, 25, 100]}
+                                    component="div"
+                                    count={orders.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                    className={orders.length <= 10 ? "d-none": ""}
+                                /> */}
                             </Paper>
                         </div>
                 </div>

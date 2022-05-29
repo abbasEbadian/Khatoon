@@ -11,7 +11,6 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import styles from '../styles/Header.module.css'
 import Image from 'next/image'
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 export default function TemporaryDrawer() {
@@ -65,7 +64,7 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-    <Button onClick={e=>setOpen(true)} className={styles.headerSidebarToggler}><MenuIcon /></Button>
+    <Button onClick={e=>setOpen(true)} className={"headerSidebarToggler "} sx={{minWidth: "auto"}}><MenuIcon /></Button>
       <Drawer
             anchor={"left"}
             open={open}

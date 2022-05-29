@@ -2,7 +2,6 @@ import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import { Collapse, Link, List, ListItem, ListItemText , Divider} from '@mui/material'
 import React from 'react'
-import styles from '../../styles/Header.module.css'
 function BottomNavItemCollapse({item}) {
     const [open, setOpen] = React.useState({})
     React.useEffect(()=>{
@@ -13,7 +12,7 @@ function BottomNavItemCollapse({item}) {
     const handleOpen = (id)=>{
       setOpen({...open, ["cat"+id]: !open["cat"+id]})
   }
-    return <List sx={{px: 1}} className={styles.footerDialog}>
+    return <List sx={{px: 1}} className={"footerDialog"}>
         {
             item.categories? item.categories.map((item2, idx)=>{
                 return <><ListItem button onClick={e=>handleOpen(idx)} >

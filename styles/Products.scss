@@ -33,4 +33,48 @@
             color: #E96962
         }
     }
+    .vendor-cover{
+        border: 1px solid #ddd;
+        & + .products-sortby{
+            margin-top: 16px;
+        }
+        .vendor-name{
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            h5{
+              font-size: clamp(16px, 3vw + 1%, 40px);
+              padding: 8px 24px;
+              background-color: #fff6;
+              border: 1px solid #aaa;
+              border-radius: 12px;
+              text-align: center;
+              
+            }
+        }
+        
+    }
+    
+    @media (max-width: 578px){
+        .vendor-cover{
+            .vendor-name{
+                right: 90px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    #products-main{
+        .products-filterbox{
+            padding: 8px 16px;
+        }
+        .MuiSelect-select{
+            padding-block: 4px;
+        }
+        
+    }
 }

@@ -5,6 +5,14 @@
     --primary: #CA0A00bb;
     --secondary: #042234bb;
     --gold: #EEB217;
+    --color-black: hsl(0, 0%, 10%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-blue: #39acf1;
+    --color-blue-100: #D1EBFF;
+    --color-purple: #142f43;
+    --color-purple-500: #142f43aa;
+    --color-orange: #fe6648;
+    --color-yellow: #ffc60b;
 }
 
 body .bg-primary{

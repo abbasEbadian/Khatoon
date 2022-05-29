@@ -4,7 +4,6 @@ import BoxItem from '../Ui/BoxItem/BoxItem'
 
 
 function ProductsProducts({ products, page=1, setPage }) {
-  console.log(products)
   return (
     <div className="products-filterbox products-list">
         <div className="row">

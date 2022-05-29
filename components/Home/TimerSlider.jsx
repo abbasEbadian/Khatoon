@@ -1,9 +1,10 @@
 import React from 'react'
-import TimerSliderItem from './subHome/TimerSlideItem'
+// import TimerSliderItem from './subHome/TimerSlideItem'
 import style from '../../styles/Home.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-function TimerSlider({children, className}) {
+import BoxItem from '../Ui/BoxItem/BoxItem';
+function TimerSlider({children, className, products=[]}) {
     return (
         <div className={style.timer_slider + " " + className}>
             <div className="row p-0">
@@ -45,9 +46,9 @@ function TimerSlider({children, className}) {
                         
                     }}
                 >
-                {Array.from({length: 6}).map((i, idx)=>{
+                {products.map((item, idx)=>{
                             return <SwiperSlide className="" key={idx}>
-                                <TimerSliderItem  />
+                                <BoxItem item={item}  />
                             </SwiperSlide>
                         })}
                 </Swiper>

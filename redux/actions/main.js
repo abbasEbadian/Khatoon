@@ -3,14 +3,30 @@ import * as t from '../types'
 import * as e from '../endpoints'
 import {profile} from '../actions'
 import {toast} from 'react-toastify'
+
 export const get_initial_data = ()=>{
     return dispatch =>{
+        dispatch(get_cart())
         dispatch(check_user())
         dispatch(fetch_categories())
         dispatch(fetch_provinces())
-       
+        dispatch(fetch_configs())
     }
 }
+
+export const get_cart = () =>{
+    return async (dispatch, getState)=>{
+        dispatch({type: t.LOADING_BASKET ,payload:  true })
+        axios.get(e.GET_CART).then(res=>{
+            const {data} = res
+            dispatch({type: t.UPDATE_BASKET,payload:  data })
+        }).catch(e=>console.log(e))
+        .finally(f=>{
+            dispatch({type: t.LOADING_BASKET ,payload:  false })
+        })
+    }
+}
+
 
 export const check_user = ()=>{
     return dispatch=>{
@@ -36,13 +52,28 @@ export const fetch_banks = () =>{
         )
     }
 }
+export const fetch_configs = () =>{
+    return async (dispatch, getState)=>{
+        return (
+            axios.get(e.GET_CONFIGS)
+            .then(response=>{
+                const {data} = response
+                dispatch(update_configs(data))
+                
+            })
+            .catch(err=>console.log(err))
+            
+        )
+    }
+}
 export const fetch_categories = () =>{
     return async (dispatch, getState)=>{
         return (
             axios.get(e.GET_CATEGORIES)
             .then(response=>{
                 const {data} = response
-                dispatch(update_categories(data))
+                dispatch(update_categories(data.categories))
+                dispatch(update_flag_categories(data.flat_categories))
                 
             })
             .catch(err=>console.log(err))
@@ -65,6 +96,7 @@ export const fetch_provinces = () =>{
         )
     }
 }
+
 
 
 export const create_address = (info)=>{
@@ -139,7 +171,18 @@ export const update_categories = (categories)=>{
         type: t.UPDATE_CATEGORIES,
         payload: categories
     }
-
+}
+export const update_flag_categories = (categories)=>{
+    return {
+        type: t.UPDATE_FLAT_CATEGORIES,
+        payload: categories
+    }
+}
+export const update_configs = (configs)=>{
+    return {
+        type: t.UPDATE_CONFIGS,
+        payload: configs
+    }
 }
 export const update_provinces = (provinces)=>{
     return {

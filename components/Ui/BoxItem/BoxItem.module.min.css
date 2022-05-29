@@ -1,2 +1,0 @@
-.box_item{background:#fff;border:1px solid #eee;box-sizing:border-box;border-radius:10px;padding:.5rem;width:100%;margin:auto;cursor:pointer;transition:all .2s ease-out}.box_item:hover{box-shadow:0px 13px 21px rgba(140,146,172,.35);transform:translateY(-5px)}.box_item_title{font-size:.75rem;line-height:20px;text-align:right;margin-top:1em;color:#3e3e3e;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.box_item_price{display:flex;align-items:center;justify-content:space-between}
-/*# sourceMappingURL=BoxItem.module.min.css.map */

@@ -8,6 +8,7 @@ import VendorPanelBase from '../../../components/VendorPanelBase';
 import VendorSettingTabOne from '../../../components/Vendor/VendorSettingTabOne';
 import VendorSettingTabTwo from '../../../components/Vendor/VendorSettingTabTwo';
 import VendorSettingTabThree from '../../../components/Vendor/VendorSettingTabThree';
+import withAuth from '../../../redux/withAuth'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -37,7 +38,7 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+function Settings() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -45,7 +46,7 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <section>
         <VendorPanelBase active={"settings"}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -66,6 +67,8 @@ export default function BasicTabs() {
                 <VendorSettingTabThree/>
             </TabPanel>
         </VendorPanelBase>
-    </Box>
+    </section>
   );
 }
+
+export default withAuth(Settings)

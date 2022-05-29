@@ -1,0 +1,319 @@
+.header, .headersticky, .headerhide {
+    height: 90px;
+    background-color: #fffc;
+    /* position: absolute; */
+    /* top: 0;
+    left: 0;
+    right: 0; */
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(24px);
+    transition: 0.2s;
+    position: relative;
+    z-index: 102;
+    /* left: 0;
+    right: 0; */
+}
+.header{
+    top: 0px;
+}
+.headersticky {
+    top: 0;
+}
+.headerhide {
+    top: -120px;
+}
+ .header_bot{
+    position: sticky;
+    top: 0;
+    z-index: 102;
+    background-color: #fffc;
+    opacity: 1;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    scroll-behavior: smooth;
+ } 
+ 
+.headerTop{
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headerDevider{
+    border-top: 2px solid #f6f6f6;
+    width: 100%;
+    height: 1px;
+    display: block;
+    opacity: 0.5;
+}
+.headerBottom{
+    height: 58px;
+    position: relative;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.stickHeader{
+    position: sticky;
+    top: 0;
+}
+.stickHeader + div{
+    top: 90px;
+}
+.headerBottom .arrow{
+    opacity: 0;
+    transform:translateY(12px);
+    transition: 0.2s;
+}
+.headerBottomScrolled .arrow{
+    opacity: 1;
+    transform: translateY(0) scale(1.5);
+    transition: 0.2s;
+}
+
+
+.header-searchbox {
+    flex-grow: 1;
+    border-radius: 12px;
+    position: relative;
+    margin-inline: 32px auto;
+    background: #F0F0F1;
+    max-width: 600px;
+
+    .MuiInputBase-root {
+        height: 100%;
+        background: none;
+        border: none;
+        text-align: right;
+        width: 100%;
+        padding-right: 64px;
+        border-radius: 12px;
+        padding-block: 6px ;
+
+        
+        input::placeholder{
+            color: #999;
+        }
+    }
+    p.MuiFormHelperText-root{
+        position: absolute;
+        top: -16px;
+        left: 8px;
+        font-size: 11px;
+        color: crimson;
+    }
+}
+
+.headerActions{
+    display: flex;
+}
+
+.headerActionsItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #6c6f79;
+    padding: 8px clamp(16px , 1.5vw , 32px);
+    transition: 0.2s;
+    position: relative;
+    cursor: pointer;
+}
+
+.headerActionsItem:nth-of-type(-n+3)::after{
+    position: absolute;
+    left: 0;
+    height: 50px;
+    width: 1px;
+    top: calc(50% - 25px);
+    background-color: #eee;
+    content: " ";
+}
+.headerActionsItem:last-of-type{
+    padding-left: 0;
+}
+.headerActionsItem small{
+    padding-top: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+
+.headerMegaMenu{
+    pointer-events: none;
+    min-height: 300px;
+    /* max-height: 450px; */
+    left: 0;
+    right: 0;
+    top: 100%;
+    opacity: 0;
+    position: absolute;
+    box-shadow: 0 0 8px #0002;
+    transform: translateY(-4px);
+    background-color: white;
+    display: flex;
+    padding-bottom: 16px;
+}
+
+.headerMegaMenuItemTitle{
+    font-size: 13px;
+    transition: 0.2s;
+}
+.headerMegaMenuItemContent{
+    opacity: 0;
+    transition: 0.2s;
+    height: 5px;
+    position: absolute;
+}
+
+.megaMenuParent:hover > span{
+    color: #e2443e;
+}
+.megaMenuParent{
+    height: 100%;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.megaMenuParent:hover > div{
+    opacity: 1;
+    pointer-events: all;
+}
+.headerMegaMenuContent{
+    flex-grow: 1;
+    padding: 16px;
+}
+.headerMegaMenuSide{
+    width: 200px;
+    border-left: 1px solid #eee;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.headerMegaMenuItem:hover{
+    color: #e2443e;
+    background-color: #f7f7f7;
+}
+.headerMegaMenuItem{
+    padding: 13px;
+    cursor: pointer;
+    height: 45px;
+}
+.headerMegaMenuList{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    height: 100%;
+}
+.headerMegaMenuLevel1{
+    border-right: 1px solid #e2443e;
+    padding-right: 16px;
+    padding-block: 0px;
+    margin-block: 24px 16px;
+}
+.headerSidebarToggler{
+    display: none !important;
+}
+.bottomNavigation{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    box-shadow: 0 0 8px #0002;
+    z-index: 10;
+}
+.bottomNavigation button *{
+    opacity: 1;
+}
+
+.footerDialog span{
+    font-size: 13px;
+}
+@media (max-width: 992px) {
+    .header-searchbox {
+        margin-left: 16px;
+    }
+    .header, .headersticky, .headerhide{
+        height: 120px;
+        margin-bottom: 32px;
+    }
+    .headerTop{
+        flex-wrap: wrap;
+    }
+    .headerBottom {
+        display: none;
+    }
+    .headerDevider{
+        display: none;
+    }
+    /* .headerhide {
+        top: -120px;
+    } */
+    .header_searchbox{
+        width: 100%;
+        order: 4;
+        margin-inline: 16px;
+        height: 38px;
+        font-size: 13px;
+        max-width: unset;
+    }
+    .header_searchbox svg{
+        width: 30px;
+        top: 2px;
+        right: 6px;
+    }
+    .headerLogo{
+        margin-left: auto;
+        margin-right: 16px;
+        transform:scale(0.7) translateX(32px);
+    }
+    .headerActionsItem{
+        cursor: pointer;
+    }
+    .headerActionsItem:nth-of-type(2){
+        display: none;
+    }
+    .headerActions{
+        margin-right: auto;
+    }
+    .headerActionsItem small{
+        display: none;
+    }
+    .container_custom {
+        padding-inline: clamp(16px, 3vw, 128px);
+    }
+    .headerSidebarToggler{
+        display: block !important;
+        margin-left: 16px;
+        min-width: unset;
+        padding: 0;
+    }
+    .bottomNavigation{
+        display: block;
+    }
+
+}
+@media (max-width: 768px){
+    .headerTop > :nth-child(1){ order: 1; }
+    .headerTop > :nth-child(2){ order: 2; }
+    .headerTop > :nth-child(3){ order: 4; }
+    .headerTop > :nth-child(4){ order: 3; }
+    
+    body .header-searchbox {
+        margin-inline: 0px;
+        width: 100% !important;
+        max-width: unset;
+        margin-top: 12px;
+        .MuiOutlinedInput-root{
+            padding-block: 4px;
+        }
+    }
+}
+@media (max-width: 578px){
+    .header-searchbox {
+        margin-right: 0;
+    }
+}

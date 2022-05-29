@@ -12,11 +12,13 @@ export const logout = (router)=>{
 }
 export const profile = (setLoading=undefined)=>{
     return dispatch=>{
+        dispatch({type:t.UPDATE_LOADING_USER, payload: true})
+        
         axios.get(e.PROFILE)
         .then(response=>{
             const {data} = response
             dispatch({type:t.UPDATE_USER, payload: data})
-
+            
         })
         .catch(err=>{
             console.log(err)
@@ -25,6 +27,7 @@ export const profile = (setLoading=undefined)=>{
             setTimeout(()=>{
                 if (setLoading) setLoading(false)
             }, 2000)
+            dispatch({type:t.UPDATE_LOADING_USER, payload: false})
         })
 
     }

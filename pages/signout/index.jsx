@@ -8,7 +8,7 @@ function Signout() {
     dispatch(logout())
 
     return (
-        <div className="d-flex py-5 my-5 text-center">
+        <div className="d-flex py-5 my-5 text-center w-100 justify-content-center align-items-center h-75">
             <h4>در حال خروج</h4>
         </div>
     )

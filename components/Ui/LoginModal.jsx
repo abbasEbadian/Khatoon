@@ -15,7 +15,9 @@ function LoginModal({ handleLoginClose, handleLoginOpen, loginModalOpen}) {
     const handleUsername = (e) => { setUsername(e.target.value)}
     const handlePassword = (e) => { setPassword(e.target.value)}
 
-    const _login = ()=>{
+    const _login = (e)=>{
+        console.log(e)
+        e.preventDefault()
         if(!username) {
             toast.warning("نام کاربری وارد نشده است")
             return
@@ -43,7 +45,7 @@ function LoginModal({ handleLoginClose, handleLoginOpen, loginModalOpen}) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 500,
+        minWidth: 360,
         bgcolor: 'background.paper',
         borderRadius: 5,
         boxShadow: '0 0 8px 1px #eee',
@@ -57,19 +59,13 @@ function LoginModal({ handleLoginClose, handleLoginOpen, loginModalOpen}) {
         aria-describedby="modal-modal-description"
     >
         <Box sx={style}>
-            <Typography sx={{ fontSize: 25, fontWeight: 'bold' }} id="modal-modal-title" variant="h6" component="h2">
+            <Typography sx={{ fontSize: 20, fontWeight: 'bold' }} id="modal-modal-title" variant="h6" component="h2">
                 ورود با کلمه عبور
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <Box
-                    component="form"
-                    sx={{
-                        '& .MuiTextField-root': { mt: 5, width: '100%' },
-                    }}
-                    noValidate
-                    autoComplete="off"
+                <form
+                    onSubmit={_login}
                 >
-                    <div>
+                    <div className="my-5">
                         <TextField
                             required
                             id="outlined-required"
@@ -77,7 +73,9 @@ function LoginModal({ handleLoginClose, handleLoginOpen, loginModalOpen}) {
                             placeholder="nimaa"
                             dir="ltr"
                             value={username}
+                            name={"username"}
                             onChange={handleUsername}
+                            fullWidth
                         />
                     </div>
                     <div>
@@ -89,13 +87,15 @@ function LoginModal({ handleLoginClose, handleLoginOpen, loginModalOpen}) {
                             dir="ltr"
                             value={password}
                             onChange={handlePassword}
+                            fullWidth
+                            name="password"
                         />
                     </div>
-                </Box>
-                <Button variant="contained" className="mt-4 float-end" onClick={_login} color="primary">
-                    ورود/ ثبت نام
-                </Button>
-            </Typography>
+                    <Button variant="contained" className="mt-4 float-end" color="primary" type={"submit"}>
+                        ورود/ ثبت نام
+                    </Button>
+                </form>
+               
 
         </Box>
     </Modal>

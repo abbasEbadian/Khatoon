@@ -104,3 +104,32 @@
 .similar-products-price{
     font-size: 13px;
 }
+.imageboxes {
+    .imagebox{
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+}
+#add-product{
+    input, select, .MuiSelect-select, .MuiOutlinedInput-root{
+        background-color: white;
+        padding-left: 12px;
+    }
+
+    form > [class*=col]{
+        margin-block: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .MuiBreadcrumbs-li{
+        font-size: 11px;
+    }
+    
+}

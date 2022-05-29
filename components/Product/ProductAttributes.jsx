@@ -8,64 +8,107 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import * as _ from 'lodash'
 import { Box, Typography } from '@mui/material';
 
-export default function ProductAttributes({attributes}) {
+export default function ProductAttributes({product, current, setCurrent}) {
     const [active, setActive] = React.useState({});
     const [attrs, setAttrs] = React.useState([])
+    const [variants, setVariants] = React.useState([])
+
+    const [activeAttribute, setActiveAttribute] = React.useState() 
+    const [activeAttributeValue, setActiveAttributeValue] = React.useState() 
 
     const handleActive = (event, key , value ) => {
+        if(!value) return
         setActive(s => {return {
             ...s, 
             [key]: value 
         }});
-    };
+        changeActiveAttribute(key, value);
+    }
+    const changeActiveAttribute = (attribute, val) => {
+        const next = product.templates.find( template => template.attributes.find(attr => attr.attribute_id.name === attribute && attr.value_id.name === val) )
+        setCurrent(next)
+    }
+
+    // React.useEffect(()=>{
+    //     setActive(current.attributes.find(i=>i.name === attribute).value_id.name)
+    // }, [current])
     React.useEffect(()=>{
-        const attrs_grouped = _.groupBy(attributes, (item)=> item.attribute_id.name)
-        setAttrs(attrs_grouped)
-    }, [attributes])
-    console.log(active)
+        setAttrs(product.attributes)
+
+        const vars = product.templates.filter(i=>!i.default)
+        if(!vars) {
+            setCurrent(product.templates.find(i=>i.default))
+            return
+        }
+        const  attributeSets = []
+
+        vars.map(_var => {
+            _var.attributes.map(att=>{
+                if (attributeSets.find(i=>i.attribute === att.attribute_id.name))
+                    attributeSets.find(i=>i.attribute === att.attribute_id.name).values.add(att.value_id.name)
+                else
+                    attributeSets.push({attribute: att.attribute_id.name, values: new Set([att.value_id.name]) })
+            })
+        })
+
+        
+        setVariants(attributeSets)
+        setCurrent(attributeSets[0])
+
+         
+        // const attrs_grouped = _.groupBy(attributes, (item)=> item.attribute_id.name)
+    }, [product])
+    React.useEffect(()=>{
+        variants.map(variant => {
+            console.log("vb", variant)
+            handleActive({}, variant.attribute, Array.from(variant.values)[0])
+        })
+    }, [variants])
+
     return (
+        <>
+            <section className="product-attributes w-100 d-flex flex-column align-items-start">
+            {
+               attrs?.map(attr=>{
+                   return <div className="attr-row my-2" key={attr.id}>
+                        <span className="text-black-50">{attr.attribute_id.name}</span>
+                        {" : "}
+                        <strong>{attr.value_id && attr.value_id.name}</strong>
+                    </div>
+               })
+            }
+            </section>
             <section className="product-attributes w-100">
             {
-                Object.keys(attrs).map((key) => {
-                    const attr_list = attrs[key]
-                    if(attr_list.length > 1 ){
-                        return <div className="product-attribute col-md-6 col-12">
-                            <b>{attr_list[0].attribute_id.name}</b> <span className="devider">{" : "}</span>
-                            <ToggleButtonGroup
-                            value={active[key]}
+                    variants.map((attributeSet) => {
+                        const attribute = attributeSet.attribute
+                        const values = Array.from(attributeSet.values)
+                    
+                    return <div key={attribute} className=" my-2 col-12">
+                        <b>{attribute}</b> <span className="devider">{" : "}</span>
+                        <ToggleButtonGroup
+                            value={active[attribute]}
                             exclusive
-                            onChange={(e, val)=>handleActive(e, key, val)}
+                            onChange={(e, val)=>handleActive(e, attribute, val)}
                             aria-label="active color"
-                            >
-                            {attr_list.map(attr=>{
-                                return <ToggleButton key={attr.id} value={attr} sx={{p: "4px"}}>
-                                    {attr.value_id.color? 
-                                        <Box sx={{width: "24px", height: "24px", backgroundColor: attr.value_id.color}}/>
-                                    :
-                                    <Box sx={{width: "24px", height: "24px", backgroundColor: attr.value_id.color}}>
-                                        {attr.value_id.name}
-                                    </Box>
-                                    }
-                                </ToggleButton>
-                            })}
-                        
-                        </ToggleButtonGroup>
-                        <span className="px-2">
-                            <Typography sx={{fontSize: "12px"}}>
-                                {Object.keys(active).includes(key)? (active[key]?.value_id.name || "") : null}
-                            </Typography>
-                        </span>
-                        </div>
-                    } else{
-                        return <div key={attr_list[0].id} className="product-attribute col-md-6 col-12">
-                                <b>{attr_list[0].attribute_id.name}</b><span className="devider">{" : "}</span>
-                                <span>{attr_list[0].value_id.name}</span>
-                            </div>
-                    }
+                        >
+                        {values.map(value=>{
+                            return <ToggleButton key={value} value={value} sx={{p: "4px", minWidth: "32px"}}>
+                                <Box>
+                                    {value}
+                                </Box>
+                            </ToggleButton>
+                        })}
+                    
+                    </ToggleButtonGroup>
+                    
+                    </div>
+                    
                 })
-            }</section>
+            }
+            </section>
        
         
-       
+            </>
     );
 }

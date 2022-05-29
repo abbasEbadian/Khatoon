@@ -1,0 +1,127 @@
+.notif {
+    position: relative;
+    margin-top: .75rem;
+    }
+.notif::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    height: 2px;
+    background-color: var(--color-NavyBlue);
+    opacity: .2;
+}
+.notif::after:last-child {
+    content: none;
+}
+
+.head_notif {
+    display: flex;
+    align-items: center;
+    margin-top: .75rem;
+}
+.head_notif p {
+    margin-right: 10px !important;
+    font-weight: bold;
+    font-size: 13px;
+}
+.txnotif {
+    font-size: 10px;
+}
+
+
+.head_finicial {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    font-size: 14px;
+}
+.head_finicial a {
+    color: #E9766F;
+}
+.head_finicial p {
+    font-weight: 500;
+}
+.content_finicial {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 14px;
+    padding: 1rem;
+}
+.right_content_finicial  , .left_content_finicial{
+    position: relative;
+}
+.right_content_finicial  p , .left_content_finicial p{
+    margin: .5rem 0 !important;
+}
+.left_content_finicial {
+    text-align: center;
+}
+ .left_content_finicial::before{
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    bottom: 0;
+    right: -45px;
+    background-color: var(--color-e3);
+}
+div.card{
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 3px 10px 0px #0001;
+}
+
+#chat-page{
+    .cs-avatar{
+        img{
+            object-fit: cover;
+        }
+    }
+    input, .cs-message-input__content-editor{
+        text-align: right;
+        direction: rtl;
+    }
+    .cs-conversation__content{
+        justify-content: center;
+    }
+    .cs-conversation-header{
+        direction: rtl;
+    }
+    .cs-message{
+        align-items: center;
+    }
+    .cs-conversation{
+        direction: rtl;
+        .cs-conversation__name{
+            text-align: right;
+        }
+    }
+    .cs-button--arrow{
+        transform: rotate(180deg);
+    }
+    .cs-search{
+        margin: 16px;
+        display: flex !important;
+    }
+    .cs-conversation__content{
+        display: flex !important;
+    }
+    @media (max-width:768px) {
+        .cs-main-container--responsive .cs-chat-container .cs-conversation-header .cs-conversation-header__back{
+            display: flex !important;
+        }
+    }
+    .cs-conversation__unread{
+        left: 16px;
+        width: 20px;
+        right: unset;
+        z-index: 100;
+        height: 20px;
+        text-align: center;
+        top: 20px;
+    }
+}
+

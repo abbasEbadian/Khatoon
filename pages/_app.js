@@ -38,7 +38,18 @@ const theme = createTheme({
     white:{
       main: "#FFFFFF",
       contrastText: "#222"
+    },
+    skyblue:{
+      contrastText: "#fff",
+      main: "lightseagreen"
     }
+  },
+  components: {
+    MuiUseMediaQuery: {
+      defaultProps: {
+        noSsr: true,
+      },
+    },
   },
 });
 // Create rtl cache
@@ -60,6 +71,8 @@ function MyApp({ Component, pageProps }) {
   const excludeUrls = [
     "user-panel",
     "vendor-panel",
+    "new-vendor",
+    'card'
   ] 
   React.useEffect(()=>{
     store.dispatch(get_initial_data())
@@ -72,13 +85,17 @@ function MyApp({ Component, pageProps }) {
             <SVGBoxes/>
             <Header  handleLoginClose={handleLoginClose} handleLoginOpen={handleLoginOpen} loginModalOpen={loginModalOpen}></Header>
             <Component {...pageProps } handleLoginClose={handleLoginClose} handleLoginOpen={handleLoginOpen} loginModalOpen={loginModalOpen}/>
-            <BottomNavigation2/>
+           
             <LoginModal handleLoginClose={handleLoginClose} handleLoginOpen={handleLoginOpen} loginModalOpen={loginModalOpen} />
             {
               excludeUrls.every(item=>router.pathname.indexOf(item) === -1)
               &&
+              <>
               <Footer />
+              <BottomNavigation2/>
+              </>
             }
+           
            <ToastContainer
               position="bottom-center"
               autoClose={3000}
