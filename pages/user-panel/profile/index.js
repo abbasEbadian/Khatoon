@@ -221,8 +221,8 @@ function Profile() {
                                 />
                             </div>
                             <div className="col-12 py-4 ps-0">
-                                <Select sx={{ width: '100%' }}
-                                    
+                                <TextField sx={{ width: '100%' }}
+                                    select
                                     error={!!errorMessage.province}
                                     label="استان محل سکونت"
                                     name="province"
@@ -235,7 +235,7 @@ function Profile() {
                                             return <MenuItem key={item.id} value={item.id}> {item.name} </MenuItem>
                                         })
                                     }
-                                </Select>
+                                </TextField>
                             </div>
 
                             <div className="col-12 py-4  ">

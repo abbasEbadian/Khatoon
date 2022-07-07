@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../../styles/Home.module.scss'
-import Image from 'next/Image'
+import Image from 'next/image'
 import {base_imlink} from '../../components/utils'
 import Link from 'next/link'
 

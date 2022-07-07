@@ -9,6 +9,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import { profile } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import { VisibilityOff } from "@mui/icons-material";
 
 function ChangeVisibilityButton({ product }) {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function ChangeVisibilityButton({ product }) {
       size="small"
       variant="outlined"
       color="info"
-      startIcon={<VisibilityIcon />}
+      startIcon={product.published ?<VisibilityOff />: <VisibilityIcon/>}
       className="mx-1"
       onClick={change_visibility}
     >

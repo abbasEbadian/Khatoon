@@ -73,7 +73,7 @@ function VendorSettingTabOne({goToNext=undefined}) {
     }
   return (
     <div className="row p-4 justify-content-center">
-        <div className="col-lg-6 col-12">
+        <div className="col-xxl-6 col-12">
             {/* <VendorCover /> */}
             <form className='row align-items-center justify-content-center' onSubmit={submit}>
                 <div className="my-4 col-12">
@@ -87,6 +87,8 @@ function VendorSettingTabOne({goToNext=undefined}) {
                             value={initData.national_code}
                             onChange={e=>changeInitData(e, "national_code")}
                             helperText="کد ملی صاحب غرفه"
+                            dir="ltr"
+                            placeholder="136..."
                         />
                     </Box>
                 </div>
@@ -101,8 +103,12 @@ function VendorSettingTabOne({goToNext=undefined}) {
                             value={initData.shaba}
                             onChange={e=>changeInitData(e, "shaba")}
                             InputProps={{
-                                endAdornment: <InputAdornment position="start">IR</InputAdornment>,
+                                startAdornment: <InputAdornment position="start">IR</InputAdornment>,
+                                dir: "ltr"
                             }}
+                            placeholder="27801..."
+                            dir="ltr"
+                            className="text-end"
                         />
                     </Box>
                 </div>
@@ -122,6 +128,7 @@ function VendorSettingTabOne({goToNext=undefined}) {
                             name="bank"
                             value={initData.bank}
                             onChange={e=>changeInitData(e, "bank")}
+                            
 
                         >
                             {banks?.map(item => {
@@ -141,6 +148,10 @@ function VendorSettingTabOne({goToNext=undefined}) {
                             value={initData.card_number}
                             onChange={e=>changeInitData(e, "card_number")}
                             helperText="شماره کارت باید به نام صاحب غرفه باشد"
+                            dir="ltr"
+                            placeholder="60379410..."
+                            className="text-end"
+
                         />
                     </Box>
                 </div>

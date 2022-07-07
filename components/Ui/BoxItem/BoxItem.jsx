@@ -29,11 +29,14 @@ function BoxItem({item}) {
                     <PinDropIcon/>
                     <small>{item?.city}</small>
                 </span> */}
-
-                <span >
-                    <VerifiedIcon sx={{color: "#bbb"}} />
-                    <small className="mx-1">{item?.market_id?.name}</small>
-                </span>
+                <Link prefetch={false} href={item.market_id && item.market_id.username?"/shop/"+item.market_id.username: "#"}>
+                    <a>
+                        <span >
+                            <VerifiedIcon sx={{color: "#bbb"}} />
+                            <small className="mx-1">{item?.market_id?.name}</small>
+                        </span>
+                    </a>
+                </Link>
             </div>
             <div className={"box_item_price "}>
                 <div >

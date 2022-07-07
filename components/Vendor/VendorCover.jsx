@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { profile } from "../../redux/actions";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
-function VendorCover({ editMode = false, vendor }) {
+function VendorCover({ editMode = false, vendor , createMode}) {
   const dispatch = useDispatch();
   const router = useRouter()
   const { user, loading: loadingUser } = useSelector((s) => s.auth);
@@ -109,7 +109,7 @@ function VendorCover({ editMode = false, vendor }) {
 
   return (
     <>
-      <div className="vendor-cover">
+      {!createMode?<div className="vendor-cover">
         <div
           className="cover-parent"
           sx={{
@@ -152,7 +152,8 @@ function VendorCover({ editMode = false, vendor }) {
         )}
 
         <div className="avatar-parent">
-          {coverUploading || loadingUser ? (
+          {
+          avatarUploading || loadingUser ? (
             <Skeleton variant="circle" />
           ) : (
             <Image
@@ -196,7 +197,7 @@ function VendorCover({ editMode = false, vendor }) {
             </div>
           </>
         )}
-      </div>
+      </div>: null}
       {!editMode?<div className="products-filterbox mt-3">
         <div className="d-flex align-items-center justify-content-between">
           <p>پیام فروشگاه:</p>

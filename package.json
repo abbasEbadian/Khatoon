@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^1.8.3",
@@ -32,6 +32,7 @@
     "react-dom": "17.0.2",
     "react-google-charts": "^4.0.0",
     "react-loader-spinner": "^6.0.0-0",
+    "react-number-format": "^4.9.3",
     "react-persian": "^1.1.1",
     "react-redux": "^7.2.6",
     "react-timer-hook": "^3.0.5",

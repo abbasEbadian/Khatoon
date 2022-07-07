@@ -16,7 +16,7 @@ import {toast} from 'react-toastify'
 import { CircularProgress } from '@mui/material';
 import { useSelector } from 'react-redux';
 
-function Settings({goToNext=undefined}) {
+function Settings({goToNext=undefined, createMode=false}) {
 	const user = useSelector(s=>s.auth.user)
 	const [boxWebsite, setboxWebsite] = React.useState({
 		name: "https://khatoonziba.com/",
@@ -166,8 +166,8 @@ function Settings({goToNext=undefined}) {
 	return (
 		<section id="setting-profile">
 			<div className="row p-4 justify-content-center">
-				<div className="col-lg-8 col-12">
-					<VendorCover editMode/>
+				<div className="col-xxl-8 col-12">
+					<VendorCover editMode createMode={createMode}/>
 					<form className='row align-items-center ' onSubmit={submit}>
 						<div className="col-lg-4 col-12">
 							<Box >
@@ -384,7 +384,6 @@ function Settings({goToNext=undefined}) {
 							<div className="col-9">
 								<Box>
 									<TextField
-										required
 										id="input-with-icon-textfield"
 										label="آدرس اینستاگرام"
 										type="text"
@@ -446,7 +445,6 @@ function Settings({goToNext=undefined}) {
 							<div className="col-9">
 								<Box >
 									<TextField
-										required
 										id="input-with-icon-textfield"
 										label="آدرس تلگرام"
 										type="text"
@@ -476,7 +474,11 @@ function Settings({goToNext=undefined}) {
 						<div className="col-12">
 							<Stack spacing={2} direction="row">
 								<Button color="main" variant="contained" fullWidth type="submit">
-									{loading? <CircularProgress color="white" size={20} /> : <span>بروزرسانی فروشگاه</span>}
+									{loading? <CircularProgress color="white" size={20} /> : <span>
+										{!createMode? 
+										<span>{"بروزرسانی فروشگاه"}</span>
+										:<span> {"ساخت فروشگاه"}</span>}
+									</span>}
 								</Button>
 							</Stack>
 						</div>

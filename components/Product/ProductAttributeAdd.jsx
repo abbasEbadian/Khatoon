@@ -88,7 +88,10 @@ function ProductAttributeAdd({attributes, attributeValues, attrs, setAttrs, show
         })
         setCombinations(_.product(...vars))
     }, [attrs])
-    
+    const canCreateNew = React.useMemo(()=>{
+        console.log(attrText, attrValueText, !attrText || !attrValueText)
+        return !attrText?.length || !attrValueText?.length
+    }, [attrText, attrValueText])
     return (
         <div className="attribute-row d-flex flex-wrap mt-4">
            {showVariant && 
@@ -148,7 +151,7 @@ function ProductAttributeAdd({attributes, attributeValues, attrs, setAttrs, show
                                         className="w-100"
                                         onChange={(e, val)=>handleAttrValue(val)}
                                         // onInput={(e)=>handleAttrValue({name: e.target.value})}
-                                        noOptionsText={"ویژگی جدید"}
+                                        noOptionsText={"مقدار جدید"}
                                         // getOptionLabel={}
                                         freeSolo
                                         disabled={!attrText}
@@ -193,7 +196,8 @@ function ProductAttributeAdd({attributes, attributeValues, attrs, setAttrs, show
                                 </TableCell>
                               
                                 <TableCell>
-                                    <Button variant="contained" color='success' onClick={submitNew} disabled={!attrText || !attrValueText}>تایید</Button>
+                                    <input type="text" className="d-none" value={JSON.stringify(attrValueText, 0, 2)}/>
+                                    <Button variant="contained" color='success' onClick={submitNew} disabled={canCreateNew}>تایید</Button>
                                     <Button variant="contained" color='error' onClick={e=>setNewMode(false)} className="mx-lg-2">لغو</Button>
                                 </TableCell>
                                 </TableRow>

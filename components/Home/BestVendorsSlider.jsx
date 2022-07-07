@@ -5,15 +5,13 @@ import style from '../../styles/Home.module.scss'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import 'swiper/css/pagination';
 
-function BestVendorsSlider() {
+function BestVendorsSlider({markets=[]}) {
   return (
     <div className={style.best_vendors_slider}>
         <h6 className="ps-5 text-white mb-4">غرفه های جادویی</h6>
          <Swiper
             spaceBetween={50}
             slidesPerView={10}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
             className={"px-5 best_vendor_swiper"}
             modules={[Pagination]}
             pagination={{ clickable: true }}
@@ -45,9 +43,9 @@ function BestVendorsSlider() {
                 
             }}
         >
-        {Array.from({ length: 15 }).map((item , i)=>{
-            return <SwiperSlide  key={item} >
-                    <BestVendorSlide className={style.best_vendor_slide}/>
+        {markets.map((market , i)=>{
+            return <SwiperSlide  key={market} >
+                    <BestVendorSlide market={market} className={style.best_vendor_slide}/>
                 </SwiperSlide>
         })}
         </Swiper>

@@ -2,7 +2,6 @@ import { Checkbox, FormControlLabel, FormGroup, Switch } from '@mui/material'
 import React from 'react'
 import ProductsPriceSlider from './ProductsPriceSlider'
 function ProductsFilters({categories=[]}) {
-    
 
     return (  
         <div className="products-filters">
@@ -19,7 +18,7 @@ function ProductsFilters({categories=[]}) {
 
             <div className="products-filterbox filter-categories">
                 <FormGroup>
-                    {categories.map((item, idx)=>{
+                    {categories.length> 0 && categories.map((item, idx)=>{
                         return <FormControlLabel key={item.id} control={<Checkbox  sx={{ fontSize: "28px" }}/>}  sx={{ fontSize: "28px" }} label={item.persian_name} />
                     })}
                 </FormGroup>

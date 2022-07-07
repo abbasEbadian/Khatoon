@@ -16,7 +16,7 @@ import TimerTimer from '../components/Home/subHome/TimerTimer'
 import Link from 'next/link'
 import { useSelector } from 'react-redux';
 import * as e from '../redux/endpoints'
-export default function Home({handleLoginOpen, timerSliderProducts, newProducts, suggestSliderProducts, magicSliderProducts}) {
+export default function Home({handleLoginOpen, timerSliderProducts, newProducts, suggestSliderProducts, magicSliderProducts, markets}) {
   const router = useRouter();
   const {configs} = useSelector(s=>s.main)
   const time = new Date();
@@ -79,7 +79,7 @@ export default function Home({handleLoginOpen, timerSliderProducts, newProducts,
         <div className={styles.devider}></div>
 
         <section >
-          <BestVendorsSlider/>
+          <BestVendorsSlider markets={markets}/>
         </section>
         <div className={styles.devider}></div>
 
@@ -128,6 +128,7 @@ export async function getServerSideProps (){
           newProducts: result?.newProducts || [] ,
           suggestSliderProducts: result?.suggestSliderProducts || [] ,
           magicSliderProducts: result?.magicSliderProducts || [] ,
+          markets: result?.markets || [] ,
 
       }
   }

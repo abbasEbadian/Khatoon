@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import axios from 'axios';
 import {toast} from 'react-toastify';
 
@@ -27,16 +27,14 @@ function DeleteProductButton({product}) {
         })
     }
     return (<>
-        <Button
+        <IconButton
         size="small"
-        variant="outlined"
         color="error"
-        startIcon={<DeleteIcon />}
         className="mx-1"
         onClick={e=>setOpen(true)}
         >
-        حذف
-        </Button>
+            <DeleteIcon />
+        </IconButton>
         <DeleteProductDialog open={open} setOpen={setOpen} submit={remove}/>
     </>
   );

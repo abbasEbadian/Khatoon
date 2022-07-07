@@ -12,6 +12,8 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import UserPanelBase from "../../../components/UserPanelBase";
 import {useSelector, useDispatch} from 'react-redux'
+
+import withAuth from '../../../redux/withAuth'
 function Wallet() {
     const user = useSelector(s=>s.auth.user)
 
@@ -186,4 +188,4 @@ function Wallet() {
         </section>
     );
 }
-export default Wallet;
+export default withAuth(Wallet);

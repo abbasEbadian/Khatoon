@@ -15,7 +15,7 @@ import TableHeaderInputs from "../../../components/Ui/TableHeaderInputs"
 import {useSelector} from 'react-redux'
 import { product_imlink } from "../../../components/utils";
 import * as _ from 'lodash'
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import withAuth from '../../../redux/withAuth'
 import Edit from "@mui/icons-material/Edit";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -48,15 +48,9 @@ function Products() {
             format: (value) => Number(String(value)).toLocaleString("fa-IR") + " تومان",
         },
         {
-            id: "status_text",
-            label: " ",
+            id: "status",
+            label: "وضعیت",
             minWidth: 100,
-        },
-        {
-            id: "published",
-            label: " وضعیت انتشار",
-            minWidth: 100,
-            format: (value) => value? "منتشر شده": "منتشر نشده"
         },
 
 
@@ -146,7 +140,7 @@ function Products() {
                             sx={{ width: "100%", overflow: "hidden" }}
                             className="product-list-gift"
                         >
-                            <TableContainer sx={{ textAlign: 'right' }}>
+                            <TableContainer sx={{ textAlign: 'right', minWidth: 650 }}>
                                 <Table stickyHeader aria-label="sticky table">
                                     <TableHead>
                                         <TableRow>
@@ -182,7 +176,13 @@ function Products() {
                                                             let val = value;
                                                             if (column.format) {
                                                                 val = column.format(value);
-                                                            } else if (column.id === "image") {
+                                                            }else if(column.id === "status") {
+                                                                val = <div>
+                                                                    {row.status_text}
+                                                                    <br />
+                                                                    (<span>{row.published? "منتشر شده": "منتشر نشده"}</span>)
+                                                                </div>
+                                                            }else if (column.id === "image") {
                                                                 return (
                                                                     <TableCell
                                                                         key={column.id}
@@ -211,14 +211,14 @@ function Products() {
                                                         <TableCell>
                                                             <Link href={"/vendor-panel/products/edit-product/" + row.id}>
                                                                 <a> 
-                                                                    <Button size="small" variant='outlined' color="warning" startIcon={<Edit/>} className="mx-1">
-                                                                        ویرایش
-                                                                    </Button>
+                                                                    <IconButton size="small" variant='outlined' color="warning"  className="mx-1">
+                                                                        <Edit/>
+                                                                    </IconButton>
                                                                 </a>
                                                             </Link>
+                                                            <DeleteProductButton product={row}/>
                                                             <ChangeVisibilityButton product={row}/>
 
-                                                            <DeleteProductButton product={row}/>
 
                                                         </TableCell>
                                                     </TableRow>

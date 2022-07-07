@@ -18,20 +18,9 @@ import {useRouter} from 'next/router'
 
 
 const steps = [
-    {
-        label: 'تکمیل اطلاعات عمومی غرفه',
-        // description: `این اطلاعات شامل نام فروشگاه ، پیام فروشنده ، آدرس ، تصویر و سایر اطلاعات عمومی فروشگاه می باشد.`,
-        // href: "/"
-    },
-    {
-        label: 'اطلاعات شخصی و بانکی',
-        // description:
-        //   'اطلاعات شامل شماره کارت و بانک مرتبط با حساب ، شماره تماس',
-    },
-    {
-        label: 'آپلود مدارک',
-        // description: `اسکن مدارک معتبر برای محصولاتی که فروش آن‌ها در خاتون زیبا به مجوز نیاز دارد`,
-    },
+    {label: ' اطلاعات عمومی غرفه',},
+    {label: 'اطلاعات شخصی و بانکی',},
+    {label: 'آپلود مدارک',},
 ];
 
 function NewVendor() {
@@ -52,9 +41,9 @@ function NewVendor() {
                 router.replace('/vendor-panel/dashboard/')
                 return;
             }
-            if(user.market.message) setActiveStep(1)
-            if(user.market.card_number) setActiveStep(2)
             if(user.market.document) setActiveStep(3)
+            else if(user.market.card_number) setActiveStep(2)
+            else if(user.market.message) setActiveStep(1)
         }else{
             setActiveStep(0)
         }
@@ -62,6 +51,7 @@ function NewVendor() {
 
     return (
         <main className="container_custom" id="enw-vendor-page">
+            <h3 className="text-center mb-5">ساخت غرفه</h3>
             <Box sx={{ flexGrow: 1 }} className=" row">
                 <div className=" col-12 card_style  p-4 mb-4">
                     <Stepper activeStep={activeStep} orientation={matches? "vertical": "horizontal"}>
@@ -106,7 +96,7 @@ function NewVendor() {
                 <div className=" col-12 card_style  p-4">
                     {
                         activeStep === 0?
-                            <VendorSettingTabTwo goToNext={handleNext}/>
+                            <VendorSettingTabTwo goToNext={handleNext} createMode/>
                         : activeStep === 1?
                             <VendorSettingTabOne goToNext={handleNext}/>
                         : activeStep === 2?

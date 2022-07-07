@@ -3,6 +3,8 @@ import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import {toast} from 'react-toastify'
 import * as e from '../../../redux/endpoints'
+import withAuth from '../../../redux/withAuth'
+
 import { 
   MainContainer,ChatContainer, MessageList,
    Message, MessageInput, Sidebar, Search,
@@ -165,4 +167,4 @@ function ChatPage() {
   )
 }
 
-export default ChatPage
+export default withAuth(ChatPage)

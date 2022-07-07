@@ -9,16 +9,42 @@ import ProductImages from '../../../components/Product/ProductImages'
 import * as e from '../../../redux/endpoints'
 import {toast} from 'react-toastify'
 import axios from 'axios'
-
 import { useSelector, useDispatch } from 'react-redux'
 import ProductAttributeAdd from '../../../components/Product/ProductAttributeAdd';
 import { Alert, AlertTitle, Autocomplete, Checkbox, FormControlLabel } from '@mui/material';
 import { Circles } from 'react-loader-spinner';
 import { useRouter } from 'next/router';
 import withAuth from '../../../redux/withAuth'
+import NumberFormat from 'react-number-format';
+import { profile } from '../../../redux/actions';
+
+
+const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
+  
+    return (
+        <NumberFormat
+          {...other}
+          getInputRef={ref}
+          onValueChange={(values) => {
+            onChange({
+              target: {
+                name: props.name,
+                value: values.value,
+              },
+            });
+          }}
+          thousandSeparator
+          isNumericString
+          prefix=""
+        />
+      );
+  });
 
 function AddProduct({ attributes, attributeValues }) {
     const router = useRouter()
+    const dispatch = useDispatch()
+    
     const [category, setCategory] = React.useState(null);
     const [extra, setExtra] = React.useState("");
     const [sure, setSure] = React.useState(null);
@@ -31,6 +57,9 @@ function AddProduct({ attributes, attributeValues }) {
     };
     const [attrs, setAttrs] = React.useState([])
     const [mainAttrs, setMainAttrs] = React.useState([])
+    const [values, setValues] = React.useState({price: ''})
+
+    
 
     const createProduct = (event)=>{
         event.preventDefault();
@@ -43,7 +72,7 @@ function AddProduct({ attributes, attributeValues }) {
             const data = {
                 name: event.target.elements.name.value,
                 description: event.target.elements.description.value,
-                price: event.target.elements.price.value,
+                price: values.price,
                 preperation_time: event.target.elements.preperation_time.value,
                 count: event.target.elements.count.value,
                 category_id: event.target.elements.category_id.value,
@@ -74,8 +103,10 @@ function AddProduct({ attributes, attributeValues }) {
             .then(response=>{
                 const {data} = response
                 toast(data.message, {type: (data.error? "error": "success")})
-                if(!data.error)
-                router.push('/vendor-panel/products')
+                if(!data.error){
+                    diapatch(profile())
+                    router.push('/vendor-panel/products')
+                }
             })
             .catch(error=>{
                 console.log(error)
@@ -86,7 +117,12 @@ function AddProduct({ attributes, attributeValues }) {
         catch(e){console.log(e)}
 
     }
-
+    const handleChange = (event) => {
+        setValues({
+          ...values,
+          [event.target.name]: event.target.value,
+        });
+      };
     return (
         <section id="add-product">
             <VendorPanelBase active="products" title="محصول جدید">
@@ -146,17 +182,19 @@ function AddProduct({ attributes, attributeValues }) {
                                     <TextField
                                         required
                                         label="قیمت"
-                                        type="number"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="200000"
                                         inputProps={{
                                             dir: "ltr"
                                         }}
+                                        placeholder="20000"
                                         InputProps={{
-                                            endAdornment: <InputAdornment position="end" sx={{pl:1, ml:1,}} >تومان</InputAdornment>
+                                            endAdornment: <InputAdornment position="end" sx={{pl:1, ml:1,}} >تومان</InputAdornment>,
+                                            inputComponent: NumberFormatCustom,
                                         }}
                                         name="price"
+                                        value={values.price}
+                                        onChange={handleChange}
 
                                     />
 

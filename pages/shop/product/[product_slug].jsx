@@ -151,7 +151,7 @@ function Product({product, similar_products, handleLoginOpen}) {
           <div className="col-lg-8 col-12 py-4 py-lg-0">
             <Typography component="h1" fontSize="20px">{product.name}</Typography>
             <div className="row">
-              <div className="col-lg-6 col-12">
+              <div className="col-lg-5 col-12">
                 {
                   current?.count > 0?
                    <>
@@ -163,7 +163,7 @@ function Product({product, similar_products, handleLoginOpen}) {
                     <ProductNotAvailable  product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} />
                 }
               </div>
-              <div className="col-lg-6 col-12 mt-4 mt-lg-0">
+              <div className="col-lg-7 col-12 mt-4 mt-lg-0">
                 <ProductVendor product={product}/>
               </div>
               <div className="col-12">

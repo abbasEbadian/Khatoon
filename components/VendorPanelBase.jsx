@@ -22,7 +22,7 @@ function VendorPanelBase({children, active, title, props }) {
         setOpenSidebar(prev => !prev)
     }
     return (
-        <div className='container_custom'>
+        <section className='container_custom'>
 
             <div className="row mx-0">
                 <div className="col-12 col-lg-3 col-xxl-2">
@@ -38,7 +38,7 @@ function VendorPanelBase({children, active, title, props }) {
             <Fab color="main" aria-label="add" size="medium" className="d-lg-none position-fixed" sx={{bottom: 16, right: 16}} onClick={handleClick}>
                 {openSidebar? <CloseIcon/> :<MenuIcon />}
             </Fab>
-        </div>
+        </section>
     )
 }
 

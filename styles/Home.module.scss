@@ -152,9 +152,10 @@
     
     .best_vendor_slide{
         position: relative;
-        >span{
+        >div{
             border: 3px solid #fff !important;
             border-radius: 8px;
+            background-color: #fff8;
         }
         p{
             display: block;

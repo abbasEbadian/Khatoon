@@ -6,8 +6,12 @@ import VendorCover from '../../components/Vendor/VendorCover'
 import * as e from '../../redux/endpoints'
 
 
-function Products({categories, products, vendor}) {
+function Products({categories, vendor}) {
     const [ page, setPage ] = React.useState() 
+    const [products, setProducts]= React.useState([])
+    React.useEffect(() =>{
+        if(vendor) setProducts(vendor.products)
+    }, [vendor, products])
   return (
     <section id="products-main" className="container_custom vendor-page">
         
@@ -26,16 +30,11 @@ function Products({categories, products, vendor}) {
 }
 export async function getServerSideProps ({query}){
     let categories = []
-    let products = []
     let vendor = {}
     let {vendor_username} = query
     try{
         const res        = await fetch(e.GET_CATEGORIES)
         categories   = await  res.json()
-
-        const res2    = await fetch(e.GET_PRODUCTS)
-        products   = await  res2.json()
-
         const res3 = await fetch(e.GET_VENDOR(vendor_username))
         vendor = await res3.json()
     }
@@ -44,9 +43,7 @@ export async function getServerSideProps ({query}){
     }
     return {
         props: {
-            categories,
-            products: products?.products || [],
-            products_length: products?.products_length || [],
+            categories: categories.flat_categories || [],
             vendor
         }
     }

@@ -11,6 +11,7 @@ import { remove } from "lodash";
 import Delete from "@mui/icons-material/Delete";
 import SetCombinationPrice from "../dialog/SetCombinationPrice";
 import SetCombinationCount from "../dialog/SetCombinationCount";
+import NumberFormat from 'react-number-format';
 
 export default function NewProductCombinations({
   rows,
@@ -33,7 +34,7 @@ export default function NewProductCombinations({
     rows.map((row) => {
 		const key = row.sort((a,b)=>a.attribute - b.attribute).map(i=>i.value).join("-")
 		const _attr = row.sort((a,b)=>a.attribute - b.attribute).map(i=>i.attribute).join("-")
-      	d[key] = data[key] && Object.keys(data[key]).length? data[key] : { price: (initCombinations?initCombinations.key?.price||0:0), count: initCombinations?initCombinations.key?.count||0: 0, attribute:_attr};
+      	d[key] = data[key] && Object.keys(data[key]).length? data[key] : { price: (initCombinations?initCombinations.key?.price||"":""), count: initCombinations?initCombinations.key?.count||0: 0, attribute:_attr};
     });
     setData({
       ...d
@@ -91,7 +92,7 @@ export default function NewProductCombinations({
               size="small"
               variant="contained"
               onClick={handleCountChanger}
-              className="mx-2"
+              
             >
               پر کردن تعداد ها با مقدار خاص
             </Button>
@@ -100,6 +101,7 @@ export default function NewProductCombinations({
               variant="contained"
               onClick={handlePriceChanger}
               color="warning"
+              className="mx-2"
             >
               پر کردن قیمت ها با مقدار خاص
             </Button>
@@ -165,13 +167,19 @@ export default function NewProductCombinations({
                   ></input>
                 </TableCell>
                 <TableCell>
-                  <input
-                    className="form-control"
+                <NumberFormat
                     value={data[key].price}
-                    onChange={(e) => handleChange(key, "price", e.target.value)}
-                    type="number"
+                    thousandSeparator={true}
+                    onValueChange={(values) => {
+                      const { formattedValue, value } = values;
+                      // formattedValue = $2,223
+                      // value ie, 2223
+                      handleChange(key, "price", value)
+                    }}
+                    className="form-control text-end"
                     disabled={!editMode}
-                  ></input>
+
+                  />
                 </TableCell>
                 <TableCell>
                   <Button
