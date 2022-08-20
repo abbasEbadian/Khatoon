@@ -12,7 +12,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import UserPanelBase from "../../../components/UserPanelBase";
 import {useSelector, useDispatch} from 'react-redux'
-
+import Select from 'react-select';
 import withAuth from '../../../redux/withAuth'
 function Wallet() {
     const user = useSelector(s=>s.auth.user)
@@ -26,7 +26,16 @@ function Wallet() {
         250000,
         300000,
         350000
-    ])
+    ]);
+
+    const opt=[
+        { value: Number(100000).toLocaleString('fa-IR'), label: Number(100000).toLocaleString('fa-IR') + " تومان" },
+        { value:  Number(150000).toLocaleString('fa-IR'), label:   Number(150000).toLocaleString('fa-IR') + " تومان" },
+        { value:  Number(200000).toLocaleString('fa-IR'), label:  Number(200000).toLocaleString('fa-IR') + " تومان" },
+        { value:   Number(250000).toLocaleString('fa-IR'), label:  Number(250000).toLocaleString('fa-IR') + " تومان" },
+        { value:   Number(300000).toLocaleString('fa-IR'), label:  Number(300000).toLocaleString('fa-IR') + " تومان" },
+        { value:   Number(350000).toLocaleString('fa-IR'), label:  Number(350000).toLocaleString('fa-IR') + " تومان" }
+    ]
     const [rows, setRows] = React.useState([])
     const columns = [
         { id: "id", label: "شناسه", minWidth: 100, align: "right" },
@@ -96,8 +105,18 @@ function Wallet() {
                         <div className="IncreaseCredit d-flex flex-column col-12 justify-content-center align-items-center py-5">
                             <span className="col-12 mb-3">میزان افزایش موجودی:</span>
                             <div className="col-4">
+
+
+                                <Select 
+                                options={opt}
+                                isSearchable={true}
+                                />
+                                <br/>
                                 <Form.Select aria-label="Default select example" value={amount} onChange={e => setAmount(e.target.value)}>
                                     <option value="0"> --مقدار مورد نظر را وارد کنید--</option>
+                                    <option value="1">
+                                    
+                                    </option>
                                     {IncreaseCredit.map((item, idx) => {
                                         return <option key={item} value={item}>{Number(item).toLocaleString('fa-IR')} {" تومان"}</option>
                                         
@@ -119,7 +138,7 @@ function Wallet() {
                             </Form.Select>
                         </div>
                         <div className="transferToPayment py-4">
-                            <Button variant="contained" color="main" >
+                            <Button variant="contained" style={{backgroundColor:"#ff676d",borderRadius:"20px"}} >
                                     انتقال به درگاه پرداخت
                             </Button>
                                 

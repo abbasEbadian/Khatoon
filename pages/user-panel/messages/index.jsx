@@ -144,7 +144,7 @@ function ChatPage() {
               </ChatContainer>    
 
               <Sidebar position="right" scrollable={false}  style={sidebarStyle}>
-                <Search placeholder="جستجو ... " className="text-start"  />
+                <Search placeholder="جستجو ... "color="warning" className="text-start" />
                 <ConversationList >      
                   {chatList?.map(chat=>{
                     return <Conversation 

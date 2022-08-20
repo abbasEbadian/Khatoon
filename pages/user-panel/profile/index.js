@@ -168,7 +168,7 @@ function Profile() {
                     </div>
                 </div>
                 <div style={{ textAlign: 'left', marginTop: '1rem' }}>
-                    <Button variant="contained" color="warning" onClick={() => setOpen(true)}>
+                    <Button variant="contained" style={{backgroundColor:"#ff676d",borderRadius:"20px"}} onClick={() => setOpen(true)}>
                         ویرایش اطلاعات
                     </Button>
                 </div>

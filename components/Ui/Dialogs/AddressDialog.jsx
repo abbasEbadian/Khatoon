@@ -149,7 +149,7 @@ function AddressDialog({open, handleClose, _address=null, create_mode=false}) {
                 <TextField sx={{ width: '100%' }}
                     id="outlined-textarea"
                     onInput={e => handleInputs(e)}
-                    label="شماره تلفن"
+                    label="شماره همراه"
                     name="mobile"
                     defaultValue={formData.mobile}
                     required
@@ -162,7 +162,7 @@ function AddressDialog({open, handleClose, _address=null, create_mode=false}) {
                 <TextField sx={{ width: '100%' }}
                     onInput={e => handleInputs(e)}
                     id="outlined-textarea"
-                    label="شماره تلفن  ثابت"
+                    label="شماره دوم"
                     name="phone"
                     defaultValue={formData.phone}
                     required

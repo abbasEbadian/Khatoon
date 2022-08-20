@@ -20,10 +20,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link'
 import {useSelector} from 'react-redux'
 import { user_imlink } from '../utils'
-
-function SidebarMenu({active, openSidebar, setOpenSidebar}) {
-
-    const user = useSelector(s=>s.auth.user)
+export default function MenuItems(active) {
+    const user = useSelector(s=>s.auth.user);
     const [colors,setColors]=useState({
         bag:"#000000",
         order:"#000000",
@@ -42,11 +40,11 @@ function SidebarMenu({active, openSidebar, setOpenSidebar}) {
     const handleMouseLeave = (prop) => (event) => {
         setColors({ ...colors, [prop]: "#000000" });
     };
-    return (
-            <aside className={"sidebar_menu" +( openSidebar ? ` ${ "open"}` : '')}>
-                <div className={"header_sidebar"}>
-                    <div className={"profile_pic mt-2"}>
-                        <Image src={user_imlink(user?.avatar_image)} alt={"profile"} width="168" height={168} objectFit="cover"/>
+  return (
+    <div>
+        <div className={"header_sidebar"} dir="rtl" style={{width:"260px"}}>
+                    <div className={"profile_pic mt-2"} style={{paddingRight:"10%"}}>
+                        <Image src={user_imlink(user?.avatar_image)} alt={"profile"} width="50" height={50} objectFit="cover"/>
                     </div>
                     <div className={"id_menu"}>
                         <div>
@@ -56,7 +54,7 @@ function SidebarMenu({active, openSidebar, setOpenSidebar}) {
                         </div>
                     </div>
                     <div className={"link_menu"}>
-                        <List
+                    <List
                             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                             component="nav"
                             aria-labelledby="nested-list-subheader"
@@ -159,8 +157,6 @@ function SidebarMenu({active, openSidebar, setOpenSidebar}) {
                     </div>
                    
                 </div>
-        </aside>
-    )
+    </div>
+  )
 }
-
-export default SidebarMenu

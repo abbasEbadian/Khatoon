@@ -65,7 +65,7 @@ function ListTicket(props) {
                                <div className={"list_ticket_show "}>
                                     {
                                        ticketTypes.map((ticketType, index)=>{
-                                            return <Button key={index} className={"all_ticket " + " col-lg-3 col-6 "} onClick={e=>changeActiveTicketKey(ticketType)}
+                                            return <Button  key={index} className={"all_ticket " + " col-lg-3 col-6 "} onClick={e=>changeActiveTicketKey(ticketType)}
                                                 sx={{borderColor: (ticketType === activeTicketKey? colors[index]+ " !important": "inherit")}}>
                                                 <div className="d-flex flex-column" >
                                                     <div className="pb-2">
@@ -91,12 +91,9 @@ function ListTicket(props) {
                                             </p>
                                         </div>
                                         <div>
-                                            <Button onClick={e=>setOpen(true)}>
-                                                <p className="btn_yellow_box">
-                                                    ثبت تیکت جدید
-                                                    <AddBoxIcon />
-                                                </p>
-
+                                            <Button  variant="contained" size="large" style={{backgroundColor:"#ff676d",borderRadius:"20px"}} onClick={e=>setOpen(true)}>
+                                                ثبت تیکت جدید
+                                                 <AddBoxIcon />
                                             </Button>
                                         </div>
                                     </div>

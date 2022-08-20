@@ -66,12 +66,9 @@ function AddressList({address, setAddress, linear=false}) {
             } 
         </div>
         <div className={"No_Address"}>
-            <Button onClick={onCreateClick} className='px-0'>
-                <p>
+            <Button onClick={onCreateClick}  variant="contained" size="large" style={{backgroundColor:"#ff676d",borderRadius:"20px"}}>
                     افزودن آدرس جدید
                     <AddBoxIcon />
-                </p>
-
             </Button>
                 
         </div> 

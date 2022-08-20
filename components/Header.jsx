@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import HeaderSearcBox from './elements/HeaderSearcBox'
 import HeaderMegaMenu from './elements/HeaderMegaMenu'
 import Image from 'next/image'
@@ -11,6 +11,8 @@ import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import useScrollingUp from './utils/ScrollHook'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import Menu from '@mui/material/Menu';
+import MenuItems from '../components/elements/MenuItems';
 import Sidebar from './Sidebar'
 import PersonIcon from '@mui/icons-material/Person';
 import {useSelector} from 'react-redux'
@@ -25,6 +27,27 @@ function Header({ handleLoginClose, handleLoginOpen, loginModalOpen }) {
         setPinHeader(!pinHeader)
     }
     const { user, authenticated } = useSelector(s=>s.auth)
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const [colors,setColors]=useState({
+        user:"grey",
+        magazine:"grey",
+        message:"grey",
+        bag:"grey"
+    });
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const handleMouseOver = (prop) => (event) => {
+        setColors({ ...colors, [prop]: "#e9696d" });
+    };
+    const handleMouseLeave = (prop) => (event) => {
+        setColors({ ...colors, [prop]: "grey" });
+    };
+    
     // <header className={isScrollingUp? "headersticky ": ? "headerhide ": "header " }>
     return (<>
         <header className={"header " + " " + (pinHeader? "stickHeader " : "") }>
@@ -39,24 +62,22 @@ function Header({ handleLoginClose, handleLoginOpen, loginModalOpen }) {
                     <HeaderSearcBox className={"header_searchbox "}/>
                     <div className={"headerActions "}>
                         
-                        {!authenticated? <a className={"headerActionsItem "} onClick={handleLoginOpen}>
+                        {!authenticated? <a className={"headerActionsItem "}onMouseOver={handleMouseOver("user")} onMouseLeave={handleMouseLeave("user")} onClick={handleLoginOpen}  style={{color:colors.user}}>
                             <FingerprintIcon/>
                             <small>ورود / ثبت نام</small>
                         </a>:
-                            <Link href="/user-panel/profile">
-                            <a className={"headerActionsItem "}>
+                            <a className={"headerActionsItem "} onMouseOver={handleMouseOver("user")} onMouseLeave={handleMouseLeave("user")}  style={{color:colors.user}} onClick={handleClick}>
                                 <PersonIcon/>
                                 <small>حساب </small>
-                            </a>
-                        </Link>}
+                            </a>}
                         <Link href="/blog">
-                            <a className={"headerActionsItem "}>
+                            <a className={"headerActionsItem "} onMouseOver={handleMouseOver("magazine")} onMouseLeave={handleMouseLeave("magazine")}  style={{color:colors.magazine}}>
                                 <ArticleIcon/>
                                 <small>مجله</small>
                             </a>
                         </Link>
                         <Link href="/user-panel/messages">
-                            <a className={"headerActionsItem "}>
+                            <a className={"headerActionsItem "} onMouseOver={handleMouseOver("message")} onMouseLeave={handleMouseLeave("message")} style={{color:colors.message}}>
                                 <Badge badgeContent={user?.unread_message_count || 0} color="error">
                                     <ChatBubbleOutlineIcon/>
                                 </Badge>
@@ -64,7 +85,7 @@ function Header({ handleLoginClose, handleLoginOpen, loginModalOpen }) {
                             </a>
                         </Link>
                         <Link href="/card">
-                            <a className={"headerActionsItem "}>
+                            <a className={"headerActionsItem "} onMouseOver={handleMouseOver("bag")} onMouseLeave={handleMouseLeave("bag")}  style={{color:colors.bag}}>
 
                                 <Badge badgeContent={basket?.products_count||0} color="error">
                                     <ShoppingBasketIcon/>
@@ -79,6 +100,45 @@ function Header({ handleLoginClose, handleLoginOpen, loginModalOpen }) {
 
             <span className={"headerDevider "}></span>
         </header>
+        <Menu
+        
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 32,
+              height: 32,
+              mr: -0.5,
+              mr: 1,
+            },
+            '&:before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              left: 14,
+              width: 20,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+       <MenuItems active="address"/>
+
+      </Menu>
         <div className={' container_custom ' + "header_bot "}>
         <div className={"headerBottom " + " " + (scrollAmount>= 90 ? "headerBottomScrolled " : "") }>
             <HeaderMegaMenu />

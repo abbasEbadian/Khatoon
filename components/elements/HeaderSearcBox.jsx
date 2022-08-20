@@ -71,6 +71,7 @@ export default function HeaderSearcBox() {
       )}
       renderInput={(params) => (
         <TextField
+          color="main"
           {...params}
           label={"جستجو " }
           helperText={name.length <3 && `${name.length}/3` || ""}
