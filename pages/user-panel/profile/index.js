@@ -8,7 +8,10 @@ import withAuth from '../../../redux/withAuth'
 import { toast } from 'react-toastify'
 import { profile, update_profile } from '../../../redux/actions'
 import {useDispatch, useSelector} from 'react-redux'
-
+import { user_imlink } from '../../../components/utils'
+import Image from 'next/image'
+import Link from 'next/link'
+import Edit from "@mui/icons-material/Edit"
 
 function Profile() {
     const dispatch = useDispatch()
@@ -152,13 +155,23 @@ function Profile() {
                             <div>{formData.fullName}</div>
                         </div>
                         <div className={"personal_information_email "}>
+                            <div className={"label "}> نام کاربری: </div>
+                            <div>{formData.username}</div>
+                        </div>
+                        <div className={"personal_information_name "}>
+                            <div className={"label "}> شماره همراه:</div>
+                            <div>{formData.mobile}</div>
+                        </div>
+                        
+                        <div className={"personal_information_email "}>
                             <div className={"label "}>پست الکترونیکی: </div>
                             <div>{formData.email}</div>
                         </div>
                         <div className={"personal_information_mobile "}>
-                            <div className={"label "}>تلفن همراه:</div>
-                            <div>{formData.mobile}</div>
+                            <div className={"label "}>درباره من:</div>
+                            <div>{formData.bio}</div>
                         </div>
+                        
                         <div className={"personal_information_province "}>
                             <div className={"label "}>استان محل سکونت: </div>
                             <div>
@@ -168,87 +181,15 @@ function Profile() {
                     </div>
                 </div>
                 <div style={{ textAlign: 'left', marginTop: '1rem' }}>
-                    <Button variant="contained" style={{backgroundColor:"#ff676d",borderRadius:"20px"}} onClick={() => setOpen(true)}>
+                   <Link href="/user-panel/edit">
+                   <Button variant="contained" style={{backgroundColor:"#ff676d",borderRadius:"20px"}}>
                         ویرایش اطلاعات
                     </Button>
+                   </Link>
+                    
                 </div>
-            <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                    className="modal-size"
-                >
-                    <form action="" noValidate onSubmit={e => handleSubmit(e)}>
-                        <Box sx={style} >
-                            <div className="col-12 py-4 ps-0">
-                                <TextField sx={{ width: '100%' }}
-
-                                    name="fullName"
-                                    error={!!errorMessage.fullName}
-                                    helperText={errorMessage.fullName}
-                                    defaultValue={formData.fullName}
-                                    label="نام و نام خانوادگی"
-                                    
-                                />
-                            </div>
-
-                            <div className="col-12 py-4 ps-0">
-                                <TextField sx={{ width: '100%' }}
-                                    
-                                    error={!!errorMessage.email}
-                                    label="پست الکترونیکی "
-                                    helperText={errorMessage.email}
-                                    name="email"
-                                    defaultValue={formData.email}
-
-                                    
-                                />
-                            </div>
-                            <div className="col-12 py-4 ps-0">
-
-                                <TextField sx={{ width: '100%' }}
-                                    
-                                    error={!!errorMessage.mobile}
-                                    label="تلفن همراه"
-                                    InputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-                                    type="number"
-                                    name="mobile"
-                                    helperText={errorMessage.mobile}
-                                    defaultValue={formData.mobile}
-
-                                    
-                                />
-                            </div>
-                            <div className="col-12 py-4 ps-0">
-                                <TextField sx={{ width: '100%' }}
-                                    select
-                                    error={!!errorMessage.province}
-                                    label="استان محل سکونت"
-                                    name="province"
-                                    helperText={errorMessage.province}
-                                    defaultValue={formData.province || 0} 
-                                    // onChange={e=>setFormData(s=>{return {...s, province: e.target.value}})}
-                                >
-                                    {
-                                        provinces?.map(item=>{
-                                            return <MenuItem key={item.id} value={item.id}> {item.name} </MenuItem>
-                                        })
-                                    }
-                                </TextField>
-                            </div>
-
-                            <div className="col-12 py-4  ">
-                                <Stack spacing={2} direction="row">
-                                    <Button variant="contained" type='submit' style={{ backgroundColor: "#E96962" }}>ثبت اطلاعات</Button>
-                                    <Button variant="contained" style={{ backgroundColor: "#123C55" }} onClick={handleClose}>بستن</Button>
-                                </Stack>
-
-                            </div>
-
-                        </Box>
-                    </form>
-                </Modal>
+           
+           
         </UserPanelBase>
             </main>
 

@@ -20,6 +20,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link'
 import {useSelector} from 'react-redux'
 import { user_imlink } from '../utils'
+import IconButton from "@mui/material/IconButton"
+import setting from '../../static/img/icon/setting-2.svg'
+
 export default function MenuItems(active) {
     const user = useSelector(s=>s.auth.user);
     const [colors,setColors]=useState({
@@ -43,16 +46,33 @@ export default function MenuItems(active) {
   return (
     <div>
         <div className={"header_sidebar"} dir="rtl" style={{width:"260px"}}>
-                    <div className={"profile_pic mt-2"} style={{paddingRight:"10%"}}>
-                        <Image src={user_imlink(user?.avatar_image)} alt={"profile"} width="50" height={50} objectFit="cover"/>
-                    </div>
-                    <div className={"id_menu"}>
+           <div className="row rows-col-3">
+           <div className="col">
+                <div className={"profile_pic mt-2"} style={{paddingRight:"10%"}}>
+                    <Image src={user_imlink(user?.avatar_image)} alt={"profile"} width="50" height={50} objectFit="cover"/>
+                </div>
+           </div>
+           <div className="col">
+                <div className={"id_menu"}>
                         <div>
                             <p>{user?.first_name}</p>
                             <p>{user?.email}</p>
                             <span></span>
                         </div>
-                    </div>
+                </div>
+           </div>
+           <div className="col pt-3">
+           <Link href="/user-panel/edit">
+                <IconButton>
+                    <Image src={setting} alt="Settings" />
+                </IconButton>
+                
+           </Link>
+           </div>   
+           </div>
+
+                   
+
                     <div className={"link_menu"}>
                     <List
                             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}

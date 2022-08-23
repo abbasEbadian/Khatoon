@@ -12,8 +12,10 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import UserPanelBase from "../../../components/UserPanelBase";
 import {useSelector, useDispatch} from 'react-redux'
-import Select from 'react-select';
 import withAuth from '../../../redux/withAuth'
+import CreatableSelect from "react-select/creatable";
+import Select from "react-select";
+
 function Wallet() {
     const user = useSelector(s=>s.auth.user)
 
@@ -27,15 +29,24 @@ function Wallet() {
         300000,
         350000
     ]);
+    const [options,setOptions]=React.useState([])
+    
+    const handleChange = React.useCallback((inputValue) =>{ 
+        setAmount(inputValue.value)
+    }, []);
+  const handleCreate = React.useCallback(
+    (inputValue) => {
+      const newValue = { value:inputValue , label: Number(inputValue).toLocaleString('fa-IR') + " تومان"  };
+      setOptions([...options, newValue]);
+      setAmount(newValue.value);
+    },
+    [options]
+  );
+  const [optionsd,setOptionsd]=React.useState([
+      {value:"درگاه زیبال",label:"درگاه زیبال"},
+      {value:"درگاه زرین پال",label:"درگاه زرین پال"},
 
-    const opt=[
-        { value: Number(100000).toLocaleString('fa-IR'), label: Number(100000).toLocaleString('fa-IR') + " تومان" },
-        { value:  Number(150000).toLocaleString('fa-IR'), label:   Number(150000).toLocaleString('fa-IR') + " تومان" },
-        { value:  Number(200000).toLocaleString('fa-IR'), label:  Number(200000).toLocaleString('fa-IR') + " تومان" },
-        { value:   Number(250000).toLocaleString('fa-IR'), label:  Number(250000).toLocaleString('fa-IR') + " تومان" },
-        { value:   Number(300000).toLocaleString('fa-IR'), label:  Number(300000).toLocaleString('fa-IR') + " تومان" },
-        { value:   Number(350000).toLocaleString('fa-IR'), label:  Number(350000).toLocaleString('fa-IR') + " تومان" }
-    ]
+  ])
     const [rows, setRows] = React.useState([])
     const columns = [
         { id: "id", label: "شناسه", minWidth: 100, align: "right" },
@@ -90,6 +101,7 @@ function Wallet() {
             setRows(ndata)
         }
         setCurrentBalance(user?.wallet?.balance || 0)
+        setOptions(IncreaseCredit.map((item)=>(  { value: item, label: Number(item).toLocaleString('fa-IR') + " تومان" } )))
     }, [user])
     return (
         <section>
@@ -102,27 +114,23 @@ function Wallet() {
                                 </p>    
                             </h5>
                         </div>
-                        <div className="IncreaseCredit d-flex flex-column col-12 justify-content-center align-items-center py-5">
+                        <div className=" d-flex flex-column col-12 justify-content-center align-items-center py-5">
                             <span className="col-12 mb-3">میزان افزایش موجودی:</span>
-                            <div className="col-4">
+                            <div className="col-4 mb-3">
 
 
-                                <Select 
-                                options={opt}
-                                isSearchable={true}
-                                />
-                                <br/>
-                                <Form.Select aria-label="Default select example" value={amount} onChange={e => setAmount(e.target.value)}>
-                                    <option value="0"> --مقدار مورد نظر را وارد کنید--</option>
-                                    <option value="1">
-                                    
-                                    </option>
-                                    {IncreaseCredit.map((item, idx) => {
-                                        return <option key={item} value={item}>{Number(item).toLocaleString('fa-IR')} {" تومان"}</option>
-                                        
-                                    })}
-                                </Form.Select>
+                                <CreatableSelect
+                                    isClearable
+                                    isRtl={true}
+                                    value={amount}
+                                    options={options}
+                                    onChange={handleChange}
+                                    onCreateOption={handleCreate}
+                                    placeholder="--مقدار مورد نظر را وارد کنید--"
+                                    formatCreateLabel={() => `افزودن`}
+                                 />                                
                             </div>
+                            <br/>
                         </div>
                         {Number(amount) > 0 ? <h4>
                             حساب کاربری شما به میزان
@@ -132,10 +140,11 @@ function Wallet() {
                             تومان شارژ خواهد شد.
                         </h4> : null}
                         <div className="payment-gateway col-3 py-4 m-auto">
-                            <Form.Select aria-label="Default select example">
-                                <option value="1">درگاه زیبال</option>
-                                <option value="1">درگاه زرین پال</option>
-                            </Form.Select>
+                        <Select 
+                        options={optionsd}
+                        defaultValue={optionsd[0]}
+                        isRtl={true}
+                        />
                         </div>
                         <div className="transferToPayment py-4">
                             <Button variant="contained" style={{backgroundColor:"#ff676d",borderRadius:"20px"}} >

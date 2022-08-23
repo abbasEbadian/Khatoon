@@ -98,22 +98,36 @@
   margin-top: 7rem;
 }
 
+.all_ticket:nth-child(1) {
+  color: #fea000;
+}
 .all_ticket:nth-child(1):hover {
   background-color: #fea000;
   color: #fff;
 }
+
+.all_ticket:nth-child(2) {
+  color: #2096fc;
+}
 .all_ticket:nth-child(2):hover {
-  background-color: #9f3fe5;
+  background-color: #2096fc;
   color: #fff;
+}
+.all_ticket:nth-child(3) {
+  color: #2fbe35;
 }
 .all_ticket:nth-child(3):hover {
   background-color: #2fbe35;
   color: #fff;
 }
+.all_ticket:nth-child(4) {
+  color: #ff1a1a;
+}
 .all_ticket:nth-child(4):hover {
-  background-color: #2096fc;
+  background-color:  #ff1a1a;
   color: #fff;
 }
+
 .all_ticket:nth-child(5):hover {
   background-color: #ff1a1a;
   color: #fff;
@@ -126,6 +140,7 @@
   border-radius: 9px !important;
   box-shadow: 0 0 10px 2px #eee !important;
 }
+
 .text_navy_blue p:first-child {
   color: red !important;
 }
@@ -218,6 +233,7 @@
   color: #707070;
   font-size: 18px;
 }
+
 
 .srch_bar .input-group-addon {
   margin: 0 0 0 -27px;

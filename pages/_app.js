@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import '../styles/master.scss'
 import 'bootstrap/dist/css/bootstrap.rtl.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/newstyle.css'
 import Header from '../components/Header'
 import BottomNavigation2 from '../components/BottomNavigation'
 import 'swiper/css';

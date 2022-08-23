@@ -12,6 +12,7 @@ function UserPanelBase({children, active, title, }) {
     const handleClick = () => {
         setOpenSidebar(prev => !prev)
     }
+    
     return (
         <div className='container_custom'>
 

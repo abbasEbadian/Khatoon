@@ -1,0 +1,30 @@
+.user-styling {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border:2px solid #FFFFFF;
+    box-shadow: 0 0 8px 3px #B8B8B8;
+    position:relative;
+  }
+  
+  .user-styling img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+  
+  span.icon-styling {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    background:#df443d;
+    border-radius:100%;
+    width:40px;
+    height:40px;
+    line-height:30px;
+    vertical-align:middle;
+    text-align:center;
+    color:#0000ff;
+    font-size:14px;
+    cursor:pointer;
+  }
