@@ -127,11 +127,9 @@ function Products() {
                     filterValueChange={filterValueChange}
 
                 />
-                <Button variant="contained" sx={{mt: 4}}>
+                <Button variant="contained" color="warning" style={{borderRadius:"20px"}} sx={{mt: 4}}>
                     <Link href="/vendor-panel/products/add-product">
-                        <a>
                             افزودن محصول جدید
-                        </a>
                     </Link>
                 </Button>
                 <div className={styles.Order_history}>

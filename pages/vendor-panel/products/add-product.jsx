@@ -274,7 +274,7 @@ function AddProduct({ attributes, attributeValues }) {
                             <div className="col-12">
                                 <FormControlLabel control={<Checkbox value={sure} onClick={e=>setSure(s=>!s)} />} label="آیا از درستی اطلاعات اطمینان دارید؟" />
 
-                                <Button color="main" variant="contained" fullWidth type="submit" disabled={!sure || loading} >
+                                <Button color="warning" style={{borderRadius:"20px"}} variant="contained" fullWidth type="submit" disabled={!sure || loading} >
                                     {loading?<Circles height={20} width={30} color="white"/>: <span>درخواست بررسی و ایجاد</span>}
                                 </Button>
                             </div>

@@ -69,7 +69,7 @@ function index({
         <Grid item xs={6}>
           <FormControl sx={{ mt: 2, borderRadius: "30px", minWidth: "100%" }}>
             <InputLabel id="demo-simple-select-helper-label">
-              نمایش بر اساس
+             مرتب کردن
             </InputLabel>
             <Select
               label="فیلترهای موجود"

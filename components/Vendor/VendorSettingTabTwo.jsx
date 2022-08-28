@@ -15,8 +15,12 @@ import VendorCover from './VendorCover';
 import {toast} from 'react-toastify'
 import { CircularProgress } from '@mui/material';
 import { useSelector } from 'react-redux';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 function Settings({goToNext=undefined, createMode=false}) {
+
 	const user = useSelector(s=>s.auth.user)
 	const [boxWebsite, setboxWebsite] = React.useState({
 		name: "https://khatoonziba.com/",
@@ -31,6 +35,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 	const [city, setCity] = React.useState(null);
 	const [cities, setCities] = React.useState([]);
 	const [loading, setLoading] = React.useState(false);
+    const [checked, setChecked] = React.useState(false);
 
 	const [initData, setInitData] = React.useState({
 		name: "",
@@ -47,6 +52,9 @@ function Settings({goToNext=undefined, createMode=false}) {
 		website_address: "",
 		telegram_address: "",
 	})
+	const handleChange = (event) => {
+		setChecked(event.target.checked);
+	  };
 	const get_cities = (province_id) => {
 		axios.get(e.GET_CITIES_BY_PROVINCE(province_id))
 			.then(res => {
@@ -174,7 +182,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 								<TextField
 									required
 									id="input-with-icon-textfield"
-									label="نام فروشگاه"
+									label="نام غرفه"
 									placeholder="دفترهای پرنیان"
 									variant="outlined"
 									fullWidth
@@ -189,7 +197,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 							<Box >
 								<TextField
 									required
-									label="پیام فروشگاه"
+									label="پیام غرفه"
 									placeholder="متن پیام غرفه‌دار اینجا نمایش داده می‌شود"
 
 									variant="outlined"
@@ -207,7 +215,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 										fullWidth
 										required
 										id="input-with-icon-textfield"
-										label="آدرس فروشگاه"
+										label="آدرس غرفه"
 										type="text"
 										autoComplete="off"
 										placeholder="parnian-books"
@@ -265,7 +273,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 							<Box sx={{ minWidth: 120 }}>
 								<TextField
 									id="outlined-multiline-static"
-									label="درباره فروشگاه"
+									label="درباره غرفه"
 									multiline
 									rows={4}
 									fullWidth
@@ -472,12 +480,15 @@ function Settings({goToNext=undefined, createMode=false}) {
 
 						</div>
 						<div className="col-12">
+						    <FormGroup className="my-3">
+                                <FormControlLabel control={<Checkbox  checked={checked} onChange={handleChange} />} label="تمامی مسئولیت های حقوقی و کیفری فروش محصولات را می پذیرم." />
+                            </FormGroup>
 							<Stack spacing={2} direction="row">
-								<Button color="main" variant="contained" fullWidth type="submit">
+								<Button color="warning" style={{borderRadius:"20px"}} variant="contained" fullWidth type="submit" disabled={!checked}>
 									{loading? <CircularProgress color="white" size={20} /> : <span>
 										{!createMode? 
-										<span>{"بروزرسانی فروشگاه"}</span>
-										:<span> {"ساخت فروشگاه"}</span>}
+										<span>{"بروزرسانی غرفه"}</span>
+										:<span> {"ساخت غرفه"}</span>}
 									</span>}
 								</Button>
 							</Stack>
@@ -488,6 +499,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 		</section>
 	)
 }
+
 
 
 

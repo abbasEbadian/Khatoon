@@ -108,7 +108,7 @@ function Upload({goToNext=undefined}) {
                             <FormGroup className='my-5'>
                                 <FormControlLabel control={<Checkbox  checked={checked} onChange={handleChange} />} label="در صورت تخلف از قوانین بارگذاری مدارک یا ارائه مدرک تقلبی، مسئولیت حقوقی و کیفری آن را می‌پذیرم." />
                             </FormGroup>
-                            <Button color="main" variant="contained" fullWidth type="submit" disabled={!checked} >
+                            <Button color="warning" style={{borderRadius:"40px"}} variant="contained" fullWidth type="submit" disabled={!checked} >
                                 {loading? <CircularProgress color="white" size={20} /> : <span>ثبت و ارسال مدارک</span>}
                             </Button>
                         </form>

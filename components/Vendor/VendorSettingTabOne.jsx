@@ -159,7 +159,7 @@ function VendorSettingTabOne({goToNext=undefined}) {
                 
 
                 <div className="col-12">
-                    <Button color="main" variant="contained" fullWidth type="submit">
+                    <Button color="warning" style={{borderRadius:"20px"}} variant="contained" fullWidth type="submit">
                         {loading? <CircularProgress color="white" size={20} /> : <span>بروزرسانی فروشگاه</span>}
                     </Button>
                 </div>

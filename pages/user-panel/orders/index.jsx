@@ -97,7 +97,7 @@ function Wallet() {
     }, [user])
 
     return (
-        <UserPanelBase active={"pendin_orders"} title="سفارش های من">
+        <UserPanelBase active={"pending_orders"} title="سفارش های من">
             <section>
                 <div className={styles.Order_history}>
                         <div className="table-info-payment py-4 p-2">

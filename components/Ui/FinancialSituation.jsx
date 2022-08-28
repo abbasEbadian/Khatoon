@@ -17,7 +17,7 @@ function FinancialSituation() {
                 <div className={"head_finicial "}>
                     <p >وضعیت مالی</p>
                     <Link href="/">
-                        <a>
+                        <a style={{color:"#e9696d"}}>
                             مشاهده بیشتر
                         </a>
                     </Link>

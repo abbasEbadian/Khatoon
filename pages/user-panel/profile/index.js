@@ -182,7 +182,7 @@ function Profile() {
                 </div>
                 <div style={{ textAlign: 'left', marginTop: '1rem' }}>
                    <Link href="/user-panel/edit">
-                   <Button variant="contained" style={{backgroundColor:"#ff676d",borderRadius:"20px"}}>
+                   <Button variant="contained" className="button-round" style={{backgroundColor:"#ff676d",borderRadius:"20px"}}>
                         ویرایش اطلاعات
                     </Button>
                    </Link>

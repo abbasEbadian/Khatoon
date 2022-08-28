@@ -10,6 +10,7 @@ import VendorSettingTabTwo from '../../../components/Vendor/VendorSettingTabTwo'
 import VendorSettingTabThree from '../../../components/Vendor/VendorSettingTabThree';
 import withAuth from '../../../redux/withAuth'
 
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -50,7 +51,7 @@ function Settings() {
         <VendorPanelBase active={"settings"}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    <Tab label="اطلاعات فروشگاه" {...a11yProps(0)} />
+                    <Tab label="اطلاعات غرفه" {...a11yProps(0)} />
                     <Tab label="اطلاعات شخصی" {...a11yProps(1)} />
                     <Tab label="مدارک" {...a11yProps(2)} />
                 </Tabs>
