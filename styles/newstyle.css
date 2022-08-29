@@ -29,3 +29,11 @@
     cursor:pointer;
   }
 
+  .myimg{
+    height: 350px !important;
+    width: 100% !important
+  }
+  
+  .filter-colors{
+    filter: brightness(0) saturate(100%) invert(38%) sepia(95%) saturate(1555%) hue-rotate(334deg) brightness(88%) contrast(98%);
+  }

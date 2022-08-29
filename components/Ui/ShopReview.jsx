@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 function ShopReview() {
 
     return (
@@ -9,7 +11,7 @@ function ShopReview() {
                     <p >غرفه فعال</p>
                     <Link href="/">
                         <a style={{color:"#e9696d"}}>
-                            مشاهده غرفه در خاتون زیبا
+                            مشاهده غرفه در خاتون زیبا <ArrowBackIosNewIcon/>
                         </a>
                     </Link>
                 </div>

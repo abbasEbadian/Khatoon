@@ -22,12 +22,8 @@ import users from '../../static/img/icon/profile-2user.svg'
 import question from '../../static/img/icon/message-question.svg'
 import shoppingcard from '../../static/img/icon/shopping-cart.svg'
 import dollar from '../../static/img/icon/dollar-square.svg'
-import discount from '../../static/img/icon/discount-shape.svg'
-
-
-
-
-
+import discountIcon from '../../static/img/icon/discount-shape.svg'
+import IconButton from "@mui/material/IconButton"
 
 function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
     const user = useSelector(s=>s.auth.user) 
@@ -47,42 +43,63 @@ function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
         peyment:"#000000",
         discount:"#000000"
     });
+    const [iconcolor,setIconcolor]=React.useState({
+        dashboard:"",
+        products:"",
+        orders:"",
+        messages:"",
+        settings:"",
+        exit:"",
+        transfer:"",
+        bestshop:"",
+        customers:"",
+        support:"",
+        shopcustomer:"",
+        peyment:"",
+        discount:""
+    });
+    
     const menu_items = [
-        {name:'dashboard',primary: "پیشخوان", ename: "/vendor-panel/dashboard",icons:menu,colorid:colors.dashboard},
-        {name:"products",primary:"محصولات", ename: "/vendor-panel/products",icons:cube,colorid:colors.products},
-        {name:"orders",primary:"سفارشات", ename: "/vendor-panel/orders",icons:Order,colorid:colors.orders},
-        {name:"messages", primary:"گفتگو با مشتریان", ename: "/vendor-panel/messages",icons:message,colorid:colors.messages},
-        {name:"transfer",primary:"روش و هزینه های ارسال", ename: "/vendor-panel/transfer",icons:truck,colorid:colors.transfer},
-        {name:"peyment",primary:"تسویه حساب و امور مالی", ename: "/signout",icons:dollar,colorid:colors.peyment},
-        {name:"bestshop",primary:"غرفه برتر", ename: "/vendor-panel/bestshop",icons:cup,colorid:colors.bestshop},
-        {name:"discount",primary:"تخفیف به هزینه", ename: "/vendor-panel/discount",icons:discount,colorid:colors.discount},
-        {name:"customers",primary:"لیست مشتریان من", ename: "/vendor-panel/customers",icons:users,colorid:colors.customers},
-        {name:"shopcustomer",primary:"تحربه خریدمشتریان", ename: "/vendor/shopcustomer",icons:shoppingcard,colorid:colors.shopcustomer},
-        {name:"support",primary:"راهنماو پشتیبانی", ename: "/vendor-panel/support",icons:question,colorid:colors.support},
-        {name:"settings",primary:"تنظیمات", ename: "/vendor-panel/settings",icons:setting,colorid:colors.settings},
-        {name:"exit",primary:"خروج", ename: "/signout",icons:Exit,colorid:colors.exit},
+        {name:'dashboard',primary: "پیشخوان", ename: "/vendor-panel/dashboard",icons:menu,colorid:colors.dashboard,iconclass:iconcolor.dashboard},
+        {name:"products",primary:"محصولات", ename: "/vendor-panel/products",icons:cube,colorid:colors.products,iconclass:iconcolor.products},
+        {name:"orders",primary:"سفارشات", ename: "/vendor-panel/orders",icons:Order,colorid:colors.orders,iconclass:iconcolor.orders},
+        {name:"transfer",primary:"روش و هزینه های ارسال", ename: "/vendor-panel/transfer",icons:truck,colorid:colors.transfer,iconclass:iconcolor.transfer},
+        {name:"peyment",primary:"تسویه حساب و امور مالی", ename: "/signout",icons:dollar,colorid:colors.peyment,iconclass:iconcolor.peyment},
+        {name:"bestshop",primary:"غرفه برتر", ename: "/vendor-panel/bestshop",icons:cup,colorid:colors.bestshop,iconclass:iconcolor.bestshop},
+        {name:"discount",primary:"تخفیف به هزینه", ename: "/vendor-panel/discount",icons:discountIcon,colorid:colors.discount,iconclass:iconcolor.discount},
+        {name:"customers",primary:"لیست مشتریان من", ename: "/vendor-panel/customers",icons:users,colorid:colors.customers,iconclass:iconcolor.customers},
+        {name:"shopcustomer",primary:"تحربه خریدمشتریان", ename: "/vendor/shopcustomer",icons:shoppingcard,colorid:colors.shopcustomer,iconclass:iconcolor.shopcustomer},
+        {name:"messages", primary:"گفتگو با مشتریان", ename: "/vendor-panel/messages",icons:message,colorid:colors.messages,iconclass:iconcolor.messages},
+        {name:"support",primary:"راهنماو پشتیبانی", ename: "/vendor-panel/support",icons:question,colorid:colors.support,iconclass:iconcolor.support},
+        {name:"settings",primary:"تنظیمات", ename: "/vendor-panel/settings",icons:setting,colorid:colors.settings,iconclass:iconcolor.settings},
+        {name:"exit",primary:"خروج", ename: "/signout",icons:Exit,colorid:colors.exit,iconclass:iconcolor.exit},
       
     ]
     const handleMouseOver = (prop) => (event) => {
         if(active!==prop){
          setColors({ ...colors, [prop]: "#e9696d" });
+         setIconcolor({...iconcolor,[prop]:"filter-colors"});
         }
        
      };
      const handleMouseLeave = (prop) => (event) => {
          setColors({ ...colors, [prop]: "#000000" });
+         setIconcolor({...iconcolor,[prop]:""});
      };
     return (
         <aside className={"sidebar_vendor " + (openSidebar ? ` ${"open "}` : '')} style={{marginBottom:"100px"}}>
-            <div className={"header_vendor_sidebar "} >
-                <div className={"header_vendor_bg"}>
-                    <Image src={user?.market?.cover ? BASE_URL + user.market.cover :  "/images/cover.png"} objectFit="cover" alt="cover" layout="fill"></Image>
-                </div>
-                <div className={"vendor_profile_pic "} >
-                    <Image src={user?.market?.image? BASE_URL + user.market.image : Profile} alt="avatar"  objectFit="cover" width={67} height={67}/>
-                </div>
-                <p className={"vendor_name "}>{user?.market?.name}</p>
-                <p className={"vendor_owner "}>{user?.first_name}</p>
+            <div className={"header_sidebar"} >
+            <div className="row row-cols-3 p-3">
+                    <div className={"profile_pic col-4"}>
+                    <Image src={user?.market?.image? BASE_URL + user.market.image : Profile} className="rounded-circle" alt="avatar" style={{width:"30px",height:"30px"}}/>
+                    </div>
+                    <div className="col-5 pt-5">
+                    <p className={"vendor_name "}>{user?.market?.name}</p>
+                    <p className={"vendor_owner "}>{user?.first_name}</p>
+                    </div>
+                    </div>
+                
+                
             </div>
             <div className={"link_menu "}>
                 <List
@@ -95,7 +112,7 @@ function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
                          <Link href={item.ename}>
                              <a style={{color:item.colorid}} onMouseOver={handleMouseOver(item.name)} onMouseLeave={handleMouseLeave(item.name)}>
                              <ListItemIcon className={"LinkIcon"}>
-                               <Image src={item.icons} alt="icon" width="20" height="20"/>
+                               <Image src={item.icons} className={item.iconclass} alt="icon" width="20" height="20"/>
                              </ListItemIcon>
                              <ListItemText  primary={item.primary} />
                              </a>

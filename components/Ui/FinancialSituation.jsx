@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
+
 function FinancialSituation() {
     const [dateFinicial, setdateFinicial] = React.useState({
         created: "2029-02-04T22:53:38.542904+03:30",
@@ -18,7 +21,7 @@ function FinancialSituation() {
                     <p >وضعیت مالی</p>
                     <Link href="/">
                         <a style={{color:"#e9696d"}}>
-                            مشاهده بیشتر
+                            مشاهده بیشتر <ArrowBackIosNewIcon/>
                         </a>
                     </Link>
                 </div>

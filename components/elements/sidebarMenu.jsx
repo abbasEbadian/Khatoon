@@ -21,7 +21,8 @@ import Link from 'next/link'
 import {useSelector} from 'react-redux'
 import { user_imlink } from '../utils'
 import { OrderedMap } from 'immutable';
-
+import IconButton from "@mui/material/IconButton"
+import setting from '../../static/img/icon/setting-2.svg'
 
 function SidebarMenu({active, openSidebar, setOpenSidebar}) {
 
@@ -37,39 +38,62 @@ function SidebarMenu({active, openSidebar, setOpenSidebar}) {
         profile:"#000000",
         exit:"#000000",
     });
+    const [iconcolor,setIconcolor]=useState({
+        wallet:"",
+        pending_orders:"",
+        favorites:"",
+        download:"",
+        address:"",
+        tickets:"",
+        managment:"",
+        profile:"",
+        exit:"",
+    });
     const menu_items=[
-        {name:"wallet",primary:"کیف پول",ename:"/user-panel/wallet", iconss:Wallet ,colorid:colors.wallet},
-        {name:"pending_orders",primary:"سفارش های من",ename:"/user-panel/orders",iconss:Order,colorid:colors.pending_orders},
-        {name:"favorites",primary:"علاقه مندی ها",ename:"/user-panel/favorites",iconss:Bookmark,colorid:colors.favorites},
-        {name:"download",primary:"دانلودها",ename:"/user-panel/downloads",iconss:Download,colorid:colors.download},
-        {name:"address",primary:"آدرس ها",ename:'/user-panel/address',iconss:Address,colorid:colors.address},
-        {name:"tickets",primary:"تیکت های پشتیبانی",ename:'/user-panel/tickets',iconss:Ticket,colorid:colors.tickets},
-        {name:"managment",primary:"مدیریت غرفه",ename:'/vendor-panel/dashboard',iconss:ManageShop,colorid:colors.managment},
-        {name:"profile",primary:"پروفایل",ename:'/user-panel/profile',iconss:userss,colorid:colors.profile},
-        {name:"exit",primary:"خروچ",ename:'/user-panel/exit',iconss:Exit,colorid:colors.exit},
+        {name:"wallet",primary:"کیف پول",ename:"/user-panel/wallet", iconss:Wallet ,colorid:colors.wallet,iconclass:iconcolor.wallet},
+        {name:"pending_orders",primary:"سفارش های من",ename:"/user-panel/orders",iconss:Order,colorid:colors.pending_orders,iconclass:iconcolor.pending_orders},
+        {name:"favorites",primary:"علاقه مندی ها",ename:"/user-panel/favorites",iconss:Bookmark,colorid:colors.favorites,iconclass:iconcolor.favorites},
+        {name:"download",primary:"دانلودها",ename:"/user-panel/downloads",iconss:Download,colorid:colors.download,iconclass:iconcolor.download},
+        {name:"address",primary:"آدرس ها",ename:'/user-panel/address',iconss:Address,colorid:colors.address,iconclass:iconcolor.address},
+        {name:"tickets",primary:"تیکت های پشتیبانی",ename:'/user-panel/tickets',iconss:Ticket,colorid:colors.tickets,iconclass:iconcolor.tickets},
+        {name:"managment",primary:"مدیریت غرفه",ename:'/vendor-panel/dashboard',iconss:ManageShop,colorid:colors.managment,iconclass:iconcolor.managment},
+        {name:"profile",primary:"پروفایل",ename:'/user-panel/profile',iconss:userss,colorid:colors.profile,iconclass:iconcolor.profile},
+        {name:"exit",primary:"خروچ",ename:'/user-panel/exit',iconss:Exit,colorid:colors.exit,iconclass:iconcolor.exit},
     ]
     const handleMouseOver = (prop) => (event) => {
        if(active!==prop){
         setColors({ ...colors, [prop]: "#e9696d" });
+        setIconcolor({...iconcolor,[prop]:"filter-colors"});
        }
       
     };
     const handleMouseLeave = (prop) => (event) => {
         setColors({ ...colors, [prop]: "#000000" });
+        setIconcolor({...iconcolor,[prop]:""});
+
     };
     return (
             <aside className={"sidebar_menu" +( openSidebar ? ` ${ "open"}` : '')}>
                 <div className={"header_sidebar"}>
-                    <div className={"profile_pic mt-2"}>
-                        <Image src={user_imlink(user?.avatar_image)} alt={"profile"} width="168" height={168} objectFit="cover"/>
+                
+                    <div className="row row-cols-3 p-3">
+                    <div className={"profile_pic col-4"}>
+                        <img src={user_imlink(user?.avatar_image)} style={{width:"20px",height:"20px"}}/>
                     </div>
-                    <div className={"id_menu"}>
-                        <div>
+                    <div className="col-5 pt-5">
                             <p>{user?.first_name}</p>
-                            <p>{user?.email}</p>
                             <span></span>
-                        </div>
                     </div>
+                    <div className="col-3 pt-4 mt-1">
+                    <Link href="/user-panel/edit">
+                            <IconButton>
+                                <Image src={setting} alt="Settings" />
+                            </IconButton>
+                            
+                    </Link>
+                    </div>
+                    </div>
+                    
                     <div className={"link_menu"}>
                         <List
                             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
@@ -81,7 +105,7 @@ function SidebarMenu({active, openSidebar, setOpenSidebar}) {
                             <Link href={item.ename}>
                                 <a style={{color:item.colorid}} onMouseOver={handleMouseOver(item.name)} onMouseLeave={handleMouseLeave(item.name)}>
                                 <ListItemIcon className={"LinkIcon"}>
-                                  <Image src={item.iconss} alt="icon" width="18" height="18"/>
+                                  <Image src={item.iconss} className={item.iconclass} alt="icon" width="18" height="18"/>
                                 </ListItemIcon>
                                 <ListItemText className="ms-4" primary={item.primary} />
                                 </a>

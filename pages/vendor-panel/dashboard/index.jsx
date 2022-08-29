@@ -4,7 +4,8 @@ import Notification from '../../../components/Ui/Notification'
 import FinancialSituation from '../../../components/Ui/FinancialSituation'
 import ShopReview from '../../../components/Ui/ShopReview'
 import withAuth from '../../../redux/withAuth'
-
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import {IconButton,Button} from '@mui/material'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,7 +18,11 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import Select from "react-select";
-
+import SlideCard from '../../../components/Ui/SlideCard';
+import Badge from '@mui/material/Badge';
+import { CircularProgressbar,buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 ChartJS.register(
   CategoryScale,
@@ -41,6 +46,7 @@ function VendorPanel() {
       },
     },
   };
+  const percentage = 70;
 
   const [bar1, setbar1] = React.useState([100, 200, 300, 400, 150, 800])
   const [bar2, setbar2] = React.useState([400, 800, 300, 100, 150, 400])
@@ -60,13 +66,10 @@ function VendorPanel() {
       <VendorPanelBase active="dashboard">
 
         <div className="row">
-          <div className="col-lg-11 col-12 h-100">
+          <div className="col-lg-9 col-12 h-100">
               <FinancialSituation />
-              <div className="p-3 col-12 card mb-4">
-                <div>
-                  <p>jjjj</p>
-                </div>
-              </div>
+              
+              <SlideCard />
               <div className='p-3 col-12 card text-right'>
                 <h6>آمار بازدید و فروش</h6>
                 <div className="col-4 p-3">
@@ -102,8 +105,31 @@ function VendorPanel() {
               </div>
               <ShopReview />
           </div>
-          <div className="col-lg-1 col-12  ">
-            
+          <div className="col-lg-3 col-12">
+            <div className="card p-3">
+                <center>
+                     <IconButton>
+                      <Badge badgeContent={4} color="main"  anchorOrigin={{vertical: 'top',horizontal: 'left',}}>
+                      <NotificationsNoneIcon fontSize="large"/>
+                      </Badge>
+                    </IconButton>
+                </center>
+                  
+            </div>
+           <div className="card mt-4 card-body">
+             <p className="card-title mb-5 text-center">تجربه خرید مشتریان</p>
+             <center>
+             <div style={{width:"100px",height:"100px"}}>
+                  <CircularProgressbar styles={buildStyles({
+                    textColor:"#df443d",
+                    pathColor: '#df443d',
+                  })} value={percentage} text={`${percentage}%`} />
+              </div>
+               </center>
+                <Button color="main" className="mt-3">
+                  بیشتر <ArrowBackIosNewIcon/>
+                </Button>
+           </div>
           </div>
         </div>
         
