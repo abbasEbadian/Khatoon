@@ -145,9 +145,9 @@ function Edit() {
         <input type="file" accept='jpg' style={{display:"none"}} ref={hiddenFileInput} onChange={handleChange}/>
         <div className='row justify-content-center'>
           <center>
-          <div class="user-styling">
-          <img src={imgsrc} class="main-profile-img"/>
-          <span class="icon-styling pt-2" onClick={handleClick}>
+          <div className="user-styling">
+          <img src={imgsrc} className="main-profile-img"/>
+          <span className="icon-styling pt-2" onClick={handleClick}>
             <CameraAlt style={{color:"#fff",width:"30px",height:"30px"}}/>
           </span>
         </div>
