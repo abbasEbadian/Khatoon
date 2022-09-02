@@ -23,56 +23,25 @@ import question from '../../static/img/icon/message-question.svg'
 import shoppingcard from '../../static/img/icon/shopping-cart.svg'
 import dollar from '../../static/img/icon/dollar-square.svg'
 import discountIcon from '../../static/img/icon/discount-shape.svg'
-import IconButton from "@mui/material/IconButton"
+import Barrier from '../utils/SVGBarrier'
 
 function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
     const user = useSelector(s=>s.auth.user) 
     
-    const [colors,setColors]=React.useState({
-        dashboard:"#000000",
-        products:"#000000",
-        orders:"#000000",
-        messages:"#000000",
-        settings:"#000000",
-        exit:"#000000",
-        transfer:"#000000",
-        bestshop:"#000000",
-        customers:"#000000",
-        support:"#000000",
-        shopcustomer:"#000000",
-        peyment:"#000000",
-        discount:"#000000"
-    });
-    const [iconcolor,setIconcolor]=React.useState({
-        dashboard:"",
-        products:"",
-        orders:"",
-        messages:"",
-        settings:"",
-        exit:"",
-        transfer:"",
-        bestshop:"",
-        customers:"",
-        support:"",
-        shopcustomer:"",
-        peyment:"",
-        discount:""
-    });
-    
     const menu_items = [
-        {name:'dashboard',primary: "پیشخوان", ename: "/vendor-panel/dashboard",icons:menu,colorid:colors.dashboard,iconclass:iconcolor.dashboard},
-        {name:"products",primary:"محصولات", ename: "/vendor-panel/products",icons:cube,colorid:colors.products,iconclass:iconcolor.products},
-        {name:"orders",primary:"سفارشات", ename: "/vendor-panel/orders",icons:Order,colorid:colors.orders,iconclass:iconcolor.orders},
-        {name:"transfer",primary:"روش و هزینه های ارسال", ename: "/vendor-panel/transfer",icons:truck,colorid:colors.transfer,iconclass:iconcolor.transfer},
-        {name:"peyment",primary:"تسویه حساب و امور مالی", ename: "/signout",icons:dollar,colorid:colors.peyment,iconclass:iconcolor.peyment},
-        {name:"bestshop",primary:"غرفه برتر", ename: "/vendor-panel/bestshop",icons:cup,colorid:colors.bestshop,iconclass:iconcolor.bestshop},
-        {name:"discount",primary:"تخفیف به هزینه", ename: "/vendor-panel/discount",icons:discountIcon,colorid:colors.discount,iconclass:iconcolor.discount},
-        {name:"customers",primary:"لیست مشتریان من", ename: "/vendor-panel/customers",icons:users,colorid:colors.customers,iconclass:iconcolor.customers},
-        {name:"shopcustomer",primary:"تحربه خریدمشتریان", ename: "/vendor/shopcustomer",icons:shoppingcard,colorid:colors.shopcustomer,iconclass:iconcolor.shopcustomer},
-        {name:"messages", primary:"گفتگو با مشتریان", ename: "/vendor-panel/messages",icons:message,colorid:colors.messages,iconclass:iconcolor.messages},
-        {name:"support",primary:"راهنماو پشتیبانی", ename: "/vendor-panel/support",icons:question,colorid:colors.support,iconclass:iconcolor.support},
-        {name:"settings",primary:"تنظیمات", ename: "/vendor-panel/settings",icons:setting,colorid:colors.settings,iconclass:iconcolor.settings},
-        {name:"exit",primary:"خروج", ename: "/signout",icons:Exit,colorid:colors.exit,iconclass:iconcolor.exit},
+        {name:'dashboard',primary: "پیشخوان", ename: "/vendor-panel/dashboard",icon:menu},
+        {name:"products",primary:"محصولات", ename: "/vendor-panel/products",icon:cube},
+        {name:"orders",primary:"سفارشات", ename: "/vendor-panel/orders",icon:Order},
+        {name:"transfer",primary:"روش و هزینه های ارسال", ename: "/vendor-panel/transfer",icon:truck},
+        {name:"peyment",primary:"تسویه حساب و امور مالی", ename: "/signout",icon:dollar},
+        {name:"bestshop",primary:"غرفه برتر", ename: "/vendor-panel/bestshop",icon:cup},
+        {name:"discount",primary:"تخفیف به هزینه", ename: "/vendor-panel/discount",icon:discountIcon,},
+        {name:"customers",primary:"لیست مشتریان من", ename: "/vendor-panel/customers",icon:users},
+        {name:"shopcustomer",primary:"تحربه خریدمشتریان", ename: "/vendor/shopcustomer",icon:shoppingcard},
+        {name:"messages", primary:"گفتگو با مشتریان", ename: "/vendor-panel/messages",icon:message},
+        {name:"support",primary:"راهنماو پشتیبانی", ename: "/vendor-panel/support",icon:question},
+        {name:"settings",primary:"تنظیمات", ename: "/vendor-panel/settings",icon:setting},
+        {name:"exit",primary:"خروج", ename: "/signout",icon:Exit},
       
     ]
     const handleMouseOver = (prop) => (event) => {
@@ -107,12 +76,12 @@ function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
                     component="nav"
                     aria-labelledby="nested-list-subheader"
                 >
-                    {menu_items.map((item)=>(
-                         <ListItemButton selected={active === item.name}>
+                    {menu_items.map((item,idx)=>(
+                         <ListItemButton selected={active === item.name} key={idx}>
                          <Link href={item.ename}>
-                             <a style={{color:item.colorid}} onMouseOver={handleMouseOver(item.name)} onMouseLeave={handleMouseLeave(item.name)}>
+                             <a className={"menu_item_new"} >
                              <ListItemIcon className={"LinkIcon"}>
-                               <Image src={item.icons}  alt="icon" width="20" height="20"/>
+                                <Barrier Component={item.icon} className={"menu_item_new"} height="20px" width="20px"/>
                              </ListItemIcon>
                              <ListItemText primary={item.primary} />
                              </a>

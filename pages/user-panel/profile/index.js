@@ -11,7 +11,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import { user_imlink } from '../../../components/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import Edit from "@mui/icons-material/Edit"
 
 function Profile() {
     const dispatch = useDispatch()

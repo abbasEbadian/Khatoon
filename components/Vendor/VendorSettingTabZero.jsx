@@ -7,11 +7,11 @@ import {Card,CardContent} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import corporateuser from '../../static/img/icon/corporate-user-icon.svg'
-import corporate from '../../static/img/icon/corporate-icon.svg'
+import Corporateuser from '../../static/img/icon/corporate-user-icon.svg'
+import Corporate from '../../static/img/icon/corporate-icon.svg'
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Image from 'next/image'
+import Barrier from '../utils/SVGBarrier'
 
 
 function VendorSettingTabZero({goToNext=undefined}) {
@@ -67,7 +67,6 @@ function VendorSettingTabZero({goToNext=undefined}) {
            setChecked(true);
            setCheckedcolor("#ffad14");
            setSelectioncolor({usual:"#ff676d",business:"#989898"});
-           setSelectionfilter({usual:"new-filter",business:"grey-filter"});
 
 
         }else if(prop==='business'){
@@ -75,8 +74,6 @@ function VendorSettingTabZero({goToNext=undefined}) {
             setChecked(true);
             setCheckedcolor("#ffad14");
             setSelectioncolor({business:"#ff676d",usual:"#989898"});
-            setSelectionfilter({business:"new-filter",usual:"grey-filter"});
-
         }
     }
     React.useEffect(() => {
@@ -135,8 +132,7 @@ function VendorSettingTabZero({goToNext=undefined}) {
               <Card style={{width:'300px',height:'300px'}} onClick={handlecardSelect('business')} >
                 <CardHeader title="فروشنده حقوقی" className="text-center" style={{backgroundColor:selectioncolor.business}}/>
                 <CardContent className='row justify-content-center'>
-                   
-                   <Image src={corporate} className={selectionfilter} width={100} height={100} />
+                <Barrier Component={Corporate} fill={selectioncolor.business} width="100px" height="100px" />
                 <div className='text-center p-3' dir='rtl'>
                 <Typography variant="p" component="p">
                         اگر دارای شرکت ثبت شده و کد اقتصادی می باشید
@@ -155,8 +151,7 @@ function VendorSettingTabZero({goToNext=undefined}) {
               <CardHeader title="فروشنده حقیقی" className="text-center" style={{backgroundColor:selectioncolor.usual}}/>
 
                 <CardContent className='row justify-content-center'>
-                  <Image src={corporateuser} className={selectionfilter} width={100} height={100} />
-                  
+                <Barrier Component={Corporateuser} fill={selectioncolor.usual} width="100px" height="100px" />                  
                   <div className='text-center p-3' dir='rtl'>
                   <Typography variant="p" component="p">
                         اگر به صورت شخصی اقدام به فروش محصولات می نمایید

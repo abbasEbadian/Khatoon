@@ -23,42 +23,21 @@ import { user_imlink } from '../utils'
 import { OrderedMap } from 'immutable';
 import IconButton from "@mui/material/IconButton"
 import setting from '../../static/img/icon/setting-2.svg'
+import Barrier from '../utils/SVGBarrier'
 
 function SidebarMenu({active, openSidebar, setOpenSidebar}) {
 
     const user = useSelector(s=>s.auth.user)
-    const [colors,setColors]=useState({
-        wallet:"#000000",
-        pending_orders:"#000000",
-        favorites:"#000000",
-        download:"#000000",
-        address:"#000000",
-        tickets:"#000000",
-        managment:"#000000",
-        profile:"#000000",
-        exit:"#000000",
-    });
-    const [iconcolor,setIconcolor]=useState({
-        wallet:"",
-        pending_orders:"",
-        favorites:"",
-        download:"",
-        address:"",
-        tickets:"",
-        managment:"",
-        profile:"",
-        exit:"",
-    });
     const menu_items=[
-        {name:"wallet",primary:"کیف پول",ename:"/user-panel/wallet", iconss:Wallet ,colorid:colors.wallet,iconclass:iconcolor.wallet},
-        {name:"pending_orders",primary:"سفارش های من",ename:"/user-panel/orders",iconss:Order,colorid:colors.pending_orders,iconclass:iconcolor.pending_orders},
-        {name:"favorites",primary:"علاقه مندی ها",ename:"/user-panel/favorites",iconss:Bookmark,colorid:colors.favorites,iconclass:iconcolor.favorites},
-        {name:"download",primary:"دانلودها",ename:"/user-panel/downloads",iconss:Download,colorid:colors.download,iconclass:iconcolor.download},
-        {name:"address",primary:"آدرس ها",ename:'/user-panel/address',iconss:Address,colorid:colors.address,iconclass:iconcolor.address},
-        {name:"tickets",primary:"تیکت های پشتیبانی",ename:'/user-panel/tickets',iconss:Ticket,colorid:colors.tickets,iconclass:iconcolor.tickets},
-        {name:"managment",primary:"مدیریت غرفه",ename:'/vendor-panel/dashboard',iconss:ManageShop,colorid:colors.managment,iconclass:iconcolor.managment},
-        {name:"profile",primary:"پروفایل",ename:'/user-panel/profile',iconss:userss,colorid:colors.profile,iconclass:iconcolor.profile},
-        {name:"exit",primary:"خروچ",ename:'/user-panel/exit',iconss:Exit,colorid:colors.exit,iconclass:iconcolor.exit},
+        {name:"wallet",primary:"کیف پول",ename:"/user-panel/wallet", icon:Wallet},
+        {name:"pending_orders",primary:"سفارش های من",ename:"/user-panel/orders",icon:Order},
+        {name:"favorites",primary:"علاقه مندی ها",ename:"/user-panel/favorites",icon:Bookmark},
+        {name:"download",primary:"دانلودها",ename:"/user-panel/downloads",icon:Download},
+        {name:"address",primary:"آدرس ها",ename:'/user-panel/address',icon:Address},
+        {name:"tickets",primary:"تیکت های پشتیبانی",ename:'/user-panel/tickets',icon:Ticket},
+        {name:"managment",primary:"مدیریت غرفه",ename:'/vendor-panel/dashboard',icon:ManageShop},
+        {name:"profile",primary:"پروفایل",ename:'/user-panel/profile',icon:userss},
+        {name:"exit",primary:"خروچ",ename:'/user-panel/exit',icon:Exit},
     ]
     const handleMouseOver = (prop) => (event) => {
        if(active!==prop){
@@ -100,12 +79,12 @@ function SidebarMenu({active, openSidebar, setOpenSidebar}) {
                             component="nav"
                             aria-labelledby="nested-list-subheader"
                         >
-                        {menu_items.map((item)=>(
-                          <ListItemButton selected={active === item.name}>
+                        {menu_items.map((item,idx)=>(
+                          <ListItemButton selected={active === item.name} key={idx}>
                             <Link href={item.ename}>
-                                <a style={{color:item.colorid}} onMouseOver={handleMouseOver(item.name)} onMouseLeave={handleMouseLeave(item.name)}>
+                                <a className={"menu_item_new"}>
                                 <ListItemIcon className={"LinkIcon"}>
-                                  <Image src={item.iconss} className={item.iconclass} alt="icon" width="18" height="18"/>
+                                    <Barrier Component={item.icon} className={"menu_item_new"} width="18px" height="18px"/>
                                 </ListItemIcon>
                                 <ListItemText className="ms-3" primary={item.primary} />
                                 </a>

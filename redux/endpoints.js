@@ -1,6 +1,6 @@
 // To manage API endpoints in a better way.
 
-// let base = "https://www.my-domain.ir"
+// let base = "http://khatooneziba.ir"
 let base = "http://192.168.1.100:9000" 
 
 // if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')

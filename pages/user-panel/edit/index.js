@@ -39,16 +39,37 @@ function Edit() {
     const [addressList, setAddressList] = useState([]);
     const [formData, setFormData] = useState({
         fullName: "",
+        username:"",
         email: "",
         mobile: "",
         province: "",
+        gender:"",
+        year:"",
+        month:"",
+        day:"",
+        station:"",
+        city:"",
+        pid:"",
+        shebanumber:"",
+        bio:"",
+        picture:""
     });
 
     const [errorMessage, setErrorMessage] = useState({
-        fullName: null,
-        email: null,
-        mobile: null,
-        province: null
+      fullName: null,
+      username:null,
+      email: null,
+      mobile: null,
+      province: null,
+      gender:null,
+      year: null,
+      month: null,
+      day: null,
+      city: null,
+      pid:null,
+      shebanumber: null,
+      bio:null,
+      picture:null
     })
 
 
@@ -59,12 +80,31 @@ function Edit() {
         const email = e.target.elements.email.value;
         const mobile = e.target.elements.mobile.value;
         const province = e.target.elements.province.value;
+        const username = e.target.elements.username.value;
+        const gender= e.target.elements.gender.value;
+        const year = e.target.elements.year.value;
+        const month = e.target.elements.month.value;
+        const day = e.target.elements.day.value;
+        const city= e.target.elements.city.value;
+        const pid = e.target.elements.pid.value;
+        const shebanumber = e.target.elements.shebanumber.value;
+        const bio = e.target.elements.bio.value;
+        const pictur=e.target.elements.picture.value;
         let error = false;
         setErrorMessage({
-            fullName: null,
-            email: null,
-            mobile: null,
-            province: null
+          fullName: null,
+          username:null,
+          email: null,
+          mobile: null,
+          gender:null,
+          province: null,
+          year: null,
+          month: null,
+          day: null,
+          city: null,
+          pid:null,
+          shebanumber: null,
+          bio:null
         })
 
 
@@ -105,7 +145,78 @@ function Edit() {
                 }
             })
         }
-
+          if (city == '') {
+              error = true;
+              setErrorMessage(prevState => {
+                  return {
+                      ...prevState,
+                      province: 'لطفا شهر خود را وارد کنید'
+                  }
+              })
+          }
+          if (gender == '') {
+            error = true;
+            setErrorMessage(prevState => {
+                return {
+                    ...prevState,
+                    province: 'لطفا جنسیت خود را وارد کنید'
+                }
+            })
+        }
+        if (year == '') {
+          error = true;
+          setErrorMessage(prevState => {
+              return {
+                  ...prevState,
+                  province: 'لطفا سال تولد خود را وارد کنید'
+              }
+          })
+      }
+        if (month == '') {
+          error = true;
+          setErrorMessage(prevState => {
+              return {
+                  ...prevState,
+                  province: 'لطفا ماه تولد خود را وارد کنید'
+              }
+          })
+      }
+      if (day == '') {
+        error = true;
+        setErrorMessage(prevState => {
+            return {
+                ...prevState,
+                province: 'لطفا روز تولد خود را وارد کنید'
+            }
+        })
+      }
+      if (pid == '') {
+        error = true;
+        setErrorMessage(prevState => {
+            return {
+                ...prevState,
+                province: 'لطفا کدملی خود را وارد کنید'
+            }
+        })
+      }
+      if (shebanumber == '') {
+        error = true;
+        setErrorMessage(prevState => {
+            return {
+                ...prevState,
+                province: 'لطفا شماره شبا خود را وارد کنید'
+            }
+        })
+      }
+      if (bio == '') {
+        error = true;
+        setErrorMessage(prevState => {
+            return {
+                ...prevState,
+                province: 'لطفا درباره من را وارد کنید'
+            }
+        })
+      }
 
 
         if (!error) {
@@ -135,18 +246,29 @@ function Edit() {
             fullName: user.first_name,
             email: user.email,
             mobile: user.mobile,
-            province: user.province_id?.id 
+            province: user.province_id?.id,
+            gender:user.gender,
+            year:user.year,
+            month:user.month,
+            day:user.day,
+            bio:user.bio,
+            shebanumber:user.shebanumber,
+            pid:user.pid,
+            username:user.username,
+            city:user.city,
+            picture:user.picture
+
         })
     }, [user])
     return (
             <main>
-        <UserPanelBase active={"edit"} title="ویرایش">
+        <UserPanelBase active={"edit"} title="ویرایش اطلاعات">
         <div className="conatiner justify-content-center ">
-        <input type="file" accept='jpg' style={{display:"none"}} ref={hiddenFileInput} onChange={handleChange}/>
+        <input type="file" defaultValue={formdata.picture} accept='jpg' style={{display:"none"}} ref={hiddenFileInput} onChange={handleChange}/>
         <div className='row justify-content-center'>
           <center>
           <div class="user-styling">
-          <img src={imgsrc} class="main-profile-img"/>
+          <Image src={imgsrc} class="main-profile-img" />
           <span class="icon-styling pt-2" onClick={handleClick}>
             <CameraAlt style={{color:"#fff",width:"30px",height:"30px"}}/>
           </span>
@@ -157,16 +279,46 @@ function Edit() {
       <div className=' mt-3 text-start' style={{width:"500px"}}>
      <div className="row row-cols-2">
      <div className='col p-2'>
-       <TextField id="outlined-basic" size='small' color="main" fullWidth label="نام و نام خانوادگی" placeholder='لطفا کامل وارد کنید' variant="outlined" />
+       <TextField 
+          size='small' color="main" fullWidth label="نام و نام خانوادگی" 
+          placeholder='لطفا کامل وارد کنید' variant="outlined" 
+          error={!!errorMessage.fullName}
+          helperText={errorMessage.fullName}
+          name="fullname"
+          defaultValue={formData.fullname}
+          />
        </div>
        <div className='col p-2'>
-       <TextField id="outlined-basic"  size='small' color="main" fullWidth label="نام کاربری" placeholder='به زبان انگلیسی وارد کنید' variant="outlined" />
+       <TextField   
+          size='small' color="main" fullWidth label="نام کاربری" 
+          placeholder='به زبان انگلیسی وارد کنید' variant="outlined" 
+          error={!!errorMessage.username}
+          helperText={errorMessage.username}
+          name="username"
+          defaultValue={formData.username}
+       />
        </div>
        <div className='col p-2'>
-       <TextField id="outlined-basic" type="email" color="main" size='small' fullWidth placeholder='name@example.com' label='رایانامه'  variant="outlined" />
+       <TextField  
+          type="email" color="main" size='small' 
+          fullWidth placeholder='name@example.com' label='رایانامه'  variant="outlined"
+          error={!!errorMessage.fullName}
+          helperText={errorMessage.fullName}
+          name="fullname"
+          defaultValue={formData.fullname}
+        />
        </div>
        <div className='col p-2'>
-       <TextField id="outlined-basic" color="main" size='small' fullWidth placeholder='09123456789' label='شماره همراه'  variant="outlined" />
+       <TextField  
+          color="main" size='small' fullWidth
+          placeholder='09123456789' label='شماره همراه'  variant="outlined" 
+          error={!!errorMessage.mobile}
+          InputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+          type="number"
+          name="mobile"
+           helperText={errorMessage.mobile}
+           defaultValue={formData.mobile} 
+          />
        </div>
      </div>
      <label className=' text-right mt-3 mb-3'>می توانید رمز عبور حساب کاربری خود را تغییر دهید</label>
@@ -182,8 +334,8 @@ function Edit() {
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
       >
-        <FormControlLabel value="female" checked={true} control={<Radio />} label="زن" />
-        <FormControlLabel value="male" control={<Radio />} label="مرد" />
+        <FormControlLabel value="female" checked={true} control={<Radio style={{color:"main"}} />} label="زن" />
+        <FormControlLabel value="male" control={<Radio style={{color:"main"}}/>} label="مرد" />
       </RadioGroup>
     </FormControl>
       </div>
@@ -192,18 +344,36 @@ function Edit() {
          </div>
        <div className='col row row-cols-3 pe-1 ps-1 pb-3'>
        <div className='col p-1 '>
-       <TextField id="outlined-basic"  size='small' color="main" fullWidth label="سال" placeholder='۱۳' variant="outlined" />
+       <TextField   
+       error={!!errorMessage.year}
+       helperText={errorMessage.year}
+       name="year"
+       defaultValue={formData.year}
+       size='small' color="main" fullWidth label="سال" variant="outlined"
+       />
 
        </div>
        <div className='col p-1'>
-       <TextField id="outlined-basic" select  color="main" size='small' fullWidth label="ماه" variant="outlined">
+       <TextField  
+          select  color="main" size='small' fullWidth label="ماه" variant="outlined"
+          error={!!errorMessage.month}
+          helperText={errorMessage.month}
+          name="month"
+          defaultValue={formData.month}
+        >
        {month.map((item)=>(
-         <MenuItem value={item} key={item}>{item}</MenuItem>
+         <MenuItem value={item.id} key={item.id}>{item}</MenuItem>
            ))}
        </TextField>
        </div>
        <div className='col p-1'>
-       <TextField id="outlined-basic" color="main"   size='small' fullWidth label="روز" variant="outlined" />
+       <TextField  
+          color="main"   size='small' fullWidth label="روز" variant="outlined" 
+          error={!!errorMessage.day}
+          helperText={errorMessage.day}
+          name="day"
+          defaultValue={formData.day}
+          />
 
        </div>
        </div>
@@ -212,31 +382,68 @@ function Edit() {
          </div>
        <div className='col row row-cols-2 pe-1 ps-1 pb-4'>
        <div className='col p-1 '>
-       <TextField id="outlined-basic"  size='small' color="main" fullWidth label="استان" variant="outlined" />
+       <TextField   
+          size='small' color="main" fullWidth label="استان" variant="outlined" select
+          error={!!errorMessage.province}
+          helperText={errorMessage.province}
+          name="province"
+          defaultValue={formData.province||0}
+        >
+          {
+          provinces?.map(item=>{
+           return <MenuItem key={item.id} value={item.id}> {item.name} </MenuItem>})
+          }
+
+        </TextField>
        </div>
        <div className='col p-1'>
-       <TextField id="outlined-basic" color="main"   size='small' fullWidth label="شهر" variant="outlined" />
+       <TextField  
+          color="main"   size='small' fullWidth label="شهر" variant="outlined" 
+          error={!!errorMessage.city}
+          helperText={errorMessage.city}
+          name="city"
+          defaultValue={formData.city}
+        />
        </div>
        </div>
 
        
        <label className=' mb-3 mt-4'> اطلاعات موردنباز برای پولدارشو را وارد کنید</label>
        <div className="mb-3">
-       <TextField  color="main"   size='small' fullWidth label="شماره ملی" variant="outlined" />
+       <TextField  
+        error={!!errorMessage.pid}
+        helperText={errorMessage.pid}
+        name="pid"
+        defaultValue={formData.pid}
+        color="main"   size='small' fullWidth label="شماره ملی" variant="outlined" 
+        />
 
        </div>
        <div className="mb-2">
-       <TextField  className="mb-2" color="main"   size='small' fullWidth label="شماره شبا" variant="outlined" />
+       <TextField  
+          className="mb-2" color="main"   size='small' fullWidth label="شماره شبا" variant="outlined"
+          error={!!errorMessage.shebanumber}
+          helperText={errorMessage.shebanumber}
+          name="shebanumber"
+          defaultValue={formData.shebanumber}
+       />
 
         </div>
 
 
        <label className='mb-3 mt-4'>چند جمله ای در مورد خودت بنویس</label>
-       <TextField color="main"   size='small' fullWidth label="درباره من" variant="outlined" multiline rows={3}/>
+       <TextField 
+          color="main"   size='small' fullWidth label="درباره من" 
+          variant="outlined" multiline rows={3}
+          error={!!errorMessage.bio}
+          helperText={errorMessage.bio}
+          name="bio"
+          defaultValue={formData.bio}
+       />
        
 
        <div className="mt-3">
-       <Button variant="contained" size="large" style={{backgroundColor:'#df443d',width:"100%",borderRadius:"50px"}}>ویرایش</Button>
+       <Button variant="contained" type="submit" size="large" style={{backgroundColor:'#df443d',width:"100%",borderRadius:"50px"}}>ویرایش</Button>
        </div>
      </div>
       </center>

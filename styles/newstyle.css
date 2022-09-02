@@ -43,3 +43,8 @@
   .new-filter{
     filter: invert(57%) sepia(13%) saturate(5839%) hue-rotate(317deg) brightness(105%) contrast(111%);
   }
+
+  svg * {
+    fill: inherit;
+    color: inherit;
+  }
