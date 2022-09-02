@@ -112,9 +112,9 @@ function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
                          <Link href={item.ename}>
                              <a style={{color:item.colorid}} onMouseOver={handleMouseOver(item.name)} onMouseLeave={handleMouseLeave(item.name)}>
                              <ListItemIcon className={"LinkIcon"}>
-                               <Image src={item.icons} className={item.iconclass} alt="icon" width="20" height="20"/>
+                               <Image src={item.icons}  alt="icon" width="20" height="20"/>
                              </ListItemIcon>
-                             <ListItemText  primary={item.primary} />
+                             <ListItemText primary={item.primary} />
                              </a>
                          </Link>
                          

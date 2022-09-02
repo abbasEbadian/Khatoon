@@ -127,7 +127,7 @@ function Products() {
                     filterValueChange={filterValueChange}
 
                 />
-                <Button variant="contained" color="warning" style={{borderRadius:"20px"}} sx={{mt: 4}}>
+                <Button variant="contained" style={{borderRadius:"20px",backgroundColor:"#ffad14"}} sx={{mt: 4}}>
                     <Link href="/vendor-panel/products/add-product">
                             افزودن محصول جدید
                     </Link>
@@ -209,7 +209,7 @@ function Products() {
                                                         <TableCell>
                                                             <Link href={"/vendor-panel/products/edit-product/" + row.id}>
                                                                 <a> 
-                                                                    <IconButton size="small" variant='outlined' color="warning"  className="mx-1">
+                                                                    <IconButton size="small" variant='outlined' style={{backgroundColor:"#ffad14"}}  className="mx-1">
                                                                         <Edit/>
                                                                     </IconButton>
                                                                 </a>

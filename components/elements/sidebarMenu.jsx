@@ -107,7 +107,7 @@ function SidebarMenu({active, openSidebar, setOpenSidebar}) {
                                 <ListItemIcon className={"LinkIcon"}>
                                   <Image src={item.iconss} className={item.iconclass} alt="icon" width="18" height="18"/>
                                 </ListItemIcon>
-                                <ListItemText className="ms-4" primary={item.primary} />
+                                <ListItemText className="ms-3" primary={item.primary} />
                                 </a>
                             </Link>
                             

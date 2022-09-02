@@ -35,7 +35,9 @@ function Settings({goToNext=undefined, createMode=false}) {
 	const [city, setCity] = React.useState(null);
 	const [cities, setCities] = React.useState([]);
 	const [loading, setLoading] = React.useState(false);
-    const [checked, setChecked] = React.useState(false);
+	const [checked, setChecked] = React.useState(false);
+	const [checkedcolor,setCheckedcolor]=React.useState("");
+
 
 	const [initData, setInitData] = React.useState({
 		name: "",
@@ -54,6 +56,11 @@ function Settings({goToNext=undefined, createMode=false}) {
 	})
 	const handleChange = (event) => {
 		setChecked(event.target.checked);
+		if(event.target.checked===true){
+			setCheckedcolor("#ffad14")
+		}else{
+			setCheckedcolor("")
+		}
 	  };
 	const get_cities = (province_id) => {
 		axios.get(e.GET_CITIES_BY_PROVINCE(province_id))
@@ -289,7 +296,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 							<Box>
 								<TextField
 									required
-									label="تلفن همراه"
+									label="شماره همراه"
 									type="phonenumber"
 									variant="outlined"
 									fullWidth
@@ -307,7 +314,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 							<Box>
 								<TextField
 									required
-									label="تلفن ثابت"
+									label="شماره دوم"
 									type="phonenumber"
 									variant="outlined"
 									fullWidth
@@ -484,7 +491,7 @@ function Settings({goToNext=undefined, createMode=false}) {
                                 <FormControlLabel control={<Checkbox  checked={checked} onChange={handleChange} />} label="تمامی مسئولیت های حقوقی و کیفری فروش محصولات را می پذیرم." />
                             </FormGroup>
 							<Stack spacing={2} direction="row">
-								<Button color="warning" style={{borderRadius:"20px"}} variant="contained" fullWidth type="submit" disabled={!checked}>
+								<Button style={{borderRadius:"20px",backgroundColor:checkedcolor}} variant="contained" fullWidth type="submit" disabled={!checked}>
 									{loading? <CircularProgress color="white" size={20} /> : <span>
 										{!createMode? 
 										<span>{"بروزرسانی غرفه"}</span>
