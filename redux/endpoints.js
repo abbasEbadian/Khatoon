@@ -1,10 +1,10 @@
 // To manage API endpoints in a better way.
 
 // let base = "https://www.my-domain.ir"
-let base = "http://192.168.43.190:9000" 
+let base = "http://khatooneziba.ir" 
 
-// if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
-//     base = "http://localhost:8000" 
+if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
+    base = "http://localhost:8000" 
 
 export const BASE_URL = base
 
