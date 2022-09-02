@@ -26,6 +26,6 @@ export function product_imlink(url){
 
 export function base_imlink(url){
   if(url)
-    return BASE_URL + url
+    return  url
   return false
 }
