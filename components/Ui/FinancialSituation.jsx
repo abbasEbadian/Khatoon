@@ -34,13 +34,13 @@ function FinancialSituation() {
                     <div className={"left_content_finicial "}>
                         {Msettlement.map((item, idx) => {
                             return (
-                                <>
+                                <React.Fragment key={idx}>
                                     <div>
                                         <span className='me-1'>{item.MoneySettlement}</span>
                                         تومان
                                     </div>
                                     <p className='text-muted'>مبلغ قابل تسویه شما</p>
-                                </>
+                                </React.Fragment>
                             )
                         })}
                     </div>

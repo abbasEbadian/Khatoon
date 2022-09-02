@@ -35,10 +35,10 @@ function HeaderMegaMenu({isActive}) {
                     </Link>
                     <div className={"headerMegaMenuList "}>
                         {activeCategory?.categories?.map(item=>{
-                            return (<>
-                                <Link key={item.id} href={'/shop/category/'+ item.url} >
+                            return (<React.Fragment  key={item.id}>
+                                <Link href={'/shop/category/'+ item.url} >
                                     <a>
-                                        <h6 key={item.id} className={"headerMegaMenuLevel1 "}>{item.persian_name} {" "} <KeyboardArrowLeftIcon/></h6>
+                                        <h6 className={"headerMegaMenuLevel1 "}>{item.persian_name} {" "} <KeyboardArrowLeftIcon/></h6>
                                     </a>
                                 </Link>
                                 {item.categories?.map(item2=>{
@@ -49,7 +49,7 @@ function HeaderMegaMenu({isActive}) {
                                 </Link>
                                      
                                 })}
-                                </>
+                                </React.Fragment>
                             )
                         })}
                     </div>

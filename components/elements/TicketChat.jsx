@@ -105,7 +105,8 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
                                 
                                 {messages&&messages.map(item=>{
                                     return (
-                                        item.user_id.is_superuser || item.user_id.is_staff?
+                                        <React.Fragment key={item.id}>
+                                          item.user_id.is_superuser || item.user_id.is_staff?
                                             <div className="outgoing_msg">
                                                 <div className="sent_msg">
                                                     <p>
@@ -132,6 +133,7 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
                                                     <span className="time_date"> {new Date(item.created).toLocaleDateString("fa")} {" "} {new Date(item.created).toLocaleTimeString("fa", {hour: "numeric", minute: "numeric"})}</span> </div>
                                               </div>
                                         </div>
+                                        </React.Fragment>
                                     )
                                 })}
                                 

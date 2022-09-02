@@ -15,7 +15,7 @@ function BottomNavItemCollapse({item}) {
     return <List sx={{px: 1}} className={"footerDialog"}>
         {
             item.categories? item.categories.map((item2, idx)=>{
-                return <><ListItem button onClick={e=>handleOpen(idx)} >
+                return <React.Fragment key={idx}><ListItem button onClick={e=>handleOpen(idx)} >
                       {item2.categories?<span>{open["cat"+idx] ? <ExpandLess /> : <ExpandMore />} </span>:undefined}                 
                       <ListItemText primary={item2.persian_name} className="text-start" sx={{fontSize: "12px"}}/>
                       {item2.categories?<ListItemText className="text-end">
@@ -31,7 +31,7 @@ function BottomNavItemCollapse({item}) {
                         <BottomNavItemCollapse item={item2}/> 
                     </Collapse>:undefined}
                     {idx+1< item.categories.length && <Divider />}
-                    </>
+                    </React.Fragment>
             }): 
             <ListItemText primary={item.persian_name} className="text-start"/>
         }

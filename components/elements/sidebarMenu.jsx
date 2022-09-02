@@ -100,8 +100,8 @@ function SidebarMenu({active, openSidebar, setOpenSidebar}) {
                             component="nav"
                             aria-labelledby="nested-list-subheader"
                         >
-                        {menu_items.map((item)=>(
-                          <ListItemButton selected={active === item.name}>
+                        {menu_items.map((item, idx)=>(
+                          <ListItemButton selected={active === item.name} key={idx}>
                             <Link href={item.ename}>
                                 <a style={{color:item.colorid}} onMouseOver={handleMouseOver(item.name)} onMouseLeave={handleMouseLeave(item.name)}>
                                 <ListItemIcon className={"LinkIcon"}>

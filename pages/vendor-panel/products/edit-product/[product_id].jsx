@@ -349,7 +349,6 @@ export async function getServerSideProps() {
     try {
         const res = await fetch(e.GET_ATTRIBUTES)
         const result = await res.json()
-        console.log(result)
         attributes = result.attributes
         attributeValues = result.attributeValues
     }

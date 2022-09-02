@@ -13,7 +13,7 @@ function Notification() {
             <div className={"notif " + ' px-2 py-1'}>
                 {textNotif.map((item, idx) => {
                     return (
-                        <>
+                        <React.Fragment key={idx}>
                             <div className={"head_notif "}>
                                 <NotificationsNoneIcon />
                                 <p>{item.textNotification}</p>
@@ -21,7 +21,7 @@ function Notification() {
                             <div>
                                 <span className={"txnotif "}>{item.titleNotification}</span>
                             </div>
-                        </>
+                        </React.Fragment>
                     )
                 })}
             </div>

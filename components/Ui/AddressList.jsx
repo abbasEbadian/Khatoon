@@ -49,7 +49,9 @@ function AddressList({address, setAddress, linear=false}) {
                             !linear?
                             <BoxAddress address={_address} key={index} seq={index+1} onClick={e=>onEditClick(_address)}/>
                             :
+                            
                             <Alert role="button" 
+                            key={index}
                                 onClick={e=>setAddress?setAddress(_address):{}}
                                 severity={"success"} 
                                 variant={_address.id === address.id? "filled": "standard" } 
