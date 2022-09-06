@@ -1,14 +1,17 @@
 import Link from 'next/link'
 import React from 'react'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-
-function ShopReview() {
+import Lamp from '../../static/img/icon/basic/lamp-on.svg'
+import Barrier from '../utils/SVGBarrier'
+function ShopReview({shopActive}) {
 
     return (
         <div className="col-md-12 col-12 card mb-4 mt-4">
             <div className={"finicial "}>
                 <div className={"head_finicial "}>
-                    <p >غرفه فعال</p>
+                    <p >
+
+                       <Barrier Component={Lamp} fill={shopActive?'green':'red'}/>{shopActive?"غرفه فعال":"غرفه غیرفعال"}</p>
                     <Link href="/">
                         <a style={{color:"#e9696d"}}>
                             مشاهده غرفه در خاتون زیبا <ArrowBackIosNewIcon/>

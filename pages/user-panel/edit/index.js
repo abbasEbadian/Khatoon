@@ -264,11 +264,11 @@ function Edit() {
             <main>
         <UserPanelBase active={"edit"} title="ویرایش اطلاعات">
         <div className="conatiner justify-content-center ">
-        <input type="file" defaultValue={formdata.picture} accept='jpg' style={{display:"none"}} ref={hiddenFileInput} onChange={handleChange}/>
+        <input type="file" accept='jpg' style={{display:"none"}} ref={hiddenFileInput} onChange={handleChange}/>
         <div className='row justify-content-center'>
           <center>
           <div class="user-styling">
-          <Image src={imgsrc} class="main-profile-img" />
+          <img src={imgsrc} class="main-profile-img" alt="profile-image" />
           <span class="icon-styling pt-2" onClick={handleClick}>
             <CameraAlt style={{color:"#fff",width:"30px",height:"30px"}}/>
           </span>

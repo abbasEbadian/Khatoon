@@ -23,7 +23,7 @@ const steps = [
     {label:' نوع غرفه'},
     {label: ' اطلاعات عمومی غرفه',},
     {label: 'اطلاعات شخصی و بانکی',},
-    {label: 'آپلود مدارک',},
+    {label: 'بارگذاری‌ مدارک',},
 ];
 
 function NewVendor() {
@@ -99,7 +99,7 @@ function NewVendor() {
                 <div className=" col-12 card_style  p-4">
                     {
                         activeStep === 0?
-                        <VendorSettingTabZero goToNext={handleNext} createMode/>
+                        <VendorSettingTabZero goToNext={handleNext} />
                         : activeStep === 1?
                             <VendorSettingTabTwo goToNext={handleNext} createMode/>
                         : activeStep === 3?

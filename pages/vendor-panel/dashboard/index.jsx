@@ -111,7 +111,7 @@ const handleClose = () => {
                   }}
                 />
               </div>
-              <ShopReview />
+              <ShopReview shopActive={true} />
           </div>
           <div className="col-lg-3 col-12">
             <div className="card p-3">

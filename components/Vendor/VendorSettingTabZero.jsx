@@ -13,50 +13,18 @@ import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Barrier from '../utils/SVGBarrier'
 
-
-function VendorSettingTabZero({goToNext=undefined}) {
+export default function VendorSettingTabZero({goToNext=undefined}) {
     const [loading, setLoading] = React.useState(false);
-    const [banks, setBanks] = React.useState([]);
     const [selection,setSelection]=React.useState("");
     const [selectioncolor,setSelectioncolor]=React.useState({
         business:"#989898",
         usual:"#989898"
     });
-    const [selectionfilter,setSelectionfilter]=React.useState({
-        business:"grey-filter",
-        usual:"grey-filter"
-    });
+   
     const [checked,setChecked]=React.useState(false);
     const [checkedcolor,setCheckedcolor]=React.useState("");
 
     
-	const [initData, setInitData] = React.useState({
-		national_code: "",
-		shaba: "",
-		card_number: "",
-        bank: 0,
-	})
-    const changeInitData = (e, key)=>{
-		setInitData(s=>{
-			return{ 
-				...s,
-				[key]: e.target?.value
-			}
-		})
-		if(key === "province")
-			get_cities(e.target.value)
-	}
-    const getInitialProps = async () => {
-		try {
-			const res = await fetch(e.GET_BANKS)
-			const result = await res.json()
-			setBanks(result || [])
-		}
-		catch (e) {
-			console.log(e)
-		}
-
-    }
     const handleRadioSelect=(event)=>{
        setSelection(event.target.value);
        setChecked(true)
@@ -76,46 +44,12 @@ function VendorSettingTabZero({goToNext=undefined}) {
             setSelectioncolor({business:"#ff676d",usual:"#989898"});
         }
     }
-    React.useEffect(() => {
-		getInitialProps()
-	}, [])
-    const submit = (event)=>{
-		if(loading) return 
-        try{
-            event.preventDefault();
-            const data = initData
-            const dform = new FormData()
-            for (let key of Object.keys(data)) {
-                dform.append(key, data[key])
-            }
-			setLoading(true)
-            axios.post(e.UPDATE_MARKET_DETAIL_BANK, dform, {
-                headers:{
-                    "Content-Type": "multipart/form-data"
-                }
-            })
-            .then(response=>{
-                const {data} = response
-                toast(data.message, {type: (data.error? "error": "success")})
-                if(!data.error)
-				if(goToNext) goToNext()
-            })
-            .catch(error=>{
-                console.log(error)
-                toast.error("خطا در ارتباط ")
-            })
-			.finally(f=>{
-				setLoading(false)
-			})
-        }
-        catch(e){console.log(e)}
-
-    }
-  return (
-    <div className="row p-4 justify-content-center">
+   
+    return (
+        <div className="row p-4 justify-content-center">
         <div className="col-xxl-6 col-12">
             {/* <VendorCover /> */}
-            <form className='row align-items-center justify-content-center text-center' onSubmit={submit}>
+            <form className='row align-items-center justify-content-center text-center'>
             <Typography variant="h5" component="h5">
                    به چه طریقی میخواهید در غرفه فعالیت کنید؟
                  </Typography>
@@ -175,7 +109,5 @@ function VendorSettingTabZero({goToNext=undefined}) {
             </form>
         </div>
     </div>
-    )   
+    )
 }
-
-export default VendorSettingTabZero
