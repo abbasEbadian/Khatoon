@@ -1,9 +1,9 @@
-import { Checkbox, FormControlLabel, FormGroup, Switch } from '@mui/material'
+import { Checkbox, FormControlLabel, FormGroup, Switch,TextField,InputAdornment } from '@mui/material'
 import React from 'react'
 import ProductSendOptions from './ProductSendOptions'
 import ProductsPriceSlider from './ProductsPriceSlider'
 import ProductScoreFilter from './ProductScoreFilter'
-
+import {Search} from '@mui/icons-material'
 function ProductsFilters({categories=[]}) {
 
     return (  
@@ -11,7 +11,24 @@ function ProductsFilters({categories=[]}) {
 
             <div className="products-filterbox filter-search">
                 <p className="filter-title mb-3">جست و جو در نتایج</p>
-                <input type="text" placeholder="نام محصول یا برند" className="form-control form-conrtrol-sm" style={{borderRadius:"20px",backgroundColor:"pink"}} />
+                <TextField
+                varient="outlined"
+                size="small"
+                color="main" 
+                placeholder="نام محصول یا برند"
+                sx={{
+                    '& legend': { display: 'none' },
+                    '& fieldset': { top: 0 ,borderRadius:20},
+                }}
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment position="start">
+                        <Search/>
+                    </InputAdornment>
+                    ),
+                }}
+                style={{width:"100%"}}
+                />
             </div>
 
             <div className="products-filterbox filter-available">

@@ -23,7 +23,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 
 	const user = useSelector(s=>s.auth.user)
 	const [boxWebsite, setboxWebsite] = React.useState({
-		name: "https://khatoonziba.com/",
+		name: "http://khatooneziba.ir/",
 		telegram: "https://t.me/",
 		instagram: "https://instagram.com/",
 		website: "https://www"
@@ -226,10 +226,10 @@ function Settings({goToNext=undefined, createMode=false}) {
 										type="text"
 										autoComplete="off"
 										placeholder="parnian-books"
-										helperText="مسیر دسترسی به فروشگاه شما در مجموعه خاتون زیبا که آدرس مستقیم ورود به فروشگاه شما خواهد بود."
+										helperText="این قرار است لینک غرفه شما یاشد پس درست واردکنید."
 										startAdornment={
 											<InputAdornment position="center">
-												{"https://khatoonziba.com/"}
+												{"http://khatooneziba.ir/"}
 											</InputAdornment>
 										}
 										variant="outlined"

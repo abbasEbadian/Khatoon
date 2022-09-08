@@ -93,7 +93,6 @@ export default function InputSlider() {
                 min={0}
                 max={10000000}
                 disableSwap
-                marks={marks}
                 isRtl={true}
                 />
         </div>
@@ -102,6 +101,8 @@ export default function InputSlider() {
                 <span>از</span>
                 <Input
                     value={value1[0]}
+                    color="main"
+                    varient="outlined"
                     onChange={handleInputChange}
                     className="form-control form-control-sm w-100 my-3"
                     inputProps={{
@@ -111,6 +112,9 @@ export default function InputSlider() {
                         type: 'number',
                         'aria-labelledby': 'input-slider',
                     }}
+                    sx={{
+                        '& fieldset': { borderRadius:20},
+                    }}
                 />
                 <span>تومان</span>
             </div>
@@ -118,6 +122,8 @@ export default function InputSlider() {
                 <span>تا</span>
                 <Input
                     value={value1[1]}
+                    color="main"
+
                     onChange={e=>handleInputChange(e, 1)}
                     className="form-control form-control-sm w-100 my-3"
                     inputProps={{
