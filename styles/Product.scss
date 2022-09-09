@@ -1,11 +1,11 @@
 #product-page{
     .product-toolbar{
         border-radius: 32px;
-        background-color: #eee;
-        width: 200px;
+        background-color: #ffcbcf;
+        width: 100%;
         padding-block: 8px;
         *{
-            color: #888;
+            color: #123c55;
             cursor: pointer;
         } 
     }
@@ -131,5 +131,22 @@
     .MuiBreadcrumbs-li{
         font-size: 11px;
     }
+    .sticky-position{
+        top:0;
+        flex:1;
+        position: sticky;
+    }
     
+}
+
+.vertical-line {
+    border-left: 1.5px solid rgb(114, 114, 114);
+    margin: 2px;
+}
+div.rotdown{
+  transform: translateY(-55%) rotate(180deg);
+
+ }
+ div.rotup{
+    transform: translateY(-55%) rotate(-180deg);
 }

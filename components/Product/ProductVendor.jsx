@@ -1,7 +1,7 @@
-import { Box, Link, Typography } from '@mui/material'
+import { Box, Link, Typography,Button } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
-import { market_imlink } from '../utils'
+import { market_imlink } from '../utils';
 
 function ProductVendor({product}) {
     const vendor = {
@@ -39,21 +39,11 @@ function ProductVendor({product}) {
             </div>:null}
 
             <div className="col-12 row mt-4">
-                <div className="col-3 flex-column d-flex align-items-center">
-                    <Image src="/images/product/facility1.png" width="32" height="32" alt="fac"/>
-                    <span className="facility">پرداخت در محل</span>
+                <div className='col-6'>
+                    
                 </div>
-                <div className="col-3 flex-column d-flex align-items-center">
-                    <Image src="/images/product/facility2.png" width="32" height="32" alt="fac"/>
-                    <span className="facility">ارسال سریع</span>
-                </div>
-                <div className="col-3 flex-column d-flex align-items-center">
-                    <Image src="/images/product/facility3.png" width="32" height="32" alt="fac"/>
-                    <span className="facility">پشتیبانی آنلاین</span>
-                </div>
-                <div className="col-3 flex-column d-flex align-items-center">
-                    <Image src="/images/product/facility4.png" width="32" height="32" alt="fac"/>
-                    <span className="facility">ضمانت تحویل</span>
+                <div className='col-6'>
+
                 </div>
             </div>
         </div>

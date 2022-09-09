@@ -38,10 +38,10 @@ function AddToCardButton({template_id, large=false, handleLoginOpen}) {
     })
   }
   return (
-    <div className="cursor-pointer" role="button">
+    <div className="cursor-pointer my-3 mt-3" role="button">
         {
           large?
-            <Button color="success" variant="contained" onClick={_addToCart} disabled={loading} sx={{minWidth: "150px"}}>{
+            <Button style={{backgroundColor:'#df443d',borderRadius:"50px",width:"100%"}} size="large" variant="contained" onClick={_addToCart} disabled={loading}>{
               loading?
               <Circles color="white" width="22" height="22"/>
               :<span>{"افزودن به سبد خرید"}</span>

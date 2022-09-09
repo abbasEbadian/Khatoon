@@ -13,6 +13,8 @@ import {useDispatch, useSelector  } from 'react-redux';
 import * as e from '../../../redux/endpoints'
 import AddToCardButton from '../../../components/elements/AddToCardButton'
 import Breadcrumb from '../../../components/Breadcrumb'
+import ProductGuarantee from '../../../components/Product/ProductGuarantee'
+import ProductSend from '../../../components/Product/ProductSend'
 
 function Product({product, similar_products, handleLoginOpen}) {
   
@@ -142,43 +144,54 @@ function Product({product, similar_products, handleLoginOpen}) {
   return (
     <section id="product-page" className="container_custom">
       <Breadcrumb product={product} />
-      <div className="product-main card_style">
-        <ProductToolbar product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} isFavorite={isFavorite}/>
-        <div className="row">
-          <div className="col-lg-4 col-12">
-            <ProductSwiper product={product}/>
-          </div>
-          <div className="col-lg-8 col-12 py-4 py-lg-0">
-            <Typography component="h1" fontSize="20px">{product.name}</Typography>
-            <div className="row">
-              <div className="col-lg-5 col-12">
-                {
-                  current?.count > 0?
-                   <>
-                   <Typography fontSize="40px" className="text-success d-inline-block py-5">{Number(current.price).toLocaleString("fa")} </Typography> <span>{" تومان"}</span>
-                  <br />
-                    <AddToCardButton template_id={product?.id} large handleLoginOpen={handleLoginOpen}/>
-                   </> 
-                  :
-                    <ProductNotAvailable  product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} />
-                }
-              </div>
-              <div className="col-lg-7 col-12 mt-4 mt-lg-0">
-                <ProductVendor product={product}/>
-              </div>
-              <div className="col-12">
-                <ProductSpecs product={product} current={current} setCurrent={setCurrent}/>
-              </div>
+
+      <div className="product-main row">
+        <div className='col-lg-8 col-12'>
+         <div className='card mx-1 my-1 row'>
+        <div className="row row-cols-2">
+            <div className="col-lg-6 col-12 p-3 my-2">
+                <ProductSwiper product={product}/>
             </div>
-          </div>
+            <div className="col-lg-3 col-12 p-3  my-2">
+               <ProductToolbar product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} isFavorite={isFavorite}/>
+                
+                <Typography component="h1" fontSize="20px">{product.name}</Typography>
+              
+            </div>
+            <div classNmae="col-lg-9 col-12 my-5">
+                 <ProductSpecs product={product} current={current} setCurrent={setCurrent}/>
+            </div>
         </div>
-      </div>
+          
+        </div>
+        </div>
+        <div className='col-lg-4 col-12 position-sticky'>
+        <div className='card my-1 '>   
+          <ProductVendor product={product}/>    
+          <ProductSend product={product} current={current}/>   
+           <div className="container py-4 text-center">
+           {
+                current?.count > 0?
+                <>
+                <Typography fontSize="30px" className="d-inline-block">{Number(current.price).toLocaleString("fa")} </Typography> <span>{" تومان"}</span>
+                <br />
+                <AddToCardButton template_id={product?.id} large handleLoginOpen={handleLoginOpen}/>
+                </> 
+                :
+                <ProductNotAvailable  product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} />
+            }
+
+           </div>
+           <ProductGuarantee/>
+          </div>
+        
+        </div>
         <div className='row'>
           <div className='col-12 mt-5'>
             <BoxItems boxClasses="my-5" items={ProductSuggested} title={'محصولات مشابه'} />
           </div>
         </div>
-      
+      </div>
     </section>
   )
 }

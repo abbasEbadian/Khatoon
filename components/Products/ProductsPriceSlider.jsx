@@ -113,7 +113,8 @@ export default function InputSlider() {
                         'aria-labelledby': 'input-slider',
                     }}
                     sx={{
-                        '& fieldset': { borderRadius:20},
+                        '& legend': { display: 'none' },
+                        '& fieldset': { top: 0 ,borderRadius:20},
                     }}
                 />
                 <span>تومان</span>
@@ -123,7 +124,11 @@ export default function InputSlider() {
                 <Input
                     value={value1[1]}
                     color="main"
-
+                    varient="outlined"
+                    sx={{
+                        '& legend': { display: 'none' },
+                        '& fieldset': { top: 0 ,borderRadius:20},
+                    }}
                     onChange={e=>handleInputChange(e, 1)}
                     className="form-control form-control-sm w-100 my-3"
                     inputProps={{

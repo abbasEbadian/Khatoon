@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Profile from '../../static/img/icon/memoji.png'
 import Order from '../../static/img/icon/basic/send-sqaure-2.svg'
 import Wallet from '../../static/img/icon/basic/wallet-2.svg'
-import Favorites from '../../static/img/icon/basic/star-1.svg'
-import Download from '../../static/img/icon/basic/arrow-square-down.svg'
+import Favorites from '../../static/img/icon/basic/heart.svg'
+import Download from '../../static/img/icon/basic/arrow-down-2.svg'
 import Address from '../../static/img/icon/basic/map.svg'
 import Ticket from '../../static/img/icon/basic/messages-2.svg'
 import ManageShop from '../../static/img/icon/basic/shop.svg'
@@ -16,13 +16,9 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import PersonIcon from '@mui/icons-material/Person';
-import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { user_imlink } from '../utils'
-import IconButton from "@mui/material/IconButton"
 
 
 
