@@ -69,6 +69,8 @@ function Profile() {
                         </div>
                     </div>
                 </div>
+
+                
                 <div style={{ textAlign: 'left', marginTop: '1rem' }}>
                    <Link href="/user-panel/edit">
                    <Button 

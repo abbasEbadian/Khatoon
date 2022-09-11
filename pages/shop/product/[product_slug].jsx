@@ -15,6 +15,8 @@ import AddToCardButton from '../../../components/elements/AddToCardButton'
 import Breadcrumb from '../../../components/Breadcrumb'
 import ProductGuarantee from '../../../components/Product/ProductGuarantee'
 import ProductSend from '../../../components/Product/ProductSend'
+import ProductComments from '../../../components/Product/ProductComments'
+
 
 function Product({product, similar_products, handleLoginOpen}) {
   
@@ -147,26 +149,37 @@ function Product({product, similar_products, handleLoginOpen}) {
 
       <div className="product-main row">
         <div className='col-lg-8 col-12'>
-         <div className='card mx-1 my-1 row'>
-        <div className="row row-cols-2">
-            <div className="col-lg-6 col-12 p-3 my-2">
+         <div className='card mx-1 my-1'>
+        <div className="row">
+            <div className="col-lg-7 col-12 px-4 py-4">
                 <ProductSwiper product={product}/>
             </div>
-            <div className="col-lg-3 col-12 p-3  my-2">
-               <ProductToolbar product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} isFavorite={isFavorite}/>
-                
-                <Typography component="h1" fontSize="20px">{product.name}</Typography>
-              
+            <div className="col-lg-5 col-12 py-4 px-2">
+            <div className="px-5">
+            <ProductToolbar product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} isFavorite={isFavorite}/>
             </div>
-            <div classNmae="col-lg-9 col-12 my-5">
+            <div className="px-3">
+            <Typography component="h1" fontSize="20px">{product.name}</Typography>
+            </div>    
+            <div className='px-3'>
+                         
+            </div>  
+            </div>
+            <div classNmae="col-lg-12 col-12 my-5">
                  <ProductSpecs product={product} current={current} setCurrent={setCurrent}/>
+                 <br/>
+                 <br/>
+            </div>
+            <div classNmae="col-lg-12 col-12 my-5" id="comments">
+
+                 <ProductComments product={product} current={current} setCurrent={setCurrent}/>
             </div>
         </div>
           
         </div>
         </div>
-        <div className='col-lg-4 col-12 position-sticky'>
-        <div className='card my-1 '>   
+        <div className='col-lg-4 col-12'>
+        <div className='card my-1 sticky-top' style={{top:'9%'}}>   
           <ProductVendor product={product}/>    
           <ProductSend product={product} current={current}/>   
            <div className="container py-4 text-center">

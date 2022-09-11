@@ -24,6 +24,7 @@ import dollar from '../../static/img/icon/basic/money.svg'
 import discountIcon from '../../static/img/icon/basic/discount-circle.svg'
 import gift from '../../static/img/icon/basic/gift.svg'
 import Barrier from '../utils/SVGBarrier'
+import userprofile from '../../static/img/icon/basic/user-square.svg'
 
 function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
     const user = useSelector(s=>s.auth.user);
@@ -40,10 +41,12 @@ function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
         customers:"menu_item_selection",
         shhopcustomer:"menu_item_selection",
         magicmoney:"menu_item_selection",
-        customermessage:"menu_item_selection",
+        messages:"menu_item_selection",
         support:"menu_item_selection",
         settings:"menu_item_selection",
         exit:"menu_item_selection",
+        profile:"menu_item_selection",
+
     });
 
     const menu_items = [
@@ -51,15 +54,16 @@ function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
         {name:"products",primary:"محصولات", ename: "/vendor-panel/products",icon:cube,color:colorClass.products},
         {name:"orders",primary:"سفارشات", ename: "/vendor-panel/orders",icon:Order,color:colorClass.orders},
         {name:"transfer",primary:"روش و هزینه‌های‌ ارسال", ename: "/vendor-panel/transfer",icon:truck,color:colorClass.transfer},
-        {name:"peyment",primary:"تسویه‌حساب و امور‌مالی", ename: "/signout",icon:dollar,color:colorClass.peyment},
+        {name:"peyment",primary:"تسویه‌حساب و امور‌مالی", ename: "/vendor-panel/peyment",icon:dollar,color:colorClass.peyment},
         {name:"bestshop",primary:"غرفه‌برتر", ename: "/vendor-panel/bestshop",icon:cup,color:colorClass.bestshop},
         {name:"discount",primary:"تخفیف به هزینه", ename: "/vendor-panel/discount",icon:discountIcon,color:colorClass.discount},
         {name:"customers",primary:"لیست مشتریان من", ename: "/vendor-panel/customers",icon:users,color:colorClass.customers},
         {name:"shopcustomer",primary:"تحربه خرید‌مشتریان", ename: "/vendor/shopcustomer",icon:shoppingcard,color:colorClass.shhopcustomer},
         {name:"magicmoney", primary:"پوادارشو", ename: "/vendor-panel/magicmoney",icon:gift,color:colorClass.magicmoney},
-        {name:"customermessage", primary:"گفتگو با مشتریان", ename: "/vendor-panel/customermessage",icon:message,color:colorClass.customermessage},
+        {name:"messages", primary:"گفتگو با مشتریان", ename: "/vendor-panel/messages",icon:message,color:colorClass.messages},
         {name:"support",primary:"راهنماو پشتیبانی", ename: "/vendor-panel/support",icon:question,color:colorClass.support},
         {name:"settings",primary:"تنظیمات", ename: "/vendor-panel/settings",icon:setting,color:colorClass.settings},
+        {name:"profile",primary:"پروفایل",ename:'/user-panel/profile',icon:userprofile,color:colorClass.profile},
         {name:"exit",primary:"خروج", ename: "/signout",icon:Exit,color:colorClass.exit},
       
     ]
