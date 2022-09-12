@@ -334,8 +334,8 @@ function Edit() {
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
       >
-        <FormControlLabel value="female" checked={true} control={<Radio style={{color:"main"}} />} label="زن" />
-        <FormControlLabel value="male" control={<Radio style={{color:"main"}}/>} label="مرد" />
+        <FormControlLabel value="female" checked={true} control={<Radio color="main" />} label="زن" />
+        <FormControlLabel value="male" control={<Radio color="main"/>} label="مرد" />
       </RadioGroup>
     </FormControl>
       </div>
