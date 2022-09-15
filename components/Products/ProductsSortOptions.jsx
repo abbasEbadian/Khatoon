@@ -3,16 +3,25 @@ import React from 'react'
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { FormControl, MenuItem, Select } from '@mui/material';
-
+import Barrier from '../utils/SVGBarrier';
+import SortIcon from '../../static/img/icon/sort.svg'
 export default function ProductsSortOptions() {
     const options = [
+        {
+            name: "مرتبط‌بودن",
+            value: "category"
+        },
+        {
+            name: "پربازدیدترین",
+            value: "-view_count"
+        },
         {
             name: "جدیدترین",
             value: "-id"
         },
         {
-            name: "قدیمی ترین",
-            value: "id"
+            name: "پرفروش ترین",
+            value: "-sales_count"
         },
         {
             name: "ارزان ترین",
@@ -22,13 +31,14 @@ export default function ProductsSortOptions() {
             name: "گران ترین",
             value: "-price"
         },
+        
         {
-            name: "پرفروش ترین",
-            value: "-sales_count"
+            name: "سریع‌ترین ارسال",
+            value: "send_time"
         },
         {
-            name: "کمفروش ترین",
-            value: "sales_count"
+            name: "پیشنهاد خریداران",
+            value: "suggestion"
         },
     ]
     const handleAlignment = (event, newAlignment) => {
@@ -38,7 +48,7 @@ export default function ProductsSortOptions() {
 
   return (
     <div className="products-filterbox products-sortby py-2">
-        مرتب سازی بر اساس:
+        <Barrier  Component={SortIcon} height="20px" width="20px" className="mx-2"/>   مرتب سازی  :
         <div className="d-none d-lg-block">
             <ToggleButtonGroup
                 value={alignment}

@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
+import {TextField} from '@mui/material'
 
 const Input = styled(MuiInput)`
   width: 42px;
@@ -93,38 +94,49 @@ export default function InputSlider() {
                 min={0}
                 max={10000000}
                 disableSwap
-                marks={marks}
                 isRtl={true}
                 />
         </div>
         <div className="row price-limit">
             <div className="col d-flex flex-column align-items-center">
                 <span>از</span>
-                <Input
+                <TextField
                     value={value1[0]}
+                    color="main"
+                    varient="outlined"
+                    type='number'
                     onChange={handleInputChange}
                     className="form-control form-control-sm w-100 my-3"
                     inputProps={{
                         step: 100000,
                         min: 0,
                         max: 10000000,
-                        type: 'number',
                         'aria-labelledby': 'input-slider',
+                    }}
+                    sx={{
+                        '& legend': { display: 'none' },
+                        '& fieldset': { top: 0 ,borderRadius:20},
                     }}
                 />
                 <span>تومان</span>
             </div>
             <div className="col d-flex flex-column align-items-center">
                 <span>تا</span>
-                <Input
+                <TextField
                     value={value1[1]}
+                    color="main"
+                    varient="outlined"
+                    type='number'
+                    sx={{
+                        '& legend': { display: 'none' },
+                        '& fieldset': { top: 0 ,borderRadius:20},
+                    }}
                     onChange={e=>handleInputChange(e, 1)}
                     className="form-control form-control-sm w-100 my-3"
                     inputProps={{
                         step: 100000,
                         min: 0,
                         max: 10000000,
-                        type: 'number',
                         'aria-labelledby': 'input-slider',
                     }}
                 />

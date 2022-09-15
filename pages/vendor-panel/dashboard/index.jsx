@@ -5,7 +5,7 @@ import FinancialSituation from '../../../components/Ui/FinancialSituation'
 import ShopReview from '../../../components/Ui/ShopReview'
 import withAuth from '../../../redux/withAuth'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import {IconButton,Button} from '@mui/material'
+import {IconButton,Button,Menu, MenuItem} from '@mui/material'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -61,6 +61,14 @@ function VendorPanel() {
     {value:60,label:" 2 ماه اخیر"},
 
   ])
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+};
+const handleClose = () => {
+    setAnchorEl(null);
+};
   return (
     <div className=''>
       <VendorPanelBase active="dashboard">
@@ -103,18 +111,39 @@ function VendorPanel() {
                   }}
                 />
               </div>
-              <ShopReview />
+              <ShopReview shopActive={true} />
           </div>
           <div className="col-lg-3 col-12">
             <div className="card p-3">
                 <center>
-                     <IconButton>
+                     <IconButton onClick={handleClick}>
                       <Badge badgeContent={4} color="main"  anchorOrigin={{vertical: 'top',horizontal: 'left',}}>
                       <NotificationsNoneIcon fontSize="large"/>
                       </Badge>
                     </IconButton>
                 </center>
-                  
+                <Menu
+         id="simple-menu"
+         anchorEl={anchorEl}
+         keepMounted
+         open={open}
+         onClose={handleClose}
+         PaperProps={{  
+          style: {  
+            width: 300,  
+          },  
+       }} 
+       >
+       <MenuItem>
+       <Notification/>
+       </MenuItem>
+       <MenuItem>
+       <Notification/>
+       </MenuItem>
+       <MenuItem>
+       <Notification/>
+       </MenuItem>
+      </Menu>    
             </div>
            <div className="card mt-4 card-body">
              <p className="card-title mb-5 text-center">تجربه خرید مشتریان</p>

@@ -11,7 +11,8 @@ import {
   FilterAlt,
   Sort,
 } from "@mui/icons-material";
-import { Grid } from "@mui/material";
+import { Grid, Button,Menu } from "@mui/material";
+import FilterDropdown from '../FilterDropdown';
 
 function index({
   searchValue,
@@ -22,9 +23,19 @@ function index({
   sortValueChange,
 
 }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+};
+const handleClose = () => {
+    setAnchorEl(null);
+};
   return (
     <>
-      <Paper
+     <Grid container spacing={3}>
+     <Grid item xs={6}>
+     <Paper
         sx={{
           p: "2px 4px",
 
@@ -35,6 +46,7 @@ function index({
       > 
         <InputBase
           sx={{ ml: 1, flex: 1 }}
+          className="h-100"
           placeholder="جست و جو در محصولات"
           inputProps={{ "aria-label": "جست و جو در محصولات" }}
           value={searchValue}
@@ -44,30 +56,23 @@ function index({
           <SearchIcon />
         </IconButton>
       </Paper>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <FormControl sx={{ mt: 2, borderRadius: "30px", minWidth: "100%" }}>
-            <InputLabel id="demo-simple-select-helper-label">
-              فیلترهای موجود
-            </InputLabel>
-            <Select
-              label="فیلترهای موجود"
-              IconComponent={() => (
-                <FilterAlt sx={{ mx: 2, borderRadius: "30px" }} />
-              )}
-              className="bg-white"
-              value={filterValue}
-              onChange={filterValueChange}
-            >
-              <MenuItem value={"preperation_time"}>زمان آماده سازی صعودی</MenuItem>
-              <MenuItem value={"-preperation_time"}>زمان آماده سازی نزولی</MenuItem>
-              <MenuItem value={"_count"}>موجودی صعودی</MenuItem>
-              <MenuItem value={"-_count"}>موجودی نزولی</MenuItem>
-            </Select>
-          </FormControl>
+     </Grid>
+        <Grid item xs={3}>
+         <Button variant="outlined" onClick={handleClick} size="large"style={{height:'100%',width:"100%"}} startIcon={<FilterAlt />}>
+            فیلتر کردن
+          </Button>
+         <Menu
+         id="simple-menu"
+         anchorEl={anchorEl}
+         keepMounted
+         open={open}
+         onClose={handleClose}
+       >
+      <FilterDropdown/>
+      </Menu>
         </Grid>
-        <Grid item xs={6}>
-          <FormControl sx={{ mt: 2, borderRadius: "30px", minWidth: "100%" }}>
+        <Grid item xs={3}>
+          <FormControl sx={{ borderRadius: "30px", minWidth: "100%" }}>
             <InputLabel id="demo-simple-select-helper-label">
              مرتب کردن
             </InputLabel>

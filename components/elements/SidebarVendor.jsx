@@ -7,84 +7,74 @@ import ListItemText from '@mui/material/ListItemText';
 import Link from 'next/link'
 import {useSelector} from 'react-redux'
 import { BASE_URL } from '../../redux/endpoints';
-import Order from '../../static/img/icon/Vector.svg'
-import Wallet from '../../static/img/icon/Shape.svg'
-import menu from '../../static/img/icon/home-trend-up.svg';
-import message from '../../static/img/icon/message-text-1.svg'
-import cube from '../../static/img/icon/3dcube.svg'
-import Exit from '../../static/img/icon/Exit.svg'
-import { Fab } from '@mui/material'
+
+import Order from '../../static/img/icon/basic/send-sqaure-2.svg'
+import menu from '../../static/img/icon/basic/home-trend-up.svg';
+import message from '../../static/img/icon/basic/message-text-1.svg'
+import cube from '../../static/img/icon/basic/3dcube.svg'
+import Exit from '../../static/img/icon/basic/logout-1.svg'
 import ListItemIcon from '@mui/material/ListItemIcon';
-import setting from '../../static/img/icon/setting-2.svg'
-import truck from '../../static/img/icon/truck-tick.svg'
-import cup from '../../static/img/icon/cup.svg'
-import users from '../../static/img/icon/profile-2user.svg'
-import question from '../../static/img/icon/message-question.svg'
-import shoppingcard from '../../static/img/icon/shopping-cart.svg'
-import dollar from '../../static/img/icon/dollar-square.svg'
-import discountIcon from '../../static/img/icon/discount-shape.svg'
-import IconButton from "@mui/material/IconButton"
+import setting from '../../static/img/icon/basic/setting-2.svg'
+import truck from '../../static/img/icon/basic/truck-tick.svg'
+import cup from '../../static/img/icon/basic/cup.svg'
+import users from '../../static/img/icon/basic/profile-2user.svg'
+import question from '../../static/img/icon/basic/message-question.svg'
+import shoppingcard from '../../static/img/icon/basic/shopping-cart.svg'
+import dollar from '../../static/img/icon/basic/money.svg'
+import discountIcon from '../../static/img/icon/basic/discount-circle.svg'
+import gift from '../../static/img/icon/basic/gift.svg'
+import Barrier from '../utils/SVGBarrier'
+import userprofile from '../../static/img/icon/basic/user-square.svg'
 
 function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
-    const user = useSelector(s=>s.auth.user) 
-    
-    const [colors,setColors]=React.useState({
-        dashboard:"#000000",
-        products:"#000000",
-        orders:"#000000",
-        messages:"#000000",
-        settings:"#000000",
-        exit:"#000000",
-        transfer:"#000000",
-        bestshop:"#000000",
-        customers:"#000000",
-        support:"#000000",
-        shopcustomer:"#000000",
-        peyment:"#000000",
-        discount:"#000000"
+    const user = useSelector(s=>s.auth.user);
+    const selected_class="menu_item_selected";
+
+    const [colorClass, setcolorClass] = React.useState({
+        dashboard:"menu_item_selection",
+        products:"menu_item_selection",
+        orders:"menu_item_selection",
+        transfer:"menu_item_selection",
+        peyment:"menu_item_selection",
+        bestshop:"menu_item_selection",
+        discount:"menu_item_selection",
+        customers:"menu_item_selection",
+        shhopcustomer:"menu_item_selection",
+        magicmoney:"menu_item_selection",
+        messages:"menu_item_selection",
+        support:"menu_item_selection",
+        settings:"menu_item_selection",
+        exit:"menu_item_selection",
+        profile:"menu_item_selection",
+
     });
-    const [iconcolor,setIconcolor]=React.useState({
-        dashboard:"",
-        products:"",
-        orders:"",
-        messages:"",
-        settings:"",
-        exit:"",
-        transfer:"",
-        bestshop:"",
-        customers:"",
-        support:"",
-        shopcustomer:"",
-        peyment:"",
-        discount:""
-    });
-    
+
     const menu_items = [
-        {name:'dashboard',primary: "پیشخوان", ename: "/vendor-panel/dashboard",icons:menu,colorid:colors.dashboard,iconclass:iconcolor.dashboard},
-        {name:"products",primary:"محصولات", ename: "/vendor-panel/products",icons:cube,colorid:colors.products,iconclass:iconcolor.products},
-        {name:"orders",primary:"سفارشات", ename: "/vendor-panel/orders",icons:Order,colorid:colors.orders,iconclass:iconcolor.orders},
-        {name:"transfer",primary:"روش و هزینه های ارسال", ename: "/vendor-panel/transfer",icons:truck,colorid:colors.transfer,iconclass:iconcolor.transfer},
-        {name:"peyment",primary:"تسویه حساب و امور مالی", ename: "/signout",icons:dollar,colorid:colors.peyment,iconclass:iconcolor.peyment},
-        {name:"bestshop",primary:"غرفه برتر", ename: "/vendor-panel/bestshop",icons:cup,colorid:colors.bestshop,iconclass:iconcolor.bestshop},
-        {name:"discount",primary:"تخفیف به هزینه", ename: "/vendor-panel/discount",icons:discountIcon,colorid:colors.discount,iconclass:iconcolor.discount},
-        {name:"customers",primary:"لیست مشتریان من", ename: "/vendor-panel/customers",icons:users,colorid:colors.customers,iconclass:iconcolor.customers},
-        {name:"shopcustomer",primary:"تحربه خریدمشتریان", ename: "/vendor/shopcustomer",icons:shoppingcard,colorid:colors.shopcustomer,iconclass:iconcolor.shopcustomer},
-        {name:"messages", primary:"گفتگو با مشتریان", ename: "/vendor-panel/messages",icons:message,colorid:colors.messages,iconclass:iconcolor.messages},
-        {name:"support",primary:"راهنماو پشتیبانی", ename: "/vendor-panel/support",icons:question,colorid:colors.support,iconclass:iconcolor.support},
-        {name:"settings",primary:"تنظیمات", ename: "/vendor-panel/settings",icons:setting,colorid:colors.settings,iconclass:iconcolor.settings},
-        {name:"exit",primary:"خروج", ename: "/signout",icons:Exit,colorid:colors.exit,iconclass:iconcolor.exit},
+        {name:'dashboard',primary: "پیشخوان", ename: "/vendor-panel/dashboard",icon:menu,color:colorClass.dashboard},
+        {name:"products",primary:"محصولات", ename: "/vendor-panel/products",icon:cube,color:colorClass.products},
+        {name:"orders",primary:"سفارشات", ename: "/vendor-panel/orders",icon:Order,color:colorClass.orders},
+        {name:"transfer",primary:"روش و هزینه‌های‌ ارسال", ename: "/vendor-panel/transfer",icon:truck,color:colorClass.transfer},
+        {name:"peyment",primary:"تسویه‌حساب و امور‌مالی", ename: "/vendor-panel/peyment",icon:dollar,color:colorClass.peyment},
+        {name:"bestshop",primary:"غرفه‌برتر", ename: "/vendor-panel/bestshop",icon:cup,color:colorClass.bestshop},
+        {name:"discount",primary:"تخفیف به هزینه", ename: "/vendor-panel/discount",icon:discountIcon,color:colorClass.discount},
+        {name:"customers",primary:"لیست مشتریان من", ename: "/vendor-panel/customers",icon:users,color:colorClass.customers},
+        {name:"shopcustomer",primary:"تحربه خرید‌مشتریان", ename: "/vendor/shopcustomer",icon:shoppingcard,color:colorClass.shhopcustomer},
+        {name:"magicmoney", primary:"پوادارشو", ename: "/vendor-panel/magicmoney",icon:gift,color:colorClass.magicmoney},
+        {name:"messages", primary:"گفتگو با مشتریان", ename: "/vendor-panel/messages",icon:message,color:colorClass.messages},
+        {name:"support",primary:"راهنماو پشتیبانی", ename: "/vendor-panel/support",icon:question,color:colorClass.support},
+        {name:"settings",primary:"تنظیمات", ename: "/vendor-panel/settings",icon:setting,color:colorClass.settings},
+        {name:"profile",primary:"پروفایل",ename:'/user-panel/profile',icon:userprofile,color:colorClass.profile},
+        {name:"exit",primary:"خروج", ename: "/signout",icon:Exit,color:colorClass.exit},
       
     ]
     const handleMouseOver = (prop) => (event) => {
         if(active!==prop){
-         setColors({ ...colors, [prop]: "#e9696d" });
-         setIconcolor({...iconcolor,[prop]:"filter-colors"});
+         setcolorClass({ ...colorClass, [prop]: "menu_item_selection_hover" });
         }
        
      };
      const handleMouseLeave = (prop) => (event) => {
-         setColors({ ...colors, [prop]: "#000000" });
-         setIconcolor({...iconcolor,[prop]:""});
+         setcolorClass({ ...colorClass, [prop]: "menu_item_selection" });
      };
     return (
         <aside className={"sidebar_vendor " + (openSidebar ? ` ${"open "}` : '')} style={{marginBottom:"100px"}}>
@@ -107,14 +97,16 @@ function SidebarVendor({active="dashboard", openSidebar, setOpenSidebar}) {
                     component="nav"
                     aria-labelledby="nested-list-subheader"
                 >
+
                     {menu_items.map((item, idx)=>(
+
                          <ListItemButton selected={active === item.name} key={idx}>
                          <Link href={item.ename}>
-                             <a style={{color:item.colorid}} onMouseOver={handleMouseOver(item.name)} onMouseLeave={handleMouseLeave(item.name)}>
+                             <a onMouseOver={handleMouseOver(item.name)} onMouseLeave={handleMouseLeave(item.name)}>
                              <ListItemIcon className={"LinkIcon"}>
-                               <Image src={item.icons} className={item.iconclass} alt="icon" width="20" height="20"/>
+                                <Barrier Component={item.icon} className={active===item.name?selected_class:item.color}/>
                              </ListItemIcon>
-                             <ListItemText  primary={item.primary} />
+                             <ListItemText primary={item.primary} className={item.color+""} />
                              </a>
                          </Link>
                          

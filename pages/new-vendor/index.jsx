@@ -13,14 +13,17 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import VendorSettingTabOne from '../../components/Vendor/VendorSettingTabOne';
 import VendorSettingTabTwo from '../../components/Vendor/VendorSettingTabTwo';
 import VendorSettingTabThree from '../../components/Vendor/VendorSettingTabThree';
+import VendorSettingTabZero from '../../components/Vendor/VendorSettingTabZero';
+
 import {useSelector} from 'react-redux'
 import {useRouter} from 'next/router'
 
 
 const steps = [
+    {label:' نوع غرفه'},
     {label: ' اطلاعات عمومی غرفه',},
     {label: 'اطلاعات شخصی و بانکی',},
-    {label: 'آپلود مدارک',},
+    {label: 'بارگذاری‌ مدارک',},
 ];
 
 function NewVendor() {
@@ -57,7 +60,7 @@ function NewVendor() {
                     <Stepper activeStep={activeStep} orientation={matches? "vertical": "horizontal"}>
                         {steps.map((step, index) => (
                             <Step key={step.label}>
-                                <StepLabel>
+                                <StepLabel color="main">
                                     {step.label}
                                 </StepLabel>
                                 <StepContent>
@@ -96,10 +99,12 @@ function NewVendor() {
                 <div className=" col-12 card_style  p-4">
                     {
                         activeStep === 0?
-                            <VendorSettingTabTwo goToNext={handleNext} createMode/>
+                        <VendorSettingTabZero goToNext={handleNext} />
                         : activeStep === 1?
+                            <VendorSettingTabTwo goToNext={handleNext} createMode/>
+                        : activeStep === 3?
                             <VendorSettingTabOne goToNext={handleNext}/>
-                        : activeStep === 2?
+                        : activeStep === 3?
                             <VendorSettingTabThree goToNext={handleNext} />
                         : (
                             <Paper square elevation={0} sx={{ p: 3 }} className="col-lg-4 col-12 text-center mx-auto">

@@ -37,3 +37,14 @@
   .filter-colors{
     filter: brightness(0) saturate(100%) invert(38%) sepia(95%) saturate(1555%) hue-rotate(334deg) brightness(88%) contrast(98%);
   }
+  .grey-filter{
+    filter: invert(52%) sepia(85%) saturate(3%) hue-rotate(86deg) brightness(100%) contrast(87%);
+  }
+  .new-filter{
+    filter: invert(57%) sepia(13%) saturate(5839%) hue-rotate(317deg) brightness(105%) contrast(111%);
+  }
+
+  svg * {
+    fill: inherit;
+    color: inherit;
+  }

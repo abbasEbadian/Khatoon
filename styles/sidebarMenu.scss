@@ -113,3 +113,26 @@
     border-radius: 12px;
   }
 }
+
+.menu_item{
+  color: #000;
+  fill: #fff;
+}
+.menu_item:hover{
+  color:#e9696d;
+  fill: #e9696d;
+}
+
+.menu_item_selection{
+  color: #000;
+  fill: #fff;
+}
+.menu_item_selection_hover{
+  color:#e9696d;
+  fill: #e9696d;
+}
+.menu_item_selected{
+  color: #000;
+  fill: #e9696d;
+}
+

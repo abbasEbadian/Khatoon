@@ -14,7 +14,7 @@ const get_url = (category)=>{
 export default function Breadcrumb({product}) {
     console.log(product)
   return (
-    <div role="presentation" onClick={handleClick} className="card px-2 py-3 rounded">
+    <div role="presentation" onClick={handleClick} className=" bg-transparent px-2 py-1 rounded">
       <Breadcrumbs aria-label="breadcrumb"  >
         <Link underline="hover" color="inherit" href="/">
           <a>خاتون زیبا</a>

@@ -26,6 +26,7 @@ const Input = styled('input')({
 function Upload({goToNext=undefined}) {
 
     const [checked, setChecked] = React.useState(false);
+    const [checkedcolor,setCheckedcolor]=React.useState("");
     const [loading, setLoading] = React.useState(false);
     const [fileUploaded, setFileUploaded] = React.useState(false);
     const fileRef = React.useRef() 
@@ -35,6 +36,11 @@ function Upload({goToNext=undefined}) {
     }
     const handleChange = (event) => {
       setChecked(event.target.checked);
+      if(event.target.checked===true){
+        setCheckedcolor("#ffad14")
+    }else{
+        setCheckedcolor("")
+    }
     };
     const submit = (event)=>{
 		if(loading) return 
@@ -108,7 +114,7 @@ function Upload({goToNext=undefined}) {
                             <FormGroup className='my-5'>
                                 <FormControlLabel control={<Checkbox  checked={checked} onChange={handleChange} />} label="در صورت تخلف از قوانین بارگذاری مدارک یا ارائه مدرک تقلبی، مسئولیت حقوقی و کیفری آن را می‌پذیرم." />
                             </FormGroup>
-                            <Button color="warning" style={{borderRadius:"40px"}} variant="contained" fullWidth type="submit" disabled={!checked} >
+                            <Button style={{borderRadius:"40px",backgroundColor:checkedcolor}} variant="contained" fullWidth type="submit" disabled={!checked} >
                                 {loading? <CircularProgress color="white" size={20} /> : <span>ثبت و ارسال مدارک</span>}
                             </Button>
                         </form>

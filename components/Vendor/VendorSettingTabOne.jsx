@@ -14,6 +14,10 @@ function VendorSettingTabOne({goToNext=undefined}) {
 		shaba: "",
 		card_number: "",
         bank: 0,
+        type:"",
+        financial_code:"",
+        register_code:"",
+
 	})
     const changeInitData = (e, key)=>{
 		setInitData(s=>{
@@ -76,6 +80,7 @@ function VendorSettingTabOne({goToNext=undefined}) {
         <div className="col-xxl-6 col-12">
             {/* <VendorCover /> */}
             <form className='row align-items-center justify-content-center' onSubmit={submit}>
+                {initData.type==='haghighi'?
                 <div className="my-4 col-12">
                     <Box >
                         <TextField
@@ -91,8 +96,44 @@ function VendorSettingTabOne({goToNext=undefined}) {
                             placeholder="136..."
                         />
                     </Box>
+                </div>:
+                <div className='row'>
+                  <div className="my-4 col-12">
+                 <Box >
+                     <TextField
+                         required
+                         label="شماره‌ثبت"
+                         variant="outlined"
+                         fullWidth
+                         name="financial_code"
+                         value={initData.financial_code}
+                         onChange={e=>changeInitData(e, "national_code")}
+                         helperText="کد ملی صاحب غرفه"
+                         dir="ltr"
+                         placeholder="136..."
+                     />
+                 </Box>
                 </div>
-                <div className="my-4 col-12">
+                 <div className="my-4 col-lg-6 col-12">
+                 <Box >
+                     <TextField
+                         required
+                         label="کد اقتصادی"
+                         variant="outlined"
+                         fullWidth
+                         name="national_code"
+                         value={initData.national_code}
+                         onChange={e=>changeInitData(e, "national_code")}
+                         helperText="کد ملی صاحب غرفه"
+                         dir="ltr"
+                         placeholder="136..."
+                     />
+                 </Box>
+             </div>
+                </div>
+                
+                }
+                <div className="my-4 col-lg-6 col-12">
                     <Box >
                         <TextField
                             required
@@ -159,7 +200,7 @@ function VendorSettingTabOne({goToNext=undefined}) {
                 
 
                 <div className="col-12">
-                    <Button color="warning" style={{borderRadius:"20px"}} variant="contained" fullWidth type="submit">
+                    <Button style={{borderRadius:"20px",backgroundColor:"#ffad14"}} variant="contained" fullWidth type="submit">
                         {loading? <CircularProgress color="white" size={20} /> : <span>بروزرسانی فروشگاه</span>}
                     </Button>
                 </div>

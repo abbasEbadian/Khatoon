@@ -1,8 +1,8 @@
-import { Box, Link, Typography } from '@mui/material'
+import { Box, Link, Typography,Button } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
-import { market_imlink } from '../utils'
-
+import { market_imlink } from '../utils';
+import ChatIcon from '@mui/icons-material/Chat';
 function ProductVendor({product}) {
     const vendor = {
         name: "نیل کده",
@@ -13,10 +13,9 @@ function ProductVendor({product}) {
     <div className="product-vendor">
         
         <div className="row">
-            <div className="col-8 avatar d-flex align-items-center">
+            <div className="col-8  d-flex align-items-center">
                 <Box className="position-relative" sx={{width: "64px", height: "64px"}}>
-                    <Image src={market_imlink(product?.market_id?.image)} objectFit={"cover"} layout="fill" alt="avatar" className="rounded-circle"/>
-                    
+                    <Image src={market_imlink(product?.market_id?.image)} objectFit={"cover"} layout="fill" alt="avatar" className="rounded-circle"/> 
                 </Box>
                 <div className=" ms-3">
                     <small className="d-block my-2"></small>
@@ -29,6 +28,7 @@ function ProductVendor({product}) {
                         </Link>
                     </Typography>
                 </div>
+                  
             </div>
             
             {product?.sales_count > 0 ?<div className="col-4 d-flex align-items-center">
@@ -38,23 +38,14 @@ function ProductVendor({product}) {
                 </span> 
             </div>:null}
 
-            <div className="col-12 row mt-4">
-                <div className="col-3 flex-column d-flex align-items-center">
-                    <Image src="/images/product/facility1.png" width="32" height="32" alt="fac"/>
-                    <span className="facility">پرداخت در محل</span>
-                </div>
-                <div className="col-3 flex-column d-flex align-items-center">
-                    <Image src="/images/product/facility2.png" width="32" height="32" alt="fac"/>
-                    <span className="facility">ارسال سریع</span>
-                </div>
-                <div className="col-3 flex-column d-flex align-items-center">
-                    <Image src="/images/product/facility3.png" width="32" height="32" alt="fac"/>
-                    <span className="facility">پشتیبانی آنلاین</span>
-                </div>
-                <div className="col-3 flex-column d-flex align-items-center">
-                    <Image src="/images/product/facility4.png" width="32" height="32" alt="fac"/>
-                    <span className="facility">ضمانت تحویل</span>
-                </div>
+            <div className="col-12 d-flex mt-4 justify-content-center ">
+                <div>
+
+                    <Button variant="outlined" href="/user-panel/messages" color="main"> 
+                    <ChatIcon/>
+                    گفتگو
+                    </Button>
+                </div>  
             </div>
         </div>
     </div>
