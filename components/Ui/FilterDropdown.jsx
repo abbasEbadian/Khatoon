@@ -191,7 +191,7 @@ export default function FilterDropdown() {
                     <label className='form-label me-3 fs-3'>از</label>
                     <div className="input-group fs-5">
                     <button className="input-group-text bg-light" onClick={()=>{preparationfilter.frompre+=1}}>+</button>
-                    <input type="tel" class="form-control text-center" value={preparationfilter.frompre} />
+                    <input type="tel" className="form-control text-center" value={preparationfilter.frompre} />
                     <button className="input-group-text bg-light" onClick={()=>{preparationfilter.frompre-=1}}>-</button>
                     </div>
                     <label className='form-label ms-3 me-2 fs-3'>تا</label>
