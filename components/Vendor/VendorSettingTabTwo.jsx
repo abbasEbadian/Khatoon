@@ -20,7 +20,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 function Settings({goToNext=undefined, createMode=false}) {
-	const type=localStorage.getItem('typeshop')
+	const shop_type=localStorage.getItem('typeshop')
 	const user = useSelector(s=>s.auth.user)
 	const [boxWebsite, setboxWebsite] = React.useState({
 		name: "http://khatooneziba.ir/",
@@ -108,7 +108,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 			instagram_address: user.market.instagram_address,
 			website_address: user.market.website_address,
 			telegram_address: user.market.telegram_address,
-			type: type,
+			type: shop_type,
 			marketer_name: user.market.marketer_name,
 			company_name: user.market.company_name,
 		})
@@ -139,7 +139,7 @@ function Settings({goToNext=undefined, createMode=false}) {
                 instagram_address: event.target.elements.instagram_address.value,
                 website_address: event.target.elements.website_address.value,
                 telegram_address: event.target.elements.telegram_address.value,
-				type: type,
+				type: shop_type,
                 image: event.target.elements.avatar?.files[0],
                 cover: event.target.elements.cover?.files[0],
 				marketer_name:event.target.elements.marketer_name,
