@@ -19,12 +19,12 @@ export default function FilterDropdown() {
       toprice:""
     });
     const [inventoryfilter,setinventoryfilter]=useState({
-      frominv:0,
-      toinv:1
+      frominv:1,
+      toinv:2
     });
     const [preparationfilter,setpreparationfilter]=useState({
-      frompre:"",
-      topre:""
+      frompre:1,
+      topre:2
     });
 
     const [acceptstates,setAccepstates]=useState({
@@ -71,18 +71,7 @@ export default function FilterDropdown() {
       const handlePrice=(props)=>(e)=>{
         setpricefilter({...pricefilter,[props]:e.target.value});
       }
-      const handleInventory=(props,typeval)=>{
-        if(typeval=='plus'){
-            props=props+1;
-        }else{
-          if(props>0){
-            props=props-1;
-          }
-        }
-      }
-      const handlePreparation=(props)=>(e)=>{
-        setpreparationfilter({...preparationfilter,[props]:e.target.value});
-      }
+     
       const clearAll=()=>{
         setcategoryfilter("");
         setproductfilter({st1:"",st2:"",st3:""});
@@ -180,16 +169,16 @@ export default function FilterDropdown() {
                 </div>
                 <div className='pt-5 px-5 d-flex' style={{width:"450px"}}>
                     <label className='form-label me-3 fs-3'>از</label>
-                    <div class="input-group" dir='ltr'>
-                    <button class="input-group-text bg-light fs-5" onClick={handleInventory(inventoryfilter.frominv,'plus')}>+</button>
-                    <input class="form-control bg-light" min="0" value={inventoryfilter.frominv} type="number" />
-                    <button class="input-group-text bg-light fs-5" onClick={handleInventory(inventoryfilter.frominv,'mines')}>-</button>
+                    <div class="input-group fs-5">
+                    <button class="input-group-text bg-light" onClick={()=>{inventoryfilter.frominv+=1}}>+</button>
+                    <input class="form-control text-center" value={inventoryfilter.frominv} type="tel" />
+                    <button class="input-group-text bg-light " onClick={()=>{inventoryfilter.frominv-=1}}>-</button>
                     </div>
                     <label className='form-label ms-3 me-2 fs-3'>تا</label>
-                    <div class="input-group" dir='ltr'>
-                    <button class="input-group-text bg-light fs-5" onClick={handleInventory(inventoryfilter.toinv,'plus')}>+</button>
-                    <input  class="form-control bg-light" min="0" value={inventoryfilter.toinv} type="number" />
-                    <button class="input-group-text bg-light fs-5" onClick={handleInventory(inventoryfilter.toinv,'mines')}>-</button>
+                    <div class="input-group fs-5">
+                    <button class="input-group-text bg-light" onClick={()=>{inventoryfilter.toinv+=1}}>+</button>
+                    <input  class="form-control text-center" value={inventoryfilter.toinv} type="tel" />
+                    <button class="input-group-text bg-light" onClick={()=>{inventoryfilter.toinv-=1}}>-</button>
                     </div>
                  </div>
             </div>}
@@ -200,18 +189,17 @@ export default function FilterDropdown() {
                 </div>
                 <div className='pt-5 px-5 d-flex' style={{width:"450px"}}>
                     <label className='form-label me-3 fs-3'>از</label>
-                    <div class="input-group" dir='ltr'>
-                    <button class="input-group-text bg-light fs-5" onClick={handlePreparation(preparationfilter.frompre,'plus')}>+</button>
-                    <input type="number" class="form-control bg-light" min="0" value={preparationfilter.frompre}  />
-                    <button class="input-group-text bg-light fs-5" onClick={handlePreparation(preparationfilter.frompre,'mines')}>-</button>
+                    <div class="input-group fs-5">
+                    <button class="input-group-text bg-light" onClick={()=>{preparationfilter.frompre+=1}}>+</button>
+                    <input type="tel" class="form-control text-center" value={preparationfilter.frompre} inputMode="numeric"  />
+                    <button class="input-group-text bg-light" onClick={()=>{preparationfilter.frompre-=1}}>-</button>
                     </div>
                     <label className='form-label ms-3 me-2 fs-3'>تا</label>
-                    <div class="input-group" dir='ltr'>
-                    <button class="input-group-text bg-light fs-5" onClick={handlePreparation(preparationfilter.frompre,'plus')}>+</button>
-                    <input type="number" class="form-control bg-light" min="0" value={preparationfilter.frompre}  />
-                    <button class="input-group-text bg-light fs-5" onClick={handlePreparation(preparationfilter.frompre,'mines')}>-</button>
+                    <div class="input-group fs-5">
+                    <button class="input-group-text bg-light" onClick={()=>{preparationfilter.topre+=1}}>+</button>
+                    <input type="tel" class="form-control text-center" value={preparationfilter.topre}  />
+                    <button class="input-group-text bg-light " onClick={()=>{preparationfilter.topre-=1}}>-</button>
                     </div>
-                    <input className='form-control me-3 w-50' value={preparationfilter.topre} onChange={handlePreparation('topre')} type="number"/>
                  </div>
             </div>}
           </div>
