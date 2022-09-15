@@ -58,7 +58,7 @@ const handleClose = () => {
       </Paper>
      </Grid>
         <Grid item xs={3}>
-         <Button variant="outlined" onClick={handleClick} size="large"style={{height:'100%',width:"100%"}} startIcon={<FilterAlt />}>
+         <Button variant="outlined" onClick={handleClick} color="main" size="large"style={{height:'100%',width:"100%"}} startIcon={<FilterAlt />}>
             فیلتر کردن
           </Button>
          <Menu
@@ -72,7 +72,7 @@ const handleClose = () => {
       </Menu>
         </Grid>
         <Grid item xs={3}>
-          <FormControl sx={{ borderRadius: "30px", minWidth: "100%" }}>
+          <FormControl sx={{ borderRadius: "30px", minWidth: "100%" }} color="main">
             <InputLabel id="demo-simple-select-helper-label">
              مرتب کردن
             </InputLabel>
