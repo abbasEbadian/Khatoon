@@ -13,13 +13,6 @@ import {useDispatch, useSelector  } from 'react-redux';
 import * as e from '../../../redux/endpoints'
 import AddToCardButton from '../../../components/elements/AddToCardButton'
 import Breadcrumb from '../../../components/Breadcrumb'
-import ProductGuarantee from '../../../components/Product/ProductGuarantee'
-import ProductSend from '../../../components/Product/ProductSend'
-import ProductComments from '../../../components/Product/ProductComments'
-import {Star} from '@mui/icons-material/';
-import ChatIcon from '@mui/icons-material/Chat';
-import ProductQuestions from '../../../components/Product/ProductQuestions';
-
 
 function Product({product, similar_products, handleLoginOpen}) {
   
@@ -148,86 +141,44 @@ function Product({product, similar_products, handleLoginOpen}) {
   console.log(product);
   return (
     <section id="product-page" className="container_custom">
-      <div className='px-2'>
       <Breadcrumb product={product} />
-      </div>
-      <div className="product-main row">
-        <div className='col-lg-8 col-12'>
-         <div className='card mx-1 my-1'>
+      <div className="product-main card_style">
+        <ProductToolbar product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} isFavorite={isFavorite}/>
         <div className="row">
-            <div className="col-lg-7 col-12 px-4 py-4">
-                <ProductSwiper product={product}/>
-            </div>
-            <div className="col-lg-5 col-12 py-4 px-2">
-            <div className="px-5">
-            <ProductToolbar product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} isFavorite={isFavorite}/>
-            </div>
-            <div className="px-4 pt-4" style={{minHeight:'200px'}}>
+          <div className="col-lg-4 col-12">
+            <ProductSwiper product={product}/>
+          </div>
+          <div className="col-lg-8 col-12 py-4 py-lg-0">
             <Typography component="h1" fontSize="20px">{product.name}</Typography>
-            </div>    
-            <div className='p-2 m-3' href="#comments">
-              <div className="d-flex">
-              <div className="d-flex px-3">
-                <Star fontSize="large" color="warning"/><p className='p-1'>{product.likes?(product?.likes):0}</p>
+            <div className="row">
+              <div className="col-lg-5 col-12">
+                {
+                  current?.count > 0?
+                   <>
+                   <Typography fontSize="40px" className="text-success d-inline-block py-5">{Number(current.price).toLocaleString("fa")} </Typography> <span>{" تومان"}</span>
+                  <br />
+                    <AddToCardButton template_id={product?.id} large handleLoginOpen={handleLoginOpen}/>
+                   </> 
+                  :
+                    <ProductNotAvailable  product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} />
+                }
               </div>
-              <a className="d-flex px-3 nav-link" href="comments">
-                <p>تجربه‌کاربران{product.comments?(product?.comments.count):0}</p>
-              </a>
-              <a className="d-flex px-3 nav-link" href="questions">
-                <p>پرسش{product.questions?(product?.questions.count):0}</p>
-              </a>
+              <div className="col-lg-7 col-12 mt-4 mt-lg-0">
+                <ProductVendor product={product}/>
               </div>
-            </div>  
-           
+              <div className="col-12">
+                <ProductSpecs product={product} current={current} setCurrent={setCurrent}/>
+              </div>
             </div>
-            <div classNmae="col-lg-12 col-12 my-5">
-                 <ProductSpecs product={product} current={current} setCurrent={setCurrent}/>
-                 <br/>
-                 <br/>
-            </div>
-            <div classNmae="col-lg-12 col-12 my-5" id="comments">
-                 <ProductComments/>
-            </div>
-            <div classNmae="col-lg-12 col-12 my-5" id="questions">
-                <ProductQuestions/>
-            </div>
-        </div>
-          
-        </div>
-        </div>
-        <div className='col-lg-4 col-12'>
-        <div className='card my-1 sticky-top' style={{top:'9%'}}>   
-          <ProductVendor product={product}/>    
-          <ProductSend product={product} current={current}/>   
-           <div className="container py-4 text-center">
-           {
-                current?.count > 0?
-                <>
-                <Typography fontSize="30px" className="d-inline-block">{Number(current.price).toLocaleString("fa")} </Typography> <span>{" تومان"}</span>
-                <br />
-                <AddToCardButton template_id={product?.id} large handleLoginOpen={handleLoginOpen}/>
-                </> 
-                :
-                <ProductNotAvailable  product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} />
-            }
-
-           </div>
-           <ProductGuarantee/>
-          </div>
-        
-        </div>
-        <div className='row'>
-          <div className='col-12 mt-1'>
-            <BoxItems boxClasses="my-5" items={ProductSuggested} title={'محصولات دیگر غرفه‌دار'} />
           </div>
         </div>
-
+      </div>
         <div className='row'>
-          <div className='col-12 mt-2'>
+          <div className='col-12 mt-5'>
             <BoxItems boxClasses="my-5" items={ProductSuggested} title={'محصولات مشابه'} />
           </div>
         </div>
-      </div>
+      
     </section>
   )
 }

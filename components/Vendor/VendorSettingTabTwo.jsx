@@ -20,7 +20,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 function Settings({goToNext=undefined, createMode=false}) {
-
+	const type=localStorage.getItem('typeshop')
 	const user = useSelector(s=>s.auth.user)
 	const [boxWebsite, setboxWebsite] = React.useState({
 		name: "http://khatooneziba.ir/",
@@ -53,6 +53,9 @@ function Settings({goToNext=undefined, createMode=false}) {
 		instagram_address: "",
 		website_address: "",
 		telegram_address: "",
+		type:"",
+		marketer_name:"",
+		company_name:"",
 	})
 	const handleChange = (event) => {
 		setChecked(event.target.checked);
@@ -87,6 +90,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 	}
 	React.useEffect(() => {
 		getInitialProps()
+		console.log(localStorage.getItem('typeshop'))
 	}, [])
 	React.useEffect(() => {
 		if(user && user.market)
@@ -104,6 +108,9 @@ function Settings({goToNext=undefined, createMode=false}) {
 			instagram_address: user.market.instagram_address,
 			website_address: user.market.website_address,
 			telegram_address: user.market.telegram_address,
+			type: type,
+			marketer_name: user.market.marketer_name,
+			company_name: user.market.company_name,
 		})
 		get_cities( user?.market?.province_id?.id)
 	}, [user])
@@ -132,9 +139,11 @@ function Settings({goToNext=undefined, createMode=false}) {
                 instagram_address: event.target.elements.instagram_address.value,
                 website_address: event.target.elements.website_address.value,
                 telegram_address: event.target.elements.telegram_address.value,
-
+				type: type,
                 image: event.target.elements.avatar?.files[0],
                 cover: event.target.elements.cover?.files[0],
+				marketer_name:event.target.elements.marketer_name,
+				company_name:event.target.elements.company_name
               
             }
             const dform = new FormData()
@@ -184,7 +193,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 				<div className="col-xxl-8 col-12">
 					<VendorCover editMode createMode={createMode}/>
 					<form className='row align-items-center ' onSubmit={submit}>
-						<div className="col-lg-4 col-12">
+						<div className="col-lg-6 col-12">
 							<Box >
 								<TextField
 									required
@@ -194,19 +203,55 @@ function Settings({goToNext=undefined, createMode=false}) {
 									variant="outlined"
 									fullWidth
 									name="name"
+									color="main"
 									value={initData.name}
 									onChange={e=>changeInitData(e, "name")}
 
 								/>
 							</Box>
 						</div>
-						<div className="col-lg-8 col-12">
+						{initData.type==='haghighi'?
+						<div className="col-lg-6 col-12">
+						<Box >
+							<TextField
+								required
+								id="input-with-icon-textfield"
+								label="نام غرفه‌دار"
+								variant="outlined"
+								fullWidth
+								helperText="این نام در سایت نمایش داده می شود."
+								name="name"
+								color="main"
+								value={initData.marketer_name}
+								onChange={e=>changeInitData(e, "marketer_name")}
+
+							/>
+						</Box>
+					</div>
+						:
+						<div className="col-lg-6 col-12">
+						<Box >
+							<TextField
+								required
+								id="input-with-icon-textfield"
+								label="نام کامل شرکت"
+								variant="outlined"
+								fullWidth
+								name="name"
+								color="main"
+								value={initData.company_name}
+								onChange={e=>changeInitData(e, "company_name")}
+
+							/>
+						</Box>
+					</div>}
+						<div className="col-12">
 							<Box >
 								<TextField
 									required
 									label="پیام غرفه"
 									placeholder="متن پیام غرفه‌دار اینجا نمایش داده می‌شود"
-
+									color="main"
 									variant="outlined"
 									fullWidth
 									name="message"
@@ -224,6 +269,8 @@ function Settings({goToNext=undefined, createMode=false}) {
 										id="input-with-icon-textfield"
 										label="آدرس غرفه"
 										type="text"
+										color="main"
+
 										autoComplete="off"
 										placeholder="parnian-books"
 										helperText="این قرار است لینک غرفه شما یاشد پس درست واردکنید."
@@ -247,6 +294,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 									disabled
 									variant="outlined"
 									fullWidth
+									color="main"
 									value={boxWebsite.name}
 								/>
 							</div>
@@ -258,6 +306,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 									required
 									select
 									label="نوع کسب و کار"
+									color="main"
 									variant="outlined"
 									fullWidth
 									inputProps={{
@@ -284,6 +333,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 									multiline
 									rows={4}
 									fullWidth
+									color="main"
 									required
 									name="about"
 									value={initData.about}
@@ -300,6 +350,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 									type="phonenumber"
 									variant="outlined"
 									fullWidth
+									color="main"
 									placeholder="09"
 									inputProps={{
 										dir: "ltr"
@@ -318,11 +369,13 @@ function Settings({goToNext=undefined, createMode=false}) {
 									type="phonenumber"
 									variant="outlined"
 									fullWidth
+									color="main"
 									placeholder="021"
 									inputProps={{
 										dir: "ltr"
 									}}
 									name="phone"
+									helperText="ترجیحا شماره ثابت به همراه کد استان وارد شود."
 									value={initData.phone}
 									onChange={e=>changeInitData(e, "phone")}
 								/>
@@ -336,6 +389,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 									label="استان"
 									variant="outlined"
 									fullWidth
+									color="main"
 									inputProps={{
 										dir: "ltr"
 									}}
@@ -357,6 +411,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 									label="شهرستان"
 									variant="outlined"
 									fullWidth
+									color="main"
 									inputProps={{
 										dir: "ltr"
 									}}
@@ -386,6 +441,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 									id="outlined-multiline-static"
 									label="آدرس"
 									multiline
+									color="main"
 									rows={4}
 									fullWidth
 									required
@@ -402,6 +458,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 										id="input-with-icon-textfield"
 										label="آدرس اینستاگرام"
 										type="text"
+										color='main'
 										autoComplete="off"
 										InputProps={{
 											dir: "ltr"
@@ -432,6 +489,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 									<TextField
 										id="input-with-icon-textfield"
 										label="آدرس وبسایت"
+										color="main"
 										type="text"
 										autoComplete="off"
 										InputProps={{
@@ -463,6 +521,7 @@ function Settings({goToNext=undefined, createMode=false}) {
 										id="input-with-icon-textfield"
 										label="آدرس تلگرام"
 										type="text"
+										color="main"
 										autoComplete="off"
 										InputProps={{
 											dir: "ltr"

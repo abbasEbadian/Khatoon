@@ -265,22 +265,18 @@ function Edit() {
         <UserPanelBase active={"edit"} title="ویرایش اطلاعات">
         <div className="conatiner justify-content-center ">
         <input type="file" accept='jpg' style={{display:"none"}} ref={hiddenFileInput} onChange={handleChange}/>
-        <div className='row justify-content-center'>
-          <center>
+        <div className='d-flex justify-content-center'>
           <div class="user-styling">
-          <img src={imgsrc} class="main-profile-img" alt="profile-image" />
-          <span class="icon-styling pt-2" onClick={handleClick}>
-            <CameraAlt style={{color:"#fff",width:"30px",height:"30px"}}/>
-          </span>
+            <img src={imgsrc} class="main-profile-img" alt="profile-image" />
+            <span class="icon-styling pt-2" onClick={handleClick}>
+              <CameraAlt style={{color:"#fff",width:"30px",height:"30px"}}/>
+            </span>
+          </div>
         </div>
-          </center>
-        </div>
-      <center>
-      <div className=' mt-3 text-start' style={{width:"500px"}}>
-     <div className="row row-cols-2">
-     <div className='col p-2'>
+     <div className="row px-5 mt-5">
+     <div className='col-lg-6 col-12 p-2'>
        <TextField 
-          size='small' color="main" fullWidth label="نام و نام خانوادگی" 
+           color="main" fullWidth label="نام و نام خانوادگی" 
           placeholder='لطفا کامل وارد کنید' variant="outlined" 
           error={!!errorMessage.fullName}
           helperText={errorMessage.fullName}
@@ -288,9 +284,9 @@ function Edit() {
           defaultValue={formData.fullname}
           />
        </div>
-       <div className='col p-2'>
+       <div className='col-lg-6 col-12 p-2'>
        <TextField   
-          size='small' color="main" fullWidth label="نام کاربری" 
+           color="main" fullWidth label="نام کاربری" 
           placeholder='به زبان انگلیسی وارد کنید' variant="outlined" 
           error={!!errorMessage.username}
           helperText={errorMessage.username}
@@ -298,9 +294,9 @@ function Edit() {
           defaultValue={formData.username}
        />
        </div>
-       <div className='col p-2'>
+       <div className='col-lg-6 col-12 p-2'>
        <TextField  
-          type="email" color="main" size='small' 
+          type="email" color="main"   
           fullWidth placeholder='name@example.com' label='رایانامه'  variant="outlined"
           error={!!errorMessage.fullName}
           helperText={errorMessage.fullName}
@@ -308,9 +304,9 @@ function Edit() {
           defaultValue={formData.fullname}
         />
        </div>
-       <div className='col p-2'>
+       <div className='col-lg-6 col-12 p-2'>
        <TextField  
-          color="main" size='small' fullWidth
+          color="main"   fullWidth
           placeholder='09123456789' label='شماره همراه'  variant="outlined" 
           error={!!errorMessage.mobile}
           InputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
@@ -321,11 +317,15 @@ function Edit() {
           />
        </div>
      </div>
-     <label className=' text-right mt-3 mb-3'>می توانید رمز عبور حساب کاربری خود را تغییر دهید</label>
-     <FormGroup row>
-     <TextField type="password" style={{width:"400px"}} color="main" size='small'  label='رمز عبور'  variant="outlined" />
-     <Button variant="outlined" className="ms-1" color="main" disableElevation>تغییر زمر</Button>
+     
+     <label className='text-right my-3'>می توانید رمز عبور حساب کاربری خود را تغییر دهید</label>
+     <div className='d-flex justify-content-center'>
+     <FormGroup row className="col-12 justify-content-center">
+     <TextField type="password" className="col-8" color="main"    label='رمز عبور'  variant="outlined" />
+     <Button variant="outlined" className="ms-1 col-2" size='large' color="main" disableElevation>تغییر زمر</Button>
      </FormGroup>
+     </div>
+     
       <div className="mt-3 mb-3">
       <FormControl>
       <label className='form-label mt-3 mb-2'>جنسیت</label>
@@ -334,28 +334,28 @@ function Edit() {
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
       >
-        <FormControlLabel value="female" checked={true} control={<Radio color="main" />} label="زن" />
-        <FormControlLabel value="male" control={<Radio color="main"/>} label="مرد" />
+        <FormControlLabel value="female" checked={true} control={<Radio color="main" size='large' />} label="زن" />
+        <FormControlLabel value="male" control={<Radio color="main" size="large"/>} label="مرد" />
       </RadioGroup>
     </FormControl>
       </div>
        <div  dir="rtl" className='mt-2 ps-2'>
        <label className='form-label mb-3 mt-4'>تاریخ تولد خود را وارد کنید</label>
          </div>
-       <div className='col row row-cols-3 pe-1 ps-1 pb-3'>
-       <div className='col p-1 '>
+       <div className='col row pe-1 ps-1 pb-3'>
+       <div className='col-lg-4 col-12 p-1 '>
        <TextField   
        error={!!errorMessage.year}
        helperText={errorMessage.year}
        name="year"
        defaultValue={formData.year}
-       size='small' color="main" fullWidth label="سال" variant="outlined"
+       color="main" fullWidth label="سال" variant="outlined"
        />
 
        </div>
-       <div className='col p-1'>
+       <div className='col-lg-4 col-12 p-1'>
        <TextField  
-          select  color="main" size='small' fullWidth label="ماه" variant="outlined"
+          select  color="main"   fullWidth label="ماه" variant="outlined"
           error={!!errorMessage.month}
           helperText={errorMessage.month}
           name="month"
@@ -366,9 +366,9 @@ function Edit() {
            ))}
        </TextField>
        </div>
-       <div className='col p-1'>
+       <div className='col-lg-4 col-12 p-1'>
        <TextField  
-          color="main"   size='small' fullWidth label="روز" variant="outlined" 
+          color="main"     fullWidth label="روز" variant="outlined" 
           error={!!errorMessage.day}
           helperText={errorMessage.day}
           name="day"
@@ -380,10 +380,10 @@ function Edit() {
        <div  dir="rtl" className='ps-2'>
        <label className="form-label mb-3 mt-4">آدرس خود را وارد کنید</label>
          </div>
-       <div className='col row row-cols-2 pe-1 ps-1 pb-4'>
-       <div className='col p-1 '>
+     <div className="row"> 
+       <div className='col-lg-6 col-12 p-1 '>
        <TextField   
-          size='small' color="main" fullWidth label="استان" variant="outlined" select
+           color="main" fullWidth label="استان" variant="outlined" select
           error={!!errorMessage.province}
           helperText={errorMessage.province}
           name="province"
@@ -396,17 +396,16 @@ function Edit() {
 
         </TextField>
        </div>
-       <div className='col p-1'>
+       <div className='col-lg-6 col-12 p-1'>
        <TextField  
-          color="main"   size='small' fullWidth label="شهر" variant="outlined" 
+          color="main" fullWidth label="شهر" variant="outlined" 
           error={!!errorMessage.city}
           helperText={errorMessage.city}
           name="city"
           defaultValue={formData.city}
         />
        </div>
-       </div>
-
+     </div>
        
        <label className=' mb-3 mt-4'> اطلاعات موردنباز برای پولدارشو را وارد کنید</label>
        <div className="mb-3">
@@ -415,13 +414,13 @@ function Edit() {
         helperText={errorMessage.pid}
         name="pid"
         defaultValue={formData.pid}
-        color="main"   size='small' fullWidth label="شماره ملی" variant="outlined" 
+        color="main"     fullWidth label="شماره ملی" variant="outlined" 
         />
 
        </div>
        <div className="mb-2">
        <TextField  
-          className="mb-2" color="main"   size='small' fullWidth label="شماره شبا" variant="outlined"
+          className="mb-2" color="main"     fullWidth label="شماره شبا" variant="outlined"
           error={!!errorMessage.shebanumber}
           helperText={errorMessage.shebanumber}
           name="shebanumber"
@@ -433,7 +432,7 @@ function Edit() {
 
        <label className='mb-3 mt-4'>چند جمله ای در مورد خودت بنویس</label>
        <TextField 
-          color="main"   size='small' fullWidth label="درباره من" 
+          color="main"     fullWidth label="درباره من" 
           variant="outlined" multiline rows={3}
           error={!!errorMessage.bio}
           helperText={errorMessage.bio}
@@ -442,14 +441,12 @@ function Edit() {
        />
        
 
-       <div className="mt-3">
+       <div className="mt-3 col-lg-12 col-12">
        <Button variant="contained" type="submit" size="large" style={{backgroundColor:'#df443d',width:"100%",borderRadius:"50px"}}>ویرایش</Button>
        </div>
      </div>
-      </center>
       
       
-    </div>
         </UserPanelBase>
             </main>
 

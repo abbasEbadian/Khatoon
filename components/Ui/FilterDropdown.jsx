@@ -19,8 +19,8 @@ export default function FilterDropdown() {
       toprice:""
     });
     const [inventoryfilter,setinventoryfilter]=useState({
-      frominv:"",
-      toinv:""
+      frominv:0,
+      toinv:1
     });
     const [preparationfilter,setpreparationfilter]=useState({
       frompre:"",
@@ -71,8 +71,14 @@ export default function FilterDropdown() {
       const handlePrice=(props)=>(e)=>{
         setpricefilter({...pricefilter,[props]:e.target.value});
       }
-      const handleInventory=(props)=>(e)=>{
-        setinventoryfilter({...inventoryfilter,[props]:e.target.value});
+      const handleInventory=(props,typeval)=>{
+        if(typeval=='plus'){
+            props=props+1;
+        }else{
+          if(props>0){
+            props=props-1;
+          }
+        }
       }
       const handlePreparation=(props)=>(e)=>{
         setpreparationfilter({...preparationfilter,[props]:e.target.value});
@@ -88,8 +94,8 @@ export default function FilterDropdown() {
         <div>
           <div  className='row row-cols-2 p-0' dir="rtl">
           <ul class=" col-4 list-group" style={{borderRadius:"0px"}}>
-            {filtermenu.map((item)=>(
-              <li class="list-group-item list-group-item-action" onClick={(e)=>{selectStateFilter(item.id)}}>
+            {filtermenu.map((item,idx)=>(
+              <li class="list-group-item list-group-item-action" key={idx} onClick={(e)=>{selectStateFilter(item.id)}}>
                 <div className=' row row-cols-2'>
                 <div className='col-10'>
                 <p>{item.name}</p>
@@ -143,10 +149,10 @@ export default function FilterDropdown() {
                   <Button className="col-3" style={{fontSize:"15px"}} onClick={(e)=>{setpricefilter({fromprice:"",toprice:""})}} >پاک کردن</Button>
                 </div>
                 
-                 <div className='pt-5 pe-4 d-flex' style={{width:"450px"}}>
-                    <label className='form-label me-3' style={{fontSize:"20px"}}>از</label>
+                 <div className='pt-5 px-5 d-flex' style={{width:"450px"}}>
+                    <label className='form-label me-3 fs-3'>از</label>
                     <input className='form-control w-50' value={pricefilter.fromprice} onChange={handlePrice('fromprice')} placeholder='قیمت(تومان)' />
-                    <label className='form-label ms-3 me-2' style={{fontSize:"20px"}}>تا</label>
+                    <label className='form-label ms-3 me-2 fs-3'>تا</label>
                     <input className='form-control me-3 w-50' value={pricefilter.toprice} onChange={handlePrice('toprice')} placeholder='قیمت(تومان)'/>
                  </div>
             </div>}
@@ -172,11 +178,19 @@ export default function FilterDropdown() {
                   <h3 className='card-title col-9 text-start'>موجودی</h3>
                   <Button className="col-3" style={{fontSize:"15px"}} onClick={()=>{setinventoryfilter({frominv:"",toinv:""})}}>پاک کردن</Button>
                 </div>
-                <div className='pt-5 pe-4 d-flex' style={{width:"450px"}}>
-                    <label className='form-label me-3' style={{fontSize:"20px"}}>از</label>
-                    <input className='form-control w-50' value={inventoryfilter.frominv} onChange={handleInventory('frominv')} />
-                    <label className='form-label ms-3 me-2' style={{fontSize:"20px"}}>تا</label>
-                    <input className='form-control me-3 w-50'value={inventoryfilter.toinv} onChange={handleInventory('toinv')}/>
+                <div className='pt-5 px-5 d-flex' style={{width:"450px"}}>
+                    <label className='form-label me-3 fs-3'>از</label>
+                    <div class="input-group" dir='ltr'>
+                    <button class="input-group-text bg-light fs-5" onClick={handleInventory(inventoryfilter.frominv,'plus')}>+</button>
+                    <input class="form-control bg-light" min="0" value={inventoryfilter.frominv} type="number" />
+                    <button class="input-group-text bg-light fs-5" onClick={handleInventory(inventoryfilter.frominv,'mines')}>-</button>
+                    </div>
+                    <label className='form-label ms-3 me-2 fs-3'>تا</label>
+                    <div class="input-group" dir='ltr'>
+                    <button class="input-group-text bg-light fs-5" onClick={handleInventory(inventoryfilter.toinv,'plus')}>+</button>
+                    <input  class="form-control bg-light" min="0" value={inventoryfilter.toinv} type="number" />
+                    <button class="input-group-text bg-light fs-5" onClick={handleInventory(inventoryfilter.toinv,'mines')}>-</button>
+                    </div>
                  </div>
             </div>}
             {selectstates.preparation&& <div className='card-body'>
@@ -184,10 +198,19 @@ export default function FilterDropdown() {
                   <h3 className='card-title col-9 text-start'>زمان اماده سازی</h3>
                   <Button className="col-3" size="large" style={{fontSize:"15px"}} onClick={()=>{setpreparationfilter({frompre:"",topre:""})}}>پاک کردن</Button>
                 </div>
-                <div className='pt-5 pe-4 d-flex' style={{width:"450px"}}>
-                    <label className='form-label me-3' style={{fontSize:"20px"}}>از</label>
-                    <input className='form-control w-50' value={preparationfilter.frompre} onChange={handlePreparation('frompre')} type="number"/>
-                    <label className='form-label ms-3 me-2' style={{fontSize:"20px"}}>تا</label>
+                <div className='pt-5 px-5 d-flex' style={{width:"450px"}}>
+                    <label className='form-label me-3 fs-3'>از</label>
+                    <div class="input-group" dir='ltr'>
+                    <button class="input-group-text bg-light fs-5" onClick={handlePreparation(preparationfilter.frompre,'plus')}>+</button>
+                    <input type="number" class="form-control bg-light" min="0" value={preparationfilter.frompre}  />
+                    <button class="input-group-text bg-light fs-5" onClick={handlePreparation(preparationfilter.frompre,'mines')}>-</button>
+                    </div>
+                    <label className='form-label ms-3 me-2 fs-3'>تا</label>
+                    <div class="input-group" dir='ltr'>
+                    <button class="input-group-text bg-light fs-5" onClick={handlePreparation(preparationfilter.frompre,'plus')}>+</button>
+                    <input type="number" class="form-control bg-light" min="0" value={preparationfilter.frompre}  />
+                    <button class="input-group-text bg-light fs-5" onClick={handlePreparation(preparationfilter.frompre,'mines')}>-</button>
+                    </div>
                     <input className='form-control me-3 w-50' value={preparationfilter.topre} onChange={handlePreparation('topre')} type="number"/>
                  </div>
             </div>}

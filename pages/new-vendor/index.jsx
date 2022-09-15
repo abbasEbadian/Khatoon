@@ -60,7 +60,7 @@ function NewVendor() {
                     <Stepper activeStep={activeStep} orientation={matches? "vertical": "horizontal"}>
                         {steps.map((step, index) => (
                             <Step key={step.label}>
-                                <StepLabel>
+                                <StepLabel color="main">
                                     {step.label}
                                 </StepLabel>
                                 <StepContent>

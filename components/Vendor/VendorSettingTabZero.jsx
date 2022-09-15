@@ -17,8 +17,8 @@ export default function VendorSettingTabZero({goToNext=undefined}) {
     const [loading, setLoading] = React.useState(false);
     const [selection,setSelection]=React.useState("");
     const [selectioncolor,setSelectioncolor]=React.useState({
-        business:"#989898",
-        usual:"#989898"
+        hoghogi:"#989898",
+        haghighi:"#989898"
     });
    
     const [checked,setChecked]=React.useState(false);
@@ -30,26 +30,30 @@ export default function VendorSettingTabZero({goToNext=undefined}) {
        setChecked(true)
     }
     const handlecardSelect=(prop)=>(event)=>{
-        if(prop==='usual'){
-           setSelection("usual");
+        if(prop==='haghighi'){
+           setSelection("haghighi");
            setChecked(true);
            setCheckedcolor("#ffad14");
-           setSelectioncolor({usual:"#ff676d",business:"#989898"});
+           setSelectioncolor({haghighi:"#ff676d",hoghogi:"#989898"});
 
 
-        }else if(prop==='business'){
-            setSelection("business");
+        }else if(prop==='hoghogi'){
+            setSelection("hoghogi");
             setChecked(true);
             setCheckedcolor("#ffad14");
-            setSelectioncolor({business:"#ff676d",usual:"#989898"});
+            setSelectioncolor({hoghogi:"#ff676d",haghighi:"#989898"});
         }
     }
-   
+    const submit=(event)=>{
+      event.preventDefault();
+      localStorage.setItem('typeshop',selection);
+        if (goToNext) goToNext();
+    }
     return (
         <div className="row p-4 justify-content-center">
         <div className="col-xxl-6 col-12">
             {/* <VendorCover /> */}
-            <form className='row align-items-center justify-content-center text-center'>
+            <form className='row align-items-center justify-content-center text-center' onSubmit={submit}>
             <Typography variant="h5" component="h5">
                    به چه طریقی میخواهید در غرفه فعالیت کنید؟
                  </Typography>
@@ -63,15 +67,15 @@ export default function VendorSettingTabZero({goToNext=undefined}) {
                 alignItems="center"
                 justifyContent="center"
                >
-              <Card style={{width:'300px',height:'300px'}} onClick={handlecardSelect('business')} >
-                <CardHeader title="فروشنده حقوقی" className="text-center" style={{backgroundColor:selectioncolor.business}}/>
+              <Card style={{width:'300px',height:'300px'}} onClick={handlecardSelect('hoghogi')} >
+                <CardHeader title="فروشنده حقوقی" className="text-center" style={{backgroundColor:selectioncolor.hoghogi}}/>
                 <CardContent className='row justify-content-center'>
-                <Barrier Component={Corporate} fill={selectioncolor.business} width="100px" height="100px" />
+                <Barrier Component={Corporate} fill={selectioncolor.hoghogi} width="100px" height="100px" />
                 <div className='text-center p-3' dir='rtl'>
                 <Typography variant="p" component="p">
                         اگر دارای شرکت ثبت شده و کد اقتصادی می باشید
                    </Typography>
-                  <FormControlLabel value="business" className="mt-4" onChange={handleRadioSelect} checked={selection==="business"}   control={<Radio style={{color:selectioncolor.business}} />} label="انتخاب" />
+                  <FormControlLabel value="hoghogi" className="mt-4" onChange={handleRadioSelect} checked={selection==="hoghogi"}   control={<Radio style={{color:selectioncolor.hoghogi}} />} label="انتخاب" />
                   </div>
                 </CardContent>
               </Card>
@@ -81,16 +85,16 @@ export default function VendorSettingTabZero({goToNext=undefined}) {
                 alignItems="center"
                 justifyContent="center"
                 >
-              <Card style={{width:'300px',height:'300px'}} onClick={handlecardSelect('usual')}>
-              <CardHeader title="فروشنده حقیقی" className="text-center" style={{backgroundColor:selectioncolor.usual}}/>
+              <Card style={{width:'300px',height:'300px'}} onClick={handlecardSelect('haghighi')}>
+              <CardHeader title="فروشنده حقیقی" className="text-center" style={{backgroundColor:selectioncolor.haghighi}}/>
 
                 <CardContent className='row justify-content-center'>
-                <Barrier Component={Corporateuser} fill={selectioncolor.usual} width="100px" height="100px" />                  
+                <Barrier Component={Corporateuser} fill={selectioncolor.haghighi} width="100px" height="100px" />                  
                   <div className='text-center p-3' dir='rtl'>
                   <Typography variant="p" component="p">
                         اگر به صورت شخصی اقدام به فروش محصولات می نمایید
                    </Typography>
-                  <FormControlLabel value="usual" className="mt-4" onChange={handleRadioSelect} checked={selection==="usual"} control={<Radio style={{color:selectioncolor.usual}}  />} label="انتخاب" />
+                  <FormControlLabel value="haghighi" className="mt-4" onChange={handleRadioSelect} checked={selection==="haghighi"} control={<Radio style={{color:selectioncolor.haghighi}}  />} label="انتخاب" />
                   </div>
                 </CardContent>
               </Card>
