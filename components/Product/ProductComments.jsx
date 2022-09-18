@@ -78,7 +78,20 @@ export default function ProductComments() {
     <div className='container'>
        <h5 className='px-2'>تجربه کاربران</h5>
        <div className="py-5">
+        
        </div>
+       <div className='py-4 d-flex'>
+        <TextField
+        variant='standard'
+        fullWidth
+        size="small"
+        color="main"
+        rows={3}
+        label="نظر خود را بنویسید"
+        className='mx-1'
+        />
+        <Button variant="contained" color="main" className='mx-1'><SendIcon sx={{transform:"rotate(180deg)"}} /></Button>
+      </div>
        <div>
        {fakedata.map((item,idx)=>(
             <div key={idx}>
@@ -110,18 +123,7 @@ export default function ProductComments() {
         </div>
         ))}
        </div>
-       <div className='py-4 d-flex'>
-        <TextField
-        variant='outlined'
-        fullWidth
-        size="small"
-        color="main"
-        rows={3}
-        label="نظر خود را بنویسید"
-        className='mx-1'
-        />
-        <Button variant="contained" color="main" className='mx-1'><SendIcon sx={{transform:"rotate(180deg)"}} /></Button>
-      </div>
+      
     </div>
   )
 }

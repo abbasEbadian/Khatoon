@@ -13,6 +13,7 @@ import {useDispatch, useSelector  } from 'react-redux';
 import * as e from '../../../redux/endpoints'
 import AddToCardButton from '../../../components/elements/AddToCardButton'
 import Breadcrumb from '../../../components/Breadcrumb'
+import ProductStandpoint from '../../../components/Product/ProductStandpoint'
 
 function Product({product, similar_products, handleLoginOpen}) {
   
@@ -142,7 +143,7 @@ function Product({product, similar_products, handleLoginOpen}) {
   return (
     <section id="product-page" className="container_custom">
       <Breadcrumb product={product} />
-      <div className="product-main card_style">
+      <div className="product-main card">
         <ProductToolbar product_id={product.id} toggle_reminder={toggle_reminder} reminderActive={reminderActive} isFavorite={isFavorite}/>
         <div className="row">
           <div className="col-lg-4 col-12">
@@ -170,6 +171,9 @@ function Product({product, similar_products, handleLoginOpen}) {
                 <ProductSpecs product={product} current={current} setCurrent={setCurrent}/>
               </div>
             </div>
+          </div>
+          <div className="col-12">
+             <ProductStandpoint product={product}/>
           </div>
         </div>
       </div>

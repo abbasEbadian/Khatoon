@@ -38,14 +38,12 @@ function ProductVendor({product}) {
                 </span> 
             </div>:null}
 
-            <div className="col-12 d-flex mt-4 justify-content-center ">
-                <div>
+            <div className="col-12 mt-4">
 
-                    <Button variant="outlined" href="/user-panel/messages" color="main"> 
-                    <ChatIcon/>
+                    <Button variant="outlined" fullwidth href="/user-panel/messages" color="main" startIcon={<ChatIcon/>}> 
+                    
                     گفتگو
                     </Button>
-                </div>  
             </div>
         </div>
     </div>
