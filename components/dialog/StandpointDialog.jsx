@@ -51,7 +51,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     onClose: PropTypes.func.isRequired,
   };
   
-export default function StandpointDialog() {
+export default function StandpointDialog({product_id}) {
     const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -250,7 +250,7 @@ export default function StandpointDialog() {
                 <FormGroup>
                   <FormControlLabel control={<Checkbox color="main" checked={data.hide} onChange={(event)=>{setData({hide:event.target.checked})}} />} label="دیدگاه من بصورت ناشناس باشد" />
                 </FormGroup>
-                <Button variant="contained" style={{width:'100%'}} size="large" fullWidth >ثبت دیدگاه</Button>
+                <Button variant="contained" onClick={handleSubmit} style={{width:'100%',borderRadius:'50px',backgroundColor:'#df443d'}} size="large" fullWidth >ثبت دیدگاه</Button>
 
               </div>                       
               </div>

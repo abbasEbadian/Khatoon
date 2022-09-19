@@ -173,7 +173,7 @@ function Product({product, similar_products, handleLoginOpen}) {
             </div>
           </div>
           <div className="col-12">
-             <ProductStandpoint product={product}/>
+             <ProductStandpoint standpoint={product.standpoints} product_id={product.id}/>
           </div>
         </div>
       </div>
