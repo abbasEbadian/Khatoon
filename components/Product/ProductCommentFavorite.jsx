@@ -6,8 +6,8 @@ export default function ProductCommentFavorite({product}) {
     <div>          
         <Link href="#comments">
         {product?.favorite_count >0 ?
-          
-        :}
+            null
+        :null}
         </Link>
 
     </div>

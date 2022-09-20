@@ -14,7 +14,7 @@ import {
 import { Grid, Button,Menu } from "@mui/material";
 import FilterDropdown from '../FilterDropdown';
 
-function index({
+function Index({
   searchValue,
   searchValueChange,
   filterValue,
@@ -97,4 +97,4 @@ const handleClose = () => {
   );
 }
 
-export default index;
+export default Index;

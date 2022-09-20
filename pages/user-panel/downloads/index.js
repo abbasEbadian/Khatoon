@@ -1,13 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import UserPanelBase from '../../../components/UserPanelBase';
 import withAuth from '../../../redux/withAuth'
 
 
-function index() {
-
-
-  
-
+function Index() {
 
 
     return (
@@ -22,4 +18,4 @@ function index() {
     )
 }
 
-export default withAuth(index)
+export default withAuth(Index)

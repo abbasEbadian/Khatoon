@@ -9,7 +9,7 @@ export default function StandpointShow({standpoint}) {
   return (
     <div className="container border rounded-3 my-2">
        <div className='d-flex justify-content-between pt-3 px-3'>
-            <h6><span class="badge bg-success">{standpoint?.score}</span>{standpoint?.title}</h6>
+            <h6><span className="badge bg-success">{standpoint?.score}</span>{standpoint?.title}</h6>
             <small>{standpoint.user?(standpoint?.user.fullname):"ناشناس"}</small>
        </div>
        <hr/>

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
 import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css';
 import Image from 'next/image';
 
 function SlideCard() {
@@ -26,7 +25,7 @@ function SlideCard() {
                 {slideImages.map((slideImage, index)=> (
                     <div className="each-slide" key={index}>
 
-                    <Image src={slideImage.url} class="myimg rounded" alt={slideImage.caption}/>
+                    <Image src={slideImage.url}className="myimg rounded" alt={slideImage.caption}/>
 
                     </div>
                 ))} 

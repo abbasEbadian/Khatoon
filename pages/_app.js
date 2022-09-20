@@ -21,6 +21,7 @@ import createCache from '@emotion/cache';
 import SVGBoxes from '../components/Ui/SVGBoxes';
 import Footer from '../components/Footer';
 import LoginModal from '../components/Ui/LoginModal';
+import 'react-slideshow-image/dist/styles.css';
 
 import {ToastContainer} from 'react-toastify'
 

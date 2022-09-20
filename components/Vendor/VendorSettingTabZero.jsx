@@ -1,12 +1,8 @@
 import { Box, Button, CircularProgress, InputAdornment, MenuItem, TextField, CardHeader, Typography } from '@mui/material'
 import React from 'react'
 import axios from 'axios'
-import {toast} from 'react-toastify'
-import * as e from '../../redux/endpoints'
 import {Card,CardContent} from '@mui/material';
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';;
 import Corporateuser from '../../static/img/icon/corporate-user-icon.svg'
 import Corporate from '../../static/img/icon/corporate-icon.svg'
 import Radio from '@mui/material/Radio';
