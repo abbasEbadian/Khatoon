@@ -6,7 +6,7 @@ import VendorCover from '../../components/Vendor/VendorCover'
 import * as e from '../../redux/endpoints'
 
 
-function Products({categories, vendor}) {
+function Products({categories=[], vendor={}}) {
     const [ page, setPage ] = React.useState() 
     const [products, setProducts]= React.useState([])
     React.useEffect(() =>{
@@ -28,24 +28,24 @@ function Products({categories, vendor}) {
     </section>
   )
 }
-export async function getServerSideProps ({query}){
-    let categories = []
-    let vendor = {}
-    let {vendor_username} = query
-    try{
-        const res        = await fetch(e.GET_CATEGORIES)
-        categories   = await  res.json()
-        const res3 = await fetch(e.GET_VENDOR(vendor_username))
-        vendor = await res3.json()
-    }
-    catch(e){
-        console.log(e)
-    }
-    return {
-        props: {
-            categories: categories.flat_categories || [],
-            vendor
-        }
-    }
-}
+// export async function getServerSideProps ({query}){
+//     let categories = []
+//     let vendor = {}
+//     let {vendor_username} = query
+//     try{
+//         const res        = await fetch(e.GET_CATEGORIES)
+//         categories   = await  res.json()
+//         const res3 = await fetch(e.GET_VENDOR(vendor_username))
+//         vendor = await res3.json()
+//     }
+//     catch(e){
+//         console.log(e)
+//     }
+//     return {
+//         props: {
+//             categories: categories.flat_categories || [],
+//             vendor
+//         }
+//     }
+// }
 export default Products

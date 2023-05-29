@@ -4,10 +4,10 @@ import axios from 'axios'
 
 export const logout = (router)=>{
     return dispatch=>{
-        localStorage.removeItem('token')
+        if(typeof window!== "undefined" && typeof localStorage!== "undefined" )  localStorage.removeItem('token')
         dispatch({type:t.UPDATE_STATUS, payload: false})
         dispatch({type:t.UPDATE_USER, payload: {}})
-        if(typeof window!== "undefined") document.location.href = "/"
+        if(typeof window!== "undefined" && typeof document!== "undefined" ) document.location.href = "/"
     }
 }
 export const profile = (setLoading=undefined)=>{
@@ -42,8 +42,8 @@ export const login = (info, next)=>{
                 const {data} = response
                 if(data.error === 0){
                     try{
-                        localStorage.removeItem('token')
-                        localStorage.setItem('token', data.token)
+                        if(typeof window!== "undefined" && typeof localStorage!== "undefined" ) localStorage.removeItem('token')
+                        if(typeof window!== "undefined" && typeof localStorage!== "undefined" ) localStorage.setItem('token', data.token)
                         dispatch({type:t.UPDATE_STATUS, payload: true})
                         dispatch(profile())
                     }catch(error){console.log(error)}

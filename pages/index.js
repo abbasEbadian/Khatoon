@@ -16,7 +16,7 @@ import TimerTimer from '../components/Home/subHome/TimerTimer'
 import Link from 'next/link'
 import { useSelector } from 'react-redux';
 import * as e from '../redux/endpoints'
-export default function Home({handleLoginOpen, timerSliderProducts, newProducts, suggestSliderProducts, magicSliderProducts, markets}) {
+export default function Home({handleLoginOpen, timerSliderProducts=[], newProducts=[], suggestSliderProducts=[], magicSliderProducts=[], markets=[]}) {
   const router = useRouter();
   const {configs} = useSelector(s=>s.main)
   const time = new Date();
@@ -112,24 +112,24 @@ export default function Home({handleLoginOpen, timerSliderProducts, newProducts,
     </div>
   )
 }
-export async function getServerSideProps (){
-  let result = {}
-  try{
-      const res        = await fetch(e.GET_INDEX_PRODUCTS)
-      result   = await  res.json()
-      console.log(result)
-  }
-  catch(e){
-      console.log(e)
-  }
-  return {
-      props: {
-          timerSliderProducts: result?.timerSliderProducts || [],
-          newProducts: result?.newProducts || [] ,
-          suggestSliderProducts: result?.suggestSliderProducts || [] ,
-          magicSliderProducts: result?.magicSliderProducts || [] ,
-          markets: result?.markets || [] ,
+// export async function getServerSideProps (){
+//   let result = {}
+//   try{
+//       const res        = await fetch(e.GET_INDEX_PRODUCTS)
+//       result   = await  res.json()
+//       console.log(result)
+//   }
+//   catch(e){
+//       console.log(e)
+//   }
+//   return {
+//       props: {
+//           timerSliderProducts: result?.timerSliderProducts || [],
+//           newProducts: result?.newProducts || [] ,
+//           suggestSliderProducts: result?.suggestSliderProducts || [] ,
+//           magicSliderProducts: result?.magicSliderProducts || [] ,
+//           markets: result?.markets || [] ,
 
-      }
-  }
-}
+//       }
+//   }
+// }

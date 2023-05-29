@@ -4,7 +4,7 @@ export const configure = ()=>{
     axios.interceptors.request.use(
         async config => {
             try{
-                const session = localStorage.getItem('token')
+                const session = (typeof window!== "undefined" && typeof localStorage!== "undefined" ) ? localStorage.getItem('token'): undefined
                 if (config.url&&config.url.indexOf("check_auth") === -1
                  && session  ) {
                     config.headers['Authorization'] = 'Bearer ' + session;
@@ -34,7 +34,7 @@ export const configure = ()=>{
       
         if (error.response && error.response.status === 401 ) {
             
-            localStorage.removeItem('token')
+            (typeof window!== "undefined" && typeof localStorage!== "undefined" ) && localStorage.removeItem('token')
             if(window!=="undefined" && window.location.href.indexOf('panel') > -1) document.location.href = "/?next=/"
            
             return Promise.reject(error)

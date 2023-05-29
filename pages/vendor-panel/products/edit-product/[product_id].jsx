@@ -23,7 +23,7 @@ import BlurLoader from '../../../../components/dialog/BlurLoader';
 
 
 
-function EditProduct({ attributes, attributeValues }) {
+function EditProduct({ attributes = [], attributeValues =[] }) {
     const router = useRouter()
     const [category, setCategory] = React.useState(null);
     const [extra, setExtra] = React.useState("");
@@ -343,23 +343,27 @@ function EditProduct({ attributes, attributeValues }) {
 }
 
 
-export async function getServerSideProps() {
-    let attributes = []
-    let attributeValues = []
-    try {
-        const res = await fetch(e.GET_ATTRIBUTES)
-        const result = await res.json()
-        attributes = result.attributes
-        attributeValues = result.attributeValues
-    }
-    catch (e) {
-        console.log(e)
-    }
-    return {
-        props: {
-            attributes,
-            attributeValues,
-        }
-    }
-}
+// export async function getServerSideProps() {
+//     let attributes = []
+//     let attributeValues = []
+//     return {
+//         attributes,
+//         attributeValues,
+//     }
+//     try {
+//         const res = await fetch(e.GET_ATTRIBUTES)
+//         const result = await res.json()
+//         attributes = result.attributes
+//         attributeValues = result.attributeValues
+//     }
+//     catch (e) {
+//         console.log(e)
+//     }
+//     return {
+//         props: {
+//             attributes,
+//             attributeValues,
+//         }
+//     }
+// }
 export default withAuth(EditProduct) 

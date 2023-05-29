@@ -15,7 +15,7 @@ import AddToCardButton from '../../../components/elements/AddToCardButton'
 import Breadcrumb from '../../../components/Breadcrumb'
 import ProductStandpoint from '../../../components/Product/ProductStandpoint'
 
-function Product({product, similar_products, handleLoginOpen}) {
+function Product({product={}, similar_products=[], handleLoginOpen=() => {}}) {
   
   const ProductSuggested = [
     {
@@ -139,7 +139,6 @@ function Product({product, similar_products, handleLoginOpen}) {
     setIsFavorite(user&&user.favorite_set?.find(item=>item.product_id.id === product.id))
     setReminderActive(user&&user.reminder_set?.find(item=>item.product_id.id === product.id))
   }, [user])
-  console.log(product);
   return (
     <section id="product-page" className="container_custom">
       <Breadcrumb product={product} />
@@ -186,23 +185,23 @@ function Product({product, similar_products, handleLoginOpen}) {
     </section>
   )
 }
-export async function getServerSideProps ({query}){
-  let product = {}
+// export async function getServerSideProps ({query}){
+//   let product = {}
 
-  let {product_slug} = query
-  try{
-      product_slug = product_slug.split('-')[0]
-      const res2    = await fetch(e.GET_PRODUCT_BY_ID(product_slug))
-      product  = await  res2.json()
-  }
-  catch(e){
-      console.log(e)
-  }
-  return {
-      props: {
-          product: product?.product || {},
-          similar_product: product?.similar_products || []
-      }
-  }
-}
+//   let {product_slug} = query
+//   try{
+//       product_slug = product_slug.split('-')[0]
+//       const res2    = await fetch(e.GET_PRODUCT_BY_ID(product_slug))
+//       product  = await  res2.json()
+//   }
+//   catch(e){
+//       console.log(e)
+//   }
+//   return {
+//       props: {
+//           product: product?.product || {},
+//           similar_product: product?.similar_products || []
+//       }
+//   }
+// }
 export default Product

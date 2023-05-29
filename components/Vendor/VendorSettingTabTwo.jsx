@@ -20,7 +20,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 function Settings({goToNext=undefined, createMode=false}) {
-	const shop_type=localStorage.getItem('typeshop')
+	const shop_type=  (typeof window!== "undefined" && typeof localStorage!== "undefined" ) ? localStorage.getItem('typeshop') : ''
 	const user = useSelector(s=>s.auth.user)
 	const [boxWebsite, setboxWebsite] = React.useState({
 		name: "http://khatooneziba.ir/",
@@ -90,7 +90,6 @@ function Settings({goToNext=undefined, createMode=false}) {
 	}
 	React.useEffect(() => {
 		getInitialProps()
-		console.log(localStorage.getItem('typeshop'))
 	}, [])
 	React.useEffect(() => {
 		if(user && user.market)

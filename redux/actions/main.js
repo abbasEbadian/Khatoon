@@ -30,7 +30,7 @@ export const get_cart = () =>{
 
 export const check_user = ()=>{
     return dispatch=>{
-        const token = localStorage.getItem("token")
+        const token =  (typeof window!== "undefined" && typeof localStorage!== "undefined" )?  localStorage.getItem("token") : undefined
         if(token){
             dispatch({type:t.UPDATE_STATUS, payload: true})
             dispatch(profile())

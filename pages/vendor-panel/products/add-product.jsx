@@ -41,7 +41,7 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, r
       );
   });
 
-function AddProduct({ attributes, attributeValues }) {
+function AddProduct({ attributes=[], attributeValues=[] }) {
     const router = useRouter()
     const dispatch = useDispatch()
     
@@ -288,24 +288,25 @@ function AddProduct({ attributes, attributeValues }) {
 }
 
 
-export async function getServerSideProps() {
-    let attributes = []
-    let attributeValues = []
-    try {
-        const res = await fetch(e.GET_ATTRIBUTES)
-        const result = await res.json()
-        console.log(result)
-        attributes = result.attributes
-        attributeValues = result.attributeValues
-    }
-    catch (e) {
-        console.log(e)
-    }
-    return {
-        props: {
-            attributes,
-            attributeValues,
-        }
-    }
-}
+// export async function getServerSideProps() {
+//     let attributes = []
+//     let attributeValues = []
+    
+//     try {
+//         const res = await fetch(e.GET_ATTRIBUTES)
+//         const result = await res.json()
+//         console.log(result)
+//         attributes = result.attributes
+//         attributeValues = result.attributeValues
+//     }
+//     catch (e) {
+//         console.log(e)
+//     }
+//     return {
+//         props: {
+//             attributes,
+//             attributeValues,
+//         }
+//     }
+// }
 export default withAuth(AddProduct) 

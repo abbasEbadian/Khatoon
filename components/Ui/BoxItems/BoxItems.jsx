@@ -37,7 +37,7 @@ function BoxItems({ items, title, boxClasses, type }) {
                       }}
                 >
                     {
-                        items.map((item, index) => {
+                        items?.map((item, index) => {
                             return (
                                 <SwiperSlide key={index}>
                                     {

@@ -10,7 +10,7 @@ export default function ProductStandpoint({standpoints,product_id}) {
         </div>
       </div>
       <div className="col-lg-8 col-12">
-        {standpoints.map((item,idx)=>(
+        {standpoints?.map((item,idx)=>(
             <StandpointShow standpoint={item} key={idx}/>
         ))
         }
