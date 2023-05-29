@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production next start",
+    "start2": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^1.8.3",
