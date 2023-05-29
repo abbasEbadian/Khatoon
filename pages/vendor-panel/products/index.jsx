@@ -209,8 +209,8 @@ function Products() {
                                                         <TableCell>
                                                             <Link href={"/vendor-panel/products/edit-product/" + row.id}>
                                                                 <a> 
-                                                                    <IconButton size="small" variant='outlined' style={{backgroundColor:"#ffad14"}}  className="mx-1">
-                                                                        <Edit/>
+                                                                    <IconButton size="small" variant='outlined'  className="mx-1">
+                                                                        <Edit color={"#ffad14"} />
                                                                     </IconButton>
                                                                 </a>
                                                             </Link>

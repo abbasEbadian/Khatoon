@@ -64,7 +64,6 @@ function AddProduct({ attributes, attributeValues }) {
     const createProduct = (event)=>{
         event.preventDefault();
         try{
-            console.log(attrs, combinationData,attrs.length && Array.isArray(combinationData))
             if(attrs.length && Array.isArray(combinationData)){
                 toast.error("لطفا ابتدا دکمه « تایید مقادیر» را فشار دهید.")
                 return
@@ -104,7 +103,7 @@ function AddProduct({ attributes, attributeValues }) {
                 const {data} = response
                 toast(data.message, {type: (data.error? "error": "success")})
                 if(!data.error){
-                    diapatch(profile())
+                    dispatch(profile())
                     router.push('/vendor-panel/products')
                 }
             })

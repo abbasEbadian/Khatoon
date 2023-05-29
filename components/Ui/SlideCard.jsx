@@ -6,17 +6,14 @@ import Image from 'next/image';
 function SlideCard() {
     const slideImages = [
         {
-          url: "../../static/img/imgs/12590.jpg",
+          url: "/../../static/img/imgs/12590.jpg",
           caption: 'Slide 1'
         },
         {
-          url: "../../static/img/imgs/13655.jpg",
+          url: "/../../static/img/imgs/13655.jpg",
           caption: 'Slide 2'
         },
-        {
-          url: "../../static/img/imgs/13970116d.jpg",
-          caption: 'Slide 3'
-        },
+       
       ];
     return (
         <div className="col-md-12 col-12 card mb-4 mt-4">
@@ -25,7 +22,7 @@ function SlideCard() {
                 {slideImages.map((slideImage, index)=> (
                     <div className="each-slide" key={index}>
 
-                    <Image src={slideImage.url}className="myimg rounded" alt={slideImage.caption}/>
+                    <Image src={slideImage.url}className="myimg rounded" alt={slideImage.caption} layout="fill"/>
 
                     </div>
                 ))} 
